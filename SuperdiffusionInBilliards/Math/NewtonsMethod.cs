@@ -12,6 +12,7 @@ namespace SuperdiffusionInBilliards
     { 
         //TODO: Остановку в случае расходимости
         const double epsilon = 0.0001;
+        //Максимальное чило итераций
         const int maxCount = 1000;
         static public List<double> Solve(Function f, double x0)
         {
