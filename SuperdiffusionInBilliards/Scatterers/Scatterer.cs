@@ -8,9 +8,9 @@ namespace SuperdiffusionInBilliards
 {
     abstract public class Scatterer : Function
     {
-        private Point2D center;
-        private double radius0, u0;
-        StateOfParticle statesOfParticle;
+        private Point2D center;     //Координаты центра рассеивателя
+        private double radius0, u0; //Средний радиус рассеивателя, амплитуда скорости рассеивателя
+        StateOfParticle statesOfParticle;   //Состояние частицы??? Зачем оно здесь???
 
         public Scatterer(Point2D center, double radius0, double u0)
         {
