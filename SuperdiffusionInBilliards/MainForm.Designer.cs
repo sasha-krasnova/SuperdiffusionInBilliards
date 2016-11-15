@@ -54,6 +54,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.numberOfRealisations = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.statistics = new System.Windows.Forms.Button();
             this.typeOfOscillations.SuspendLayout();
             this.lattice.SuspendLayout();
             this.SuspendLayout();
@@ -156,7 +157,7 @@
             this.amplitudeOfScattererVelocity.Name = "amplitudeOfScattererVelocity";
             this.amplitudeOfScattererVelocity.Size = new System.Drawing.Size(100, 20);
             this.amplitudeOfScattererVelocity.TabIndex = 3;
-            this.amplitudeOfScattererVelocity.Text = "0,1";
+            this.amplitudeOfScattererVelocity.Text = "0,2";
             this.amplitudeOfScattererVelocity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // periodOfScattererOsc
@@ -235,11 +236,11 @@
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(255)))));
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.button1.Location = new System.Drawing.Point(423, 300);
+            this.button1.Location = new System.Drawing.Point(418, 300);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(356, 58);
             this.button1.TabIndex = 12;
-            this.button1.Text = "Старт";
+            this.button1.Text = "Старт с графикой";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
@@ -267,7 +268,7 @@
             this.fullTime.Name = "fullTime";
             this.fullTime.Size = new System.Drawing.Size(100, 20);
             this.fullTime.TabIndex = 15;
-            this.fullTime.Text = "10";
+            this.fullTime.Text = "50";
             this.fullTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // deltaTime
@@ -276,7 +277,7 @@
             this.deltaTime.Name = "deltaTime";
             this.deltaTime.Size = new System.Drawing.Size(100, 20);
             this.deltaTime.TabIndex = 16;
-            this.deltaTime.Text = "0,0025";
+            this.deltaTime.Text = "0,01";
             this.deltaTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label7
@@ -315,11 +316,24 @@
             this.label9.TabIndex = 20;
             this.label9.Text = "Количество реализаций";
             // 
+            // statistics
+            // 
+            this.statistics.BackColor = System.Drawing.Color.Red;
+            this.statistics.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.statistics.Location = new System.Drawing.Point(17, 300);
+            this.statistics.Name = "statistics";
+            this.statistics.Size = new System.Drawing.Size(356, 58);
+            this.statistics.TabIndex = 21;
+            this.statistics.Text = "Расчитать статистику";
+            this.statistics.UseVisualStyleBackColor = false;
+            this.statistics.Click += new System.EventHandler(this.statistics_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(793, 370);
+            this.Controls.Add(this.statistics);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.numberOfRealisations);
             this.Controls.Add(this.label8);
@@ -381,6 +395,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox numberOfRealisations;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button statistics;
     }
 }
 

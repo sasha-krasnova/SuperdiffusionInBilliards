@@ -60,7 +60,7 @@
             this.Controls.Add(this.pictureBox1);
             this.DoubleBuffered = true;
             this.Name = "DrawingForm";
-            this.Text = "DrawingForm";
+            this.Text = "Траектория частицы";
             this.Load += new System.EventHandler(this.DrawingForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
