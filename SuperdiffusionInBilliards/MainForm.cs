@@ -108,6 +108,5 @@ namespace SuperdiffusionInBilliards
             sf.Show();
         }
 
-
     }
 }

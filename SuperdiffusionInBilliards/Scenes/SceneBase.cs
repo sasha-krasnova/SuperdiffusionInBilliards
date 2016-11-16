@@ -32,10 +32,8 @@ namespace SuperdiffusionInBilliards
         {
             displacement = new Point2D(0, 0);
             //Считаем vx vy по vParticle
-            double alpha = new Random().NextDouble() % (2 * Math.PI);
-            //double alpha = Math.PI / 4;
-            //double alpha = Math.PI / 5; //Ошибка где-то на 22м соударении
-            //double alpha = Math.PI / 8; //Ошибка в течение 10 сек, примерно 13 соударение
+            //double alpha = new Random().NextDouble() % (2 * Math.PI);
+            double alpha = Math.PI / 3; // Ошибка после 7го соударения
             double vX = vParticle * Math.Cos(alpha);
             double vY = vParticle * Math.Sin(alpha);
             particle = new Particle(new Point2D(0, 0), new Point2D(vX, vY), this);

@@ -157,7 +157,7 @@
             this.amplitudeOfScattererVelocity.Name = "amplitudeOfScattererVelocity";
             this.amplitudeOfScattererVelocity.Size = new System.Drawing.Size(100, 20);
             this.amplitudeOfScattererVelocity.TabIndex = 3;
-            this.amplitudeOfScattererVelocity.Text = "0,25";
+            this.amplitudeOfScattererVelocity.Text = "0,2";
             this.amplitudeOfScattererVelocity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // periodOfScattererOsc
@@ -211,7 +211,7 @@
             this.averageRadiusOfCentralSc.Name = "averageRadiusOfCentralSc";
             this.averageRadiusOfCentralSc.Size = new System.Drawing.Size(100, 20);
             this.averageRadiusOfCentralSc.TabIndex = 9;
-            this.averageRadiusOfCentralSc.Text = "2";
+            this.averageRadiusOfCentralSc.Text = "3";
             this.averageRadiusOfCentralSc.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label4
@@ -268,7 +268,7 @@
             this.fullTime.Name = "fullTime";
             this.fullTime.Size = new System.Drawing.Size(100, 20);
             this.fullTime.TabIndex = 15;
-            this.fullTime.Text = "1000";
+            this.fullTime.Text = "10";
             this.fullTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // deltaTime
