@@ -8,6 +8,7 @@ namespace SuperdiffusionInBilliards
 {
     static public class MathAdditional
     {
+        /* Полная фигня, а не функция!!!
         static public double Atan2(double y, double x)
         {
             double atan = Math.Atan2(y, x);
@@ -15,6 +16,6 @@ namespace SuperdiffusionInBilliards
                 atan += Math.PI;
             return atan;
         }
-           
+        */   
     }
 }

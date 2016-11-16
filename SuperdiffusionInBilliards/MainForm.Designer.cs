@@ -157,7 +157,7 @@
             this.amplitudeOfScattererVelocity.Name = "amplitudeOfScattererVelocity";
             this.amplitudeOfScattererVelocity.Size = new System.Drawing.Size(100, 20);
             this.amplitudeOfScattererVelocity.TabIndex = 3;
-            this.amplitudeOfScattererVelocity.Text = "0,2";
+            this.amplitudeOfScattererVelocity.Text = "0,25";
             this.amplitudeOfScattererVelocity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // periodOfScattererOsc
@@ -166,7 +166,7 @@
             this.periodOfScattererOsc.Name = "periodOfScattererOsc";
             this.periodOfScattererOsc.Size = new System.Drawing.Size(100, 20);
             this.periodOfScattererOsc.TabIndex = 4;
-            this.periodOfScattererOsc.Text = "25";
+            this.periodOfScattererOsc.Text = "20";
             this.periodOfScattererOsc.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label1
@@ -268,7 +268,7 @@
             this.fullTime.Name = "fullTime";
             this.fullTime.Size = new System.Drawing.Size(100, 20);
             this.fullTime.TabIndex = 15;
-            this.fullTime.Text = "50";
+            this.fullTime.Text = "1000";
             this.fullTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // deltaTime
@@ -277,7 +277,7 @@
             this.deltaTime.Name = "deltaTime";
             this.deltaTime.Size = new System.Drawing.Size(100, 20);
             this.deltaTime.TabIndex = 16;
-            this.deltaTime.Text = "0,01";
+            this.deltaTime.Text = "0,05";
             this.deltaTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label7
