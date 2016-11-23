@@ -51,16 +51,13 @@ namespace SuperdiffusionInBilliards
                 int minIndexSc = 0;     // Индекс рассеивателя, время соударения с которым минимально. Не должно ли здесь быть -1? Или это не имеет значения?
                 for (int i = 0; i < Scatterers.Length; i++)
                 {
-                   // if (i != LastScattererIndex)
-                    if(true)
+                    CollisionTime collisionTime = ParticleScene.FindCollisionTimeScatterer(Scatterers[i]);  // Ищем время соударерния с i-тым рассеивателем, если оно существует
+                    if (collisionTime.Existence && (collisionTime.Time < minCollTimeSc.Time || !minCollTimeSc.Existence))   // Если существует минимальне время соударения с рассеивателями, и если время соударерния с i-м рассеивателем существует, сравниваем его с минимальным временем
                     {
-                        CollisionTime collisionTime = ParticleScene.FindCollisionTimeScatterer(Scatterers[i]);  // Ищем время соударерния с i-тым рассеивателем, если оно существует
-                        if (collisionTime.Existence && (collisionTime.Time < minCollTimeSc.Time || !minCollTimeSc.Existence))   // Если существует минимальне время соударения с рассеивателями, и если время соударерния с i-м рассеивателем существует, сравниваем его с минимальным временем
-                        {
-                            minIndexSc = i;
-                            minCollTimeSc = collisionTime;
-                        }
+                        minIndexSc = i;
+                        minCollTimeSc = collisionTime;
                     }
+                
                 }
 
                 //Ищем время столкновения с каждой линией

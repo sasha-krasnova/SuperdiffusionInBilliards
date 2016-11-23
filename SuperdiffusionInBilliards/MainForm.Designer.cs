@@ -268,7 +268,7 @@
             this.fullTime.Name = "fullTime";
             this.fullTime.Size = new System.Drawing.Size(100, 20);
             this.fullTime.TabIndex = 15;
-            this.fullTime.Text = "10";
+            this.fullTime.Text = "200";
             this.fullTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // deltaTime

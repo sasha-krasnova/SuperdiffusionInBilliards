@@ -53,7 +53,7 @@ namespace SuperdiffusionInBilliards
             CollisionTime minCollisionTime = new CollisionTime(0, false);
             foreach (double rute in rutes)
             {
-                if((rute < minCollisionTime.Time || !minCollisionTime.Existence) && rute > 0)
+                if((rute < minCollisionTime.Time || !minCollisionTime.Existence) && rute > 0.0000000001) // Костыль с корнями
                 {
                     minCollisionTime.Time = rute;
                     minCollisionTime.Existence = true;
