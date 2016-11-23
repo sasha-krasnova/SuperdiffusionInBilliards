@@ -11,14 +11,12 @@ namespace SuperdiffusionInBilliards
     static public class NewtonsMethod
     { 
         //TODO: Остановку в случае расходимости
-        const double epsilon = 0.0001;
-        //Максимальное чило итераций
-        const int maxCount = 1000;
+        const double epsilon = 0.0001;  // 
+        const int maxCount = 1000; // Максимальное чило итераций
         static public List<double> Solve(Function f, double x0)
         {
-
-            List<double> roots = new List<double>();
-            double x = x0;
+            List<double> roots = new List<double>();    // Создаем список корней
+            double x = x0;  // Первое приближение
             double deltaX = 0;
             int counter = 0;
             bool success = false;

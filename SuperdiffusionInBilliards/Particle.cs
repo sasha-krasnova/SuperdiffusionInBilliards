@@ -51,9 +51,10 @@ namespace SuperdiffusionInBilliards
             Function f = new CollisionTimeEquation(scatterer, this, sceneCeller.Time);
             List<double> rutes = NewtonsMethod.Solve(f, 0);
             CollisionTime minCollisionTime = new CollisionTime(0, false);
+            double eps = 0.0000000001;
             foreach (double rute in rutes)
             {
-                if((rute < minCollisionTime.Time || !minCollisionTime.Existence) && rute > 0.0000000001) // Костыль с корнями
+                if((rute < minCollisionTime.Time || !minCollisionTime.Existence) && rute > eps) // Костыль с корнями. Значение корня больше eps
                 {
                     minCollisionTime.Time = rute;
                     minCollisionTime.Existence = true;

@@ -55,6 +55,7 @@
     <Compile Include="DrawingForm.Designer.cs">
       <DependentUpon>DrawingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Math\LeastSquares.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
