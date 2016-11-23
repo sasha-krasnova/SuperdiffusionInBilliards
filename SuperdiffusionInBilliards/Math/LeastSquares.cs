@@ -7,6 +7,7 @@ namespace SuperdiffusionInBilliards
 {
     static public class LeastSquares
     {
+        //static public List<double> ShiftAndSlope(List<Point2D> pointsForApprox)
         static public List<double> ShiftAndSlope(List<Point2D> pointsForApprox)
         {
             List<double> coefficients = new List<double>();

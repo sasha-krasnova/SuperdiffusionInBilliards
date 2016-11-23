@@ -108,5 +108,22 @@ namespace SuperdiffusionInBilliards
             sf.Show();
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            List<Point2D> pointsForApprox = new List<Point2D>();
+            Point2D point = new Point2D (0, 0);
+            pointsForApprox.Add(point);
+            
+            for (int i = 1; i <= 1; i++)
+            {
+                point.X += 1;
+                point.Y += 2;
+                pointsForApprox.Add(point);
+            }
+
+
+
+        }
+
     }
 }
