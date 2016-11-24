@@ -28,7 +28,7 @@ namespace SuperdiffusionInBilliards
         public List<double> ShiftAndSlope()
         {
             List<double> coefficients = new List<double>();
-            slope = (numOfPoints * sumXY - sumY)/(numOfPoints * sumX2 - sumX);
+            slope = (numOfPoints * sumXY - sumX * sumY)/(numOfPoints * sumX2 - sumX * sumX);
             shift = (sumY - slope * sumX) / numOfPoints;
             coefficients.Add(slope);
             coefficients.Add(shift);

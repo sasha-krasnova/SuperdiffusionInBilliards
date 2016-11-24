@@ -108,7 +108,7 @@ namespace SuperdiffusionInBilliards
             sf.Show();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+/*        private void button2_Click(object sender, EventArgs e)
         {
             List<Point2D> pointsForApprox = new List<Point2D>();
             Point2D point = new Point2D (0, 0);
@@ -121,8 +121,18 @@ namespace SuperdiffusionInBilliards
                 pointsForApprox.Add(point);
             }
 
+            LeastSquares mnk = new LeastSquares(pointsForApprox);
+            List<double> coefficients = mnk.ShiftAndSlope();
+            //MessageBox.Show(coefficients.ToString());
 
-
+            LeastSquaresForm lsf = new LeastSquaresForm();
+            lsf.Show();
+        }
+*/
+        private void leastSquares_Click(object sender, EventArgs e)
+        {
+            LeastSquaresForm lsf = new LeastSquaresForm();
+            lsf.Show();
         }
 
     }
