@@ -135,5 +135,11 @@ namespace SuperdiffusionInBilliards
             lsf.Show();
         }
 
+        private void averagingForm_Click(object sender, EventArgs e)
+        {
+            AveragingForm af = new AveragingForm();
+            af.Show();
+        }
+
     }
 }

@@ -45,27 +45,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\AveragingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AveragingForm.Designer.cs">
+      <DependentUpon>AveragingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Math\Averaging.cs" />
     <Compile Include="DrawingHelper.cs" />
     <Compile Include="Geometry\Circle.cs" />
     <Compile Include="CollisionTime.cs" />
     <Compile Include="Functions\CollisionTimeEquation.cs" />
-    <Compile Include="DrawingForm.cs">
+    <Compile Include="Forms\DrawingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DrawingForm.Designer.cs">
+    <Compile Include="Forms\DrawingForm.Designer.cs">
       <DependentUpon>DrawingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LeastSquaresForm.cs">
+    <Compile Include="Forms\LeastSquaresForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LeastSquaresForm.Designer.cs">
+    <Compile Include="Forms\LeastSquaresForm.Designer.cs">
       <DependentUpon>LeastSquaresForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Math\LeastSquares.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Math\Function.cs" />
@@ -85,19 +92,22 @@
     <Compile Include="StatesOfParticle\StateOfParticle.cs" />
     <Compile Include="StatesOfParticle\StateOfParticleDetailed.cs" />
     <Compile Include="Functions\TestFunction.cs" />
-    <Compile Include="StatisticsForm.cs">
+    <Compile Include="Forms\StatisticsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StatisticsForm.Designer.cs">
+    <Compile Include="Forms\StatisticsForm.Designer.cs">
       <DependentUpon>StatisticsForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="DrawingForm.resx">
+    <EmbeddedResource Include="Forms\AveragingForm.resx">
+      <DependentUpon>AveragingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DrawingForm.resx">
       <DependentUpon>DrawingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LeastSquaresForm.resx">
+    <EmbeddedResource Include="Forms\LeastSquaresForm.resx">
       <DependentUpon>LeastSquaresForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -110,7 +120,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="StatisticsForm.resx">
+    <EmbeddedResource Include="Forms\StatisticsForm.resx">
       <DependentUpon>StatisticsForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -132,7 +142,9 @@
   <ItemGroup>
     <None Include="Resources\clear.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Service References\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

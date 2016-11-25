@@ -25,14 +25,12 @@ namespace SuperdiffusionInBilliards
                 sumXY += (point.X * point.Y);
             }
         }
-        public List<double> ShiftAndSlope()
+        public Line ShiftAndSlope()
         {
-            List<double> coefficients = new List<double>();
             slope = (numOfPoints * sumXY - sumX * sumY)/(numOfPoints * sumX2 - sumX * sumX);
             shift = (sumY - slope * sumX) / numOfPoints;
-            coefficients.Add(slope);
-            coefficients.Add(shift);
-            return coefficients;
+            Line lineMNK = new Line(slope, -1, shift);
+            return lineMNK;
         }
         
         public double Slope(double b)

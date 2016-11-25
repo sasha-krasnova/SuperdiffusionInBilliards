@@ -56,6 +56,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.statistics = new System.Windows.Forms.Button();
             this.leastSquares = new System.Windows.Forms.Button();
+            this.averagingForm = new System.Windows.Forms.Button();
             this.typeOfOscillations.SuspendLayout();
             this.lattice.SuspendLayout();
             this.SuspendLayout();
@@ -339,11 +340,22 @@
             this.leastSquares.UseVisualStyleBackColor = true;
             this.leastSquares.Click += new System.EventHandler(this.leastSquares_Click);
             // 
+            // averagingForm
+            // 
+            this.averagingForm.Location = new System.Drawing.Point(259, 226);
+            this.averagingForm.Name = "averagingForm";
+            this.averagingForm.Size = new System.Drawing.Size(224, 32);
+            this.averagingForm.TabIndex = 23;
+            this.averagingForm.Text = "Проверка усреднения";
+            this.averagingForm.UseVisualStyleBackColor = true;
+            this.averagingForm.Click += new System.EventHandler(this.averagingForm_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(793, 370);
+            this.Controls.Add(this.averagingForm);
             this.Controls.Add(this.leastSquares);
             this.Controls.Add(this.statistics);
             this.Controls.Add(this.label9);
@@ -409,6 +421,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button statistics;
         private System.Windows.Forms.Button leastSquares;
+        private System.Windows.Forms.Button averagingForm;
     }
 }
 

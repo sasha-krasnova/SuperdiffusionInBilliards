@@ -35,10 +35,9 @@ namespace SuperdiffusionInBilliards
             }
 
             LeastSquares mnk = new LeastSquares(pointsForApprox);
-            List<double> coefficients = mnk.ShiftAndSlope();
-            //double slope = coefficients[0];
-            string slopeString = Convert.ToString(coefficients[0]);
-            string shiftString = Convert.ToString(coefficients[1]);
+            Line lineMNK = mnk.ShiftAndSlope();
+            string slopeString = Convert.ToString(lineMNK.A);
+            string shiftString = Convert.ToString(lineMNK.C);
             slopeText.Text = slopeString;
             shiftText.Text = shiftString;
             //MessageBox.Show(coefficients.ToString());
