@@ -49,5 +49,10 @@ namespace SuperdiffusionInBilliards
         {
             return new Point2D(x, y);
         }
+
+        public double norm()
+        {
+            return Math.Sqrt(x * x + y * y);
+        }
     }
 }

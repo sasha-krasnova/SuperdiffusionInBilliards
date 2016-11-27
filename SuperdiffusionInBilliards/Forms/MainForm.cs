@@ -27,7 +27,7 @@ namespace SuperdiffusionInBilliards
             }
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private SceneBase getScene()
         {
             Scatterer[] scatterers = null;
             SceneBase scene = null;
@@ -42,13 +42,21 @@ namespace SuperdiffusionInBilliards
                     }
                     scatterers[4] = new ScattererHarmonic(new Point2D(0, 0), Convert.ToDouble(averageRadiusOfCentralSc.Text), Convert.ToDouble(amplitudeOfScattererVelocity.Text), Convert.ToDouble(periodOfScattererOsc.Text));
                 }
-                scene = new SceneSquereLattice(scatterers, Convert.ToDouble(fullTime.Text), Convert.ToDouble(deltaTime.Text), Convert.ToDouble(initialVelocity.Text),Convert.ToDouble(latticeSize.Text));
+                scene = new SceneSquereLattice(scatterers, Convert.ToDouble(fullTime.Text), Convert.ToDouble(deltaTime.Text), Convert.ToDouble(initialVelocity.Text), Convert.ToDouble(latticeSize.Text));
             }
+            return scene;
+        }
 
+        private void button1_Click_1(object sender, EventArgs e)
+        {
 
+            SceneBase scene = getScene();
+
+            WaitForm wf = new WaitForm();
+            wf.Show();
+            scene.StatMode = SuperdiffusionRunModes.Detail;
             scene.Run();
-
-
+            wf.Close();
             DrawingForm df = new DrawingForm(scene.Statistics, new Point2D(Convert.ToDouble(latticeSize.Text), Convert.ToDouble(latticeSize.Text)));
             df.Show();
         }
@@ -104,6 +112,10 @@ namespace SuperdiffusionInBilliards
 
         private void statistics_Click(object sender, EventArgs e)
         {
+            List<SceneBase> scenes= new List<SceneBase>();
+            for (int i = 0; i < Convert.ToInt64(numberOfRealisations.Text); i++ )
+                scenes.Add(getScene());
+
             StatisticsForm sf = new StatisticsForm();
             sf.Show();
         }

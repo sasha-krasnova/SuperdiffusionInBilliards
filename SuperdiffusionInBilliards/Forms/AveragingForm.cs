@@ -21,8 +21,8 @@ namespace SuperdiffusionInBilliards
             List<double> values = new List<double>();
             values.Add(1);
             values.Add(3);
-            //values.Add(2);
-            //values.Add(3);
+            values.Add(2);
+            values.Add(3);
             //values.Add(2);
             //values.Add(1);
             //values.Add(5);

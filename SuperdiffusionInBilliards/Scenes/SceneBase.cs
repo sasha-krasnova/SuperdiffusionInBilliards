@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SuperdiffusionInBilliards
 {
-    enum SuperdiffusionRunModes { Standert, Detail };
+    public enum SuperdiffusionRunModes { Standart, Detail };
     /// <summary>
 	/// Базовый класс сцены
 	/// </summary>
@@ -20,8 +20,9 @@ namespace SuperdiffusionInBilliards
         private Particle particle;     //Частица
        // private StateOfParticle[] statistics;         //Статистика для файла
         private StateOfParticle oldState;               //Старое, сохраненное состояние системы, от которого строятся точки до нового состояния
-        private List<StateOfParticleDetailed> statistics = new List<StateOfParticleDetailed>();
+        private List<StateOfParticle> statistics = new List<StateOfParticle>();
 
+        private SuperdiffusionRunModes statMode = SuperdiffusionRunModes.Standart;
         /// <summary>
         /// Конструктор
         /// </summary>
@@ -44,7 +45,20 @@ namespace SuperdiffusionInBilliards
             this.deltaTime = deltaTime;
         }
 
-        public List<StateOfParticleDetailed> Statistics
+        public SuperdiffusionRunModes StatMode
+        {
+            get
+            {
+                return statMode;
+            }
+            set
+            {
+                statMode = value;
+            }
+        }
+
+
+        public List<StateOfParticle> Statistics
         {
             get
             {
@@ -116,7 +130,7 @@ namespace SuperdiffusionInBilliards
         protected void initParticleCoordinates(Point2D coordinate)
         {
             particle.Coordinate = coordinate;
-            oldState = new StateOfParticle(particle, time);
+            oldState = new StateOfParticle(particle, time, displacement);
 
         }
 
@@ -144,7 +158,11 @@ namespace SuperdiffusionInBilliards
                 tempPoint.X = oldState.Particle.Velocity.X * (pointTime - oldState.Time) + oldState.Particle.Coordinate.X;
                 tempPoint.Y = oldState.Particle.Velocity.Y * (pointTime - oldState.Time) + oldState.Particle.Coordinate.Y;
                 Particle tempParticle = new Particle(tempPoint, oldState.Particle.Velocity, this);    //Частица с координатами временной точки
-                statistics.Add(new StateOfParticleDetailed(tempParticle, pointTime, displacement, getScatterersByTime(pointTime))); //Добавляем элемент в статистику
+                if(statMode == SuperdiffusionRunModes.Standart)
+                    statistics.Add(new StateOfParticle(tempParticle, pointTime, displacement)); //Добавляем элемент в статистику
+                else if(statMode == SuperdiffusionRunModes.Detail)
+                    statistics.Add(new StateOfParticleDetailed(tempParticle, pointTime, displacement, getScatterersByTime(pointTime))); //Добавляем элемент в статистику
+
             }
         }
 
