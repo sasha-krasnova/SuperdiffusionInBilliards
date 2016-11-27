@@ -83,6 +83,7 @@
     <Compile Include="Geometry\Point2D.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RealizationSet.cs" />
     <Compile Include="Scatterers\Scatterer.cs" />
     <Compile Include="Scatterers\ScattererHarmonic.cs" />
     <Compile Include="Scatterers\ScattererPeriodic.cs" />

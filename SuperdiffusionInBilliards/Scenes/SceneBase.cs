@@ -21,6 +21,7 @@ namespace SuperdiffusionInBilliards
        // private StateOfParticle[] statistics;         //Статистика для файла
         private StateOfParticle oldState;               //Старое, сохраненное состояние системы, от которого строятся точки до нового состояния
         private List<StateOfParticleDetailed> statistics = new List<StateOfParticleDetailed>();
+
         /// <summary>
         /// Конструктор
         /// </summary>
@@ -124,59 +125,12 @@ namespace SuperdiffusionInBilliards
         /// </summary>
         public void Run()
         {
-            //int numberOfPoints = Convert.ToInt32(fullTime / deltaTime);
-            //StateOfParticle[] statistics = new StateOfParticle[numberOfPoints + 1];
-            //Запись в статистику 
-
-            //TODO: Дописать нулевую точку???
-            //statistics[0].Particle.Coordinate.X = ;
-          
-            //int pointIndex = 1;     //Номер точки при записи в статистику
-            //double pointTime = deltaTime;   //Точка по времени при записи в статистику
             while (time < fullTime) //Цикл, запускающий функцию <c>GetNextCollision</c>, пока текущее время не будет больше или равно времени эксперимента
             {
-                //StateOfParticle oldState = new StateOfParticle(particle, time, displacement.X, displacement.Y);     //Записываем предыдущее состояние частицы и сцены в статистику
                 GetNextCollision();                                             //Функция, выдающая состояние частицы после соударения.
-                //StateOfParticle newState = new StateOfParticle(particle, time, displacement.X, displacement.Y);     //Записть состояния после соударения в статистику
-
-                //Не должны ли мы проверять мод перед входом в этот цикл?
-                //Проверяем, в какой интервал попадает точка. Если время больше значения фиксированной по времени точки, то в фиксированную точку записываем предыдущее состояние
-              /*  while (pointTime < newState.Time)
-                {
-                    if (mode == SuperdiffusionRunModes.Standert)    //Если мод стандартный, то записываем точку в статистику
-                        statistics[pointIndex] = (StateOfParticle)oldState.Clone();
-                    else
-                    {
-                        //TODO: посчитать текущие x y
-
-                        //statistics[pointIndex] = (StateOfParticleDetailed)oldState.Clone();
-                    }
-                    statistics[pointIndex].Time = pointTime;
-                    pointIndex++;
-                    pointTime += deltaTime;
-                }*/
-            
             }
-            //return statistics;
         }
 
-        /*
-        /// <summary>
-        /// Устаревшая функция, удалить. В зависимости от параметра mode создает объект состояния системы того или иного класса.
-        /// </summary>
-        /// <param name="mode">Стандарт или детально</param>
-        /// <returns>Объект состояния системы</returns>
-
-        private StateOfParticle getCurrentStateOfparticle(SuperdiffusionRunModes mode)
-        {
-            StateOfParticle state = null;
-            if (mode == SuperdiffusionRunModes.Standert)
-                state = new StateOfParticle(particle, time, displacement.X, displacement.Y);
-            else
-                state = new StateOfParticleDetailed(particle, time, displacement.X, displacement.Y, getScatterersByTime(time));
-            return state;
-        }
-        */
 
         /// <summary>
         /// Функция, записывающая в статистику все точки от старой точки соударения до новой точки соударения
