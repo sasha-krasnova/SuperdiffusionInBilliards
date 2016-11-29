@@ -78,36 +78,6 @@ namespace SuperdiffusionInBilliards
 
         private void randomScene_Click(object sender, EventArgs e)
         {
-            //RadioButton rb = (RadioButton)sender;
-            //rb.Checked = true;
-           // randomScene.Checked = true;
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            /*Scatterer[] scatterers = null;
-            SceneBase scene = null;
-            if (squareScene.Checked)
-            {
-                scatterers = new Scatterer[5];
-                if (harmonicScatterer.Checked)
-                {
-                    for (int i = 0; i < scatterers.Length - 1; i++)
-                    {
-                        scatterers[i] = new ScattererHarmonic(new Point2D(0, 0), Convert.ToDouble(averageRadius.Text), Convert.ToDouble(amplitudeOfScattererVelocity.Text), Convert.ToDouble(periodOfScattererOsc.Text));
-                    }
-                    scatterers[4] = new ScattererHarmonic(new Point2D(0, 0), Convert.ToDouble(averageRadiusOfCentralSc.Text), Convert.ToDouble(amplitudeOfScattererVelocity.Text), Convert.ToDouble(periodOfScattererOsc.Text));
-                }
-                scene = new SceneSquereLattice(scatterers, Convert.ToDouble(fullTime.Text), Convert.ToDouble(deltaTime.Text), Convert.ToDouble(initialVelocity.Text), Convert.ToDouble(latticeSize.Text));
-            }
-
-
-            scene.Run();
-
-
-            DrawingForm df = new DrawingForm(scene.Statistics, new Point2D(Convert.ToDouble(latticeSize.Text), Convert.ToDouble(latticeSize.Text)));
-            df.Show();*/
-
         }
 
         private void statistics_Click(object sender, EventArgs e)
@@ -115,32 +85,13 @@ namespace SuperdiffusionInBilliards
             List<SceneBase> scenes= new List<SceneBase>();
             for (int i = 0; i < Convert.ToInt64(numberOfRealisations.Text); i++ )
                 scenes.Add(getScene());
-
+            RealizationSet realizationSet = new RealizationSet(scenes);
+            realizationSet.Run();
             StatisticsForm sf = new StatisticsForm();
             sf.Show();
         }
 
-/*        private void button2_Click(object sender, EventArgs e)
-        {
-            List<Point2D> pointsForApprox = new List<Point2D>();
-            Point2D point = new Point2D (0, 0);
-            pointsForApprox.Add(point);
-            
-            for (int i = 1; i <= 1; i++)
-            {
-                point.X += 1;
-                point.Y += 2;
-                pointsForApprox.Add(point);
-            }
 
-            LeastSquares mnk = new LeastSquares(pointsForApprox);
-            List<double> coefficients = mnk.ShiftAndSlope();
-            //MessageBox.Show(coefficients.ToString());
-
-            LeastSquaresForm lsf = new LeastSquaresForm();
-            lsf.Show();
-        }
-*/
         private void leastSquares_Click(object sender, EventArgs e)
         {
             LeastSquaresForm lsf = new LeastSquaresForm();

@@ -117,7 +117,6 @@
             this.randomScene.TabIndex = 2;
             this.randomScene.Text = "Случайная";
             this.randomScene.UseVisualStyleBackColor = true;
-            this.randomScene.CheckedChanged += new System.EventHandler(this.randomScene_CheckedChanged);
             // 
             // triangularScene
             // 
@@ -279,7 +278,7 @@
             this.deltaTime.Name = "deltaTime";
             this.deltaTime.Size = new System.Drawing.Size(100, 20);
             this.deltaTime.TabIndex = 16;
-            this.deltaTime.Text = "0,05";
+            this.deltaTime.Text = "20";
             this.deltaTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label7
@@ -306,7 +305,7 @@
             this.numberOfRealisations.Name = "numberOfRealisations";
             this.numberOfRealisations.Size = new System.Drawing.Size(100, 20);
             this.numberOfRealisations.TabIndex = 19;
-            this.numberOfRealisations.Text = "1000";
+            this.numberOfRealisations.Text = "5";
             this.numberOfRealisations.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label9
@@ -381,7 +380,6 @@
             this.Controls.Add(this.typeOfOscillations);
             this.Name = "MainForm";
             this.Text = "Супердиффузия в бильярдах";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.typeOfOscillations.ResumeLayout(false);
             this.typeOfOscillations.PerformLayout();
             this.lattice.ResumeLayout(false);
