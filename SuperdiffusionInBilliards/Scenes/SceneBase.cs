@@ -21,6 +21,7 @@ namespace SuperdiffusionInBilliards
        // private StateOfParticle[] statistics;         //Статистика для файла
         private StateOfParticle oldState;               //Старое, сохраненное состояние системы, от которого строятся точки до нового состояния
         private List<StateOfParticle> statistics = new List<StateOfParticle>();
+        private static Random rndm = new Random();
 
         private SuperdiffusionRunModes statMode = SuperdiffusionRunModes.Standart;
         /// <summary>
@@ -34,7 +35,7 @@ namespace SuperdiffusionInBilliards
         {
             displacement = new Point2D(0, 0);
             //Считаем vx vy по vParticle
-            double alpha = new Random().NextDouble() % (2 * Math.PI);
+            double alpha = rndm.NextDouble() % (2 * Math.PI);
             //double alpha = Math.PI / 3; // Ошибка после 7го соударения
             double vX = vParticle * Math.Cos(alpha);
             double vY = vParticle * Math.Sin(alpha);
@@ -43,6 +44,10 @@ namespace SuperdiffusionInBilliards
             this.scatterers = scatterers;
             this.fullTime = fullTime;
             this.deltaTime = deltaTime;
+            //string line = Convert.ToString(alpha);
+            //string line2 = "\r\n";
+            //line += line2;
+            //System.IO.File.AppendAllText(@"c:\Users\Sasha\Documents\Visual Studio 2010\Projects\SuperdiffusionInBilliards\RandomTest.txt", line);
         }
 
         public SuperdiffusionRunModes StatMode
@@ -127,7 +132,7 @@ namespace SuperdiffusionInBilliards
             }
         }
 
-        protected void initParticleCoordinates(Point2D coordinate)
+        protected void InitParticleCoordinates(Point2D coordinate)
         {
             particle.Coordinate = coordinate;
             oldState = new StateOfParticle(particle, time, displacement);
@@ -149,7 +154,7 @@ namespace SuperdiffusionInBilliards
         /// <summary>
         /// Функция, записывающая в статистику все точки от старой точки соударения до новой точки соударения
         /// </summary>
-        protected void generateDots()
+        protected void GenerateDots()
         {
             //В цикле проходимся по всем точкам по времени от ближайшей к времени старого соударения до нового соударения
             for(double pointTime = (Math.Truncate(oldState.Time / deltaTime) + 1) * (deltaTime); pointTime < time; pointTime += deltaTime)   
@@ -161,7 +166,7 @@ namespace SuperdiffusionInBilliards
                 if(statMode == SuperdiffusionRunModes.Standart)
                     statistics.Add(new StateOfParticle(tempParticle, pointTime, displacement)); //Добавляем элемент в статистику
                 else if(statMode == SuperdiffusionRunModes.Detail)
-                    statistics.Add(new StateOfParticleDetailed(tempParticle, pointTime, displacement, getScatterersByTime(pointTime))); //Добавляем элемент в статистику
+                    statistics.Add(new StateOfParticleDetailed(tempParticle, pointTime, displacement, GetScatterersByTime(pointTime))); //Добавляем элемент в статистику
 
             }
         }
@@ -169,7 +174,7 @@ namespace SuperdiffusionInBilliards
         /// <summary>
         /// Функция, сохраняющая состояние частицы
         /// </summary>
-        protected void setOldState()
+        protected void SetOldState()
         {
             oldState.Time = time;
             oldState.Particle = (Particle)particle.Clone();
@@ -182,7 +187,7 @@ namespace SuperdiffusionInBilliards
         /// </summary>
         /// <param name="time">Текущее время</param>
         /// <returns>Список кругов-рассеивателей в текущий момент времени</returns>
-        private List<Circle> getScatterersByTime(double time)
+        private List<Circle> GetScatterersByTime(double time)
         {
             List<Circle> circles = new List<Circle>();  // Создаем список кругов
             foreach(Scatterer scatterer in scatterers)  // Перебираем все рассеиватели

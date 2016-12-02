@@ -25,18 +25,19 @@ namespace SuperdiffusionInBilliards
             foreach (SceneBase scene in scenes)
             {
                 scene.Run();
-                //List<StateOfParticle> statisticsTemp = new List<StateOfParticle>();
-                //statisticsTemp = scene.Statistics;
-                //statisticsSet.Add(statisticsTemp);
-                statisticsSet.Add(scene.Statistics);
+                //SceneBase sceneTemp = new SceneBase;
+                List<StateOfParticle> statisticsTemp = new List<StateOfParticle>();
+                statisticsTemp = scene.Statistics;
+                statisticsSet.Add(statisticsTemp);
+                //statisticsSet.Add(scene.Statistics);
             }
-            getTimes();
-            getAverageVelocities();
-            getAverageDisplacements();
+            GetTimes();
+            GetAverageVelocities();
+            GetAverageDisplacements();
 
         }
 
-        private void getTimes()
+        private void GetTimes()
         {
             times = new List<double>();
             foreach(StateOfParticle state in statisticsSet[0])
@@ -45,7 +46,7 @@ namespace SuperdiffusionInBilliards
             }
         }
 
-        private void getAverageVelocities()
+        private void GetAverageVelocities()
         {
             averageVelocities = new List<double>();
             //List<List>
@@ -54,13 +55,13 @@ namespace SuperdiffusionInBilliards
                 List<double> stepVelocities = new List<double>();
                 foreach (List<StateOfParticle> states in statisticsSet)
                 {
-                    stepVelocities.Add(states[i].Particle.Velocity.norm());
+                    stepVelocities.Add(states[i].Particle.Velocity.Norm());
                 }
                 averageVelocities.Add(Averaging.Average(stepVelocities));
             }
         }
 
-        private void getAverageDisplacements()
+        private void GetAverageDisplacements()
         {
             averageDisplacements = new List<Point2D>();
             for (int i = 0; i < statisticsSet[0].Count; i++)

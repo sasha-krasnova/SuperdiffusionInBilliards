@@ -27,7 +27,7 @@ namespace SuperdiffusionInBilliards
             }
         }
 
-        private SceneBase getScene()
+        private SceneBase GetScene()
         {
             Scatterer[] scatterers = null;
             SceneBase scene = null;
@@ -50,7 +50,7 @@ namespace SuperdiffusionInBilliards
         private void button1_Click_1(object sender, EventArgs e)
         {
 
-            SceneBase scene = getScene();
+            SceneBase scene = GetScene();
 
             WaitForm wf = new WaitForm();
             wf.Show();
@@ -83,8 +83,10 @@ namespace SuperdiffusionInBilliards
         private void statistics_Click(object sender, EventArgs e)
         {
             List<SceneBase> scenes= new List<SceneBase>();
-            for (int i = 0; i < Convert.ToInt64(numberOfRealisations.Text); i++ )
-                scenes.Add(getScene());
+            for (int i = 0; i < Convert.ToInt64(numberOfRealisations.Text); i++)
+            {
+                scenes.Add(GetScene());
+            }
             RealizationSet realizationSet = new RealizationSet(scenes);
             realizationSet.Run();
             StatisticsForm sf = new StatisticsForm();
@@ -103,6 +105,7 @@ namespace SuperdiffusionInBilliards
             AveragingForm af = new AveragingForm();
             af.Show();
         }
+
 
     }
 }

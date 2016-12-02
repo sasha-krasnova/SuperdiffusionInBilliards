@@ -12,7 +12,7 @@ namespace SuperdiffusionInBilliards
         public SceneSquereLattice(Scatterer[] scatterers, double fullTime, double deltaTime, double vParticle, double latticeSize)
             : base(scatterers, fullTime, deltaTime, vParticle)
         {
-            initParticleCoordinates(new Point2D(latticeSize / 2, latticeSize / 16));
+            InitParticleCoordinates(new Point2D(latticeSize / 2, latticeSize / 16));
             this.latticeSize = latticeSize;
             Lines = new Line[4];    // Создаем массив из черырех линий
             Lines[0] = new Line(0, 1, 0);
@@ -95,7 +95,7 @@ namespace SuperdiffusionInBilliards
                     {
                         ParticleScene.Coordinate.Y = 0;
                         //Записываем точки до этого момента. Не должен ли здесь проверяться мод?
-                        generateDots();
+                        GenerateDots();
                         Displacement.Y -= latticeSize;
                         ParticleScene.Coordinate.Y = latticeSize;
                         LastLineIndex = 2;
@@ -103,7 +103,7 @@ namespace SuperdiffusionInBilliards
                     else if(minIndexL == 1)
                     {
                         ParticleScene.Coordinate.X = latticeSize;
-                        generateDots();
+                        GenerateDots();
                         Displacement.X += latticeSize;
                         ParticleScene.Coordinate.X = 0;
                         LastLineIndex = 3;
@@ -111,7 +111,7 @@ namespace SuperdiffusionInBilliards
                     else if (minIndexL == 2)
                     {
                         ParticleScene.Coordinate.Y = latticeSize;
-                        generateDots();
+                        GenerateDots();
                         Displacement.Y += latticeSize;
                         ParticleScene.Coordinate.Y = 0;
                         LastLineIndex = 0;
@@ -119,14 +119,14 @@ namespace SuperdiffusionInBilliards
                     else if (minIndexL == 3)
                     {
                         ParticleScene.Coordinate.X = 0;
-                        generateDots();
+                        GenerateDots();
                         Displacement.X -= latticeSize;
                         ParticleScene.Coordinate.X = latticeSize;
                         LastLineIndex = 1;
                     }
 
                     // Сохраняем текущую точку
-                    setOldState();
+                    SetOldState();
                     //LastScattererIndex = -1;
                 }
                 else if(minCollTimeSc.Existence)
@@ -137,8 +137,8 @@ namespace SuperdiffusionInBilliards
                     ParticleScene = ParticleScene.MakeScattererCollision(Scatterers[minIndexSc], minCollTimeSc.Time, Time);
                     //Записываем точки до этого момента
                     //Сохраняем текущую точку
-                    generateDots();
-                    setOldState();
+                    GenerateDots();
+                    SetOldState();
                     LastLineIndex = -1;
                     minTimeForLines = false;
                 }
