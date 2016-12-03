@@ -18,25 +18,23 @@ namespace SuperdiffusionInBilliards
         private double deltaTime;                       //Время между точками записи в файл
         private Scatterer[] scatterers;                 //Массив рассеивателей
         private Particle particle;     //Частица
-       // private StateOfParticle[] statistics;         //Статистика для файла
         private StateOfParticle oldState;               //Старое, сохраненное состояние системы, от которого строятся точки до нового состояния
         private List<StateOfParticle> statistics = new List<StateOfParticle>();
         private static Random rndm = new Random();
-
         private SuperdiffusionRunModes statMode = SuperdiffusionRunModes.Standart;
+
         /// <summary>
         /// Конструктор
         /// </summary>
         /// <param name="scatterers">Массив рассеивателей</param>
         /// <param name="fullTime">Время эксперимента</param>
         /// <param name="deltaTime">Время между точками записи в файл</param>
-        /// <param name="particle">Частица</param>
+        /// <param name="vParticle">Начальная скорость частицы</param>
         public SceneBase(Scatterer[] scatterers, double fullTime, double deltaTime, double vParticle)
         {
             displacement = new Point2D(0, 0);
             //Считаем vx vy по vParticle
             double alpha = rndm.NextDouble() % (2 * Math.PI);
-            //double alpha = Math.PI / 3; // Ошибка после 7го соударения
             double vX = vParticle * Math.Cos(alpha);
             double vY = vParticle * Math.Sin(alpha);
             particle = new Particle(new Point2D(0, 0), new Point2D(vX, vY), this);
@@ -44,11 +42,7 @@ namespace SuperdiffusionInBilliards
             this.scatterers = scatterers;
             this.fullTime = fullTime;
             this.deltaTime = deltaTime;
-            //string line = Convert.ToString(alpha);
-            //string line2 = "\r\n";
-            //line += line2;
-            //System.IO.File.AppendAllText(@"c:\Users\Sasha\Documents\Visual Studio 2010\Projects\SuperdiffusionInBilliards\RandomTest.txt", line);
-        }
+         }
 
         public SuperdiffusionRunModes StatMode
         {

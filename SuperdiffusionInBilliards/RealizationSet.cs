@@ -14,11 +14,37 @@ namespace SuperdiffusionInBilliards
         private List<double> averageVelocities;
         private List<Point2D> averageDisplacements;
         private List<double> times;
+        private List<Point2D> averageVelocityOnTime;
 
         public RealizationSet(List<SceneBase> scenes)
         {
             this.scenes = scenes;
         }
+
+        public List<Point2D> AverageVelocityOnTime
+        {
+            get
+            {
+                return averageVelocityOnTime;
+            }
+        }
+
+/*        public List<double> AverageVelocities
+        {
+            get
+            {
+                return averageVelocities;
+            }
+        }
+
+        public List<double> Times
+        {
+            get
+            {
+                return times;
+            }
+        }
+*/
 
         public void Run()
         {
@@ -34,6 +60,7 @@ namespace SuperdiffusionInBilliards
             GetTimes();
             GetAverageVelocities();
             GetAverageDisplacements();
+            GetVelocityOnTime();
 
         }
 
@@ -76,5 +103,16 @@ namespace SuperdiffusionInBilliards
                 averageDisplacements.Add(Averaging.Average(stepDisplacements));
             }
         }
+
+        private void GetVelocityOnTime()
+        {
+            averageVelocityOnTime = new List<Point2D>();
+            for (int i = 0; i < times.Count; i++)
+            {
+                Point2D pointTemp = new Point2D(times[i], averageVelocities[i]);
+                averageVelocityOnTime.Add(pointTemp);
+            }
+        }
+
     }
 }

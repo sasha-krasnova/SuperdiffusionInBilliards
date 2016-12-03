@@ -89,6 +89,9 @@ namespace SuperdiffusionInBilliards
             }
             RealizationSet realizationSet = new RealizationSet(scenes);
             realizationSet.Run();
+
+            Graph graph = new Graph(realizationSet.AverageVelocityOnTime, Color.Black);
+
             StatisticsForm sf = new StatisticsForm();
             sf.Show();
         }
