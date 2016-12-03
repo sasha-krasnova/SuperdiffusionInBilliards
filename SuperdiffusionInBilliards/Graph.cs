@@ -10,13 +10,14 @@ namespace SuperdiffusionInBilliards
     {
         private Point2D min, max;
         private List<Point2D> points;
-        private System.Drawing.Color color;
+        //private System.Drawing.Color color;
+        private System.Drawing.Pen pen;
         private SuperdiffusionDrawingModes drawingMode = SuperdiffusionDrawingModes.Points;
         private bool render = true;
 
-        public Graph(List<Point2D> points, System.Drawing.Color color)
+        public Graph(List<Point2D> points, System.Drawing.Pen pen)
         {
-            this.color = color;
+            this.pen = pen;
             this.points = points;
 
             GetMinMaxPoints();
@@ -45,6 +46,15 @@ namespace SuperdiffusionInBilliards
 
         }
 
+        public List<Point2D> Points
+        {
+            get
+            {
+                return points;
+            }
+        }
+
+
         public Point2D Min
         {
             get
@@ -59,6 +69,19 @@ namespace SuperdiffusionInBilliards
             {
                 return max;
             }
+        }
+
+        public System.Drawing.Pen Pen
+        {
+            get
+            {
+                return pen;
+            }
+        }
+
+        public object Clone()
+        {
+            return new Graph(points, pen);
         }
 
     }

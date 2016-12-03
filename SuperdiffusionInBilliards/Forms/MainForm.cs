@@ -87,12 +87,12 @@ namespace SuperdiffusionInBilliards
             {
                 scenes.Add(GetScene());
             }
-            RealizationSet realizationSet = new RealizationSet(scenes);
-            realizationSet.Run();
+            
 
-            Graph graph = new Graph(realizationSet.AverageVelocityOnTime, Color.Black);
+            //Pen pen = new Pen(Color.Black);
+            //Graph graph = new Graph(realizationSet.AverageVelocityOnTime, pen);
 
-            StatisticsForm sf = new StatisticsForm();
+            StatisticsForm sf = new StatisticsForm(scenes);
             sf.Show();
         }
 

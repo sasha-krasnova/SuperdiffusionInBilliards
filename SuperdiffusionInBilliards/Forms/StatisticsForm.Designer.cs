@@ -29,15 +29,19 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.velocityOnTime = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.meanSqareDispOnTime = new System.Windows.Forms.PictureBox();
             this.calculateAcceleration = new System.Windows.Forms.Button();
             this.calculateCoeffisientOfSuperdif = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.velocityOnTime)).BeginInit();
+            this.drawVelocityOnTime = new System.Windows.Forms.Button();
+            this.averVelOnTime = new System.Windows.Forms.PictureBox();
+            this.velOnTime = new System.Windows.Forms.PictureBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.meanSqareDispOnTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.averVelOnTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.velOnTime)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -48,15 +52,6 @@
             this.label1.Size = new System.Drawing.Size(276, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Зависимость средней скорости частицы от времени";
-            // 
-            // velocityOnTime
-            // 
-            this.velocityOnTime.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.velocityOnTime.Location = new System.Drawing.Point(12, 29);
-            this.velocityOnTime.Name = "velocityOnTime";
-            this.velocityOnTime.Size = new System.Drawing.Size(303, 165);
-            this.velocityOnTime.TabIndex = 1;
-            this.velocityOnTime.TabStop = false;
             // 
             // label2
             // 
@@ -116,23 +111,64 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Коэффициент супердиффузии =";
             // 
+            // drawVelocityOnTime
+            // 
+            this.drawVelocityOnTime.Location = new System.Drawing.Point(667, 29);
+            this.drawVelocityOnTime.Name = "drawVelocityOnTime";
+            this.drawVelocityOnTime.Size = new System.Drawing.Size(267, 65);
+            this.drawVelocityOnTime.TabIndex = 8;
+            this.drawVelocityOnTime.Text = "Нарисовать скорость от времени";
+            this.drawVelocityOnTime.UseVisualStyleBackColor = true;
+            this.drawVelocityOnTime.Click += new System.EventHandler(this.drawVelocityOnTime_Click);
+            // 
+            // averVelOnTime
+            // 
+            this.averVelOnTime.BackColor = System.Drawing.SystemColors.Window;
+            this.averVelOnTime.Location = new System.Drawing.Point(12, 29);
+            this.averVelOnTime.Name = "averVelOnTime";
+            this.averVelOnTime.Size = new System.Drawing.Size(303, 162);
+            this.averVelOnTime.TabIndex = 9;
+            this.averVelOnTime.TabStop = false;
+            // 
+            // velOnTime
+            // 
+            this.velOnTime.BackColor = System.Drawing.SystemColors.Window;
+            this.velOnTime.Location = new System.Drawing.Point(667, 136);
+            this.velOnTime.Name = "velOnTime";
+            this.velOnTime.Size = new System.Drawing.Size(306, 257);
+            this.velOnTime.TabIndex = 10;
+            this.velOnTime.TabStop = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(667, 117);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(231, 13);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Зависимость средней скорости от времени";
+            // 
             // StatisticsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(652, 405);
+            this.ClientSize = new System.Drawing.Size(985, 405);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.velOnTime);
+            this.Controls.Add(this.averVelOnTime);
+            this.Controls.Add(this.drawVelocityOnTime);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.calculateCoeffisientOfSuperdif);
             this.Controls.Add(this.calculateAcceleration);
             this.Controls.Add(this.meanSqareDispOnTime);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.velocityOnTime);
             this.Controls.Add(this.label1);
             this.Name = "StatisticsForm";
             this.Text = "Статистика движегия частицы";
-            ((System.ComponentModel.ISupportInitialize)(this.velocityOnTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.meanSqareDispOnTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.averVelOnTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.velOnTime)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -141,12 +177,15 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox velocityOnTime;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox meanSqareDispOnTime;
         private System.Windows.Forms.Button calculateAcceleration;
         private System.Windows.Forms.Button calculateCoeffisientOfSuperdif;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button drawVelocityOnTime;
+        private System.Windows.Forms.PictureBox averVelOnTime;
+        private System.Windows.Forms.PictureBox velOnTime;
+        private System.Windows.Forms.Label label5;
     }
 }
