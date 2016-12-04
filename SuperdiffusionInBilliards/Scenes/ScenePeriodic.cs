@@ -56,5 +56,9 @@ namespace SuperdiffusionInBilliards
         }
 
         abstract public override void GetNextCollision();
+
+        abstract public override double FermiAccelerationTheory();
+
+        abstract public override double CoefficientOfSuperdiffusionTheory();
     }
 }

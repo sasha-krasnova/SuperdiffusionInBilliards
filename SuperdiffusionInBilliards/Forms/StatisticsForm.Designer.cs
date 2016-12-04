@@ -37,7 +37,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.averVelOnTime = new System.Windows.Forms.PictureBox();
             this.fermiAcceleration = new System.Windows.Forms.TextBox();
-            this.koefficientOfSuperdif = new System.Windows.Forms.TextBox();
+            this.coefOfSuperdif = new System.Windows.Forms.TextBox();
+            this.fermiAccelerationTheory = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.coefOfSuperdifTheory = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.meanSqareDispOnTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.averVelOnTime)).BeginInit();
             this.SuspendLayout();
@@ -96,7 +100,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(401, 136);
+            this.label3.Location = new System.Drawing.Point(460, 139);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(112, 13);
             this.label3.TabIndex = 6;
@@ -105,7 +109,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(344, 332);
+            this.label4.Location = new System.Drawing.Point(403, 332);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(169, 13);
             this.label4.TabIndex = 7;
@@ -122,24 +126,60 @@
             // 
             // fermiAcceleration
             // 
-            this.fermiAcceleration.Location = new System.Drawing.Point(519, 136);
+            this.fermiAcceleration.Location = new System.Drawing.Point(578, 136);
             this.fermiAcceleration.Name = "fermiAcceleration";
             this.fermiAcceleration.Size = new System.Drawing.Size(151, 20);
             this.fermiAcceleration.TabIndex = 13;
             // 
-            // koefficientOfSuperdif
+            // coefOfSuperdif
             // 
-            this.koefficientOfSuperdif.Location = new System.Drawing.Point(519, 329);
-            this.koefficientOfSuperdif.Name = "koefficientOfSuperdif";
-            this.koefficientOfSuperdif.Size = new System.Drawing.Size(151, 20);
-            this.koefficientOfSuperdif.TabIndex = 14;
+            this.coefOfSuperdif.Location = new System.Drawing.Point(578, 329);
+            this.coefOfSuperdif.Name = "coefOfSuperdif";
+            this.coefOfSuperdif.Size = new System.Drawing.Size(151, 20);
+            this.coefOfSuperdif.TabIndex = 14;
+            // 
+            // fermiAccelerationTheory
+            // 
+            this.fermiAccelerationTheory.Location = new System.Drawing.Point(579, 162);
+            this.fermiAccelerationTheory.Name = "fermiAccelerationTheory";
+            this.fermiAccelerationTheory.Size = new System.Drawing.Size(150, 20);
+            this.fermiAccelerationTheory.TabIndex = 15;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(381, 165);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(192, 13);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Теоретическое ускорение Ферми = ";
+            // 
+            // coefOfSuperdifTheory
+            // 
+            this.coefOfSuperdifTheory.Location = new System.Drawing.Point(579, 354);
+            this.coefOfSuperdifTheory.Name = "coefOfSuperdifTheory";
+            this.coefOfSuperdifTheory.Size = new System.Drawing.Size(150, 20);
+            this.coefOfSuperdifTheory.TabIndex = 17;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(325, 357);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(248, 13);
+            this.label6.TabIndex = 18;
+            this.label6.Text = "Теоретический коэффициент супердиффузии =";
             // 
             // StatisticsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(741, 405);
-            this.Controls.Add(this.koefficientOfSuperdif);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.coefOfSuperdifTheory);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.fermiAccelerationTheory);
+            this.Controls.Add(this.coefOfSuperdif);
             this.Controls.Add(this.fermiAcceleration);
             this.Controls.Add(this.averVelOnTime);
             this.Controls.Add(this.label4);
@@ -170,6 +210,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox averVelOnTime;
         private System.Windows.Forms.TextBox fermiAcceleration;
-        private System.Windows.Forms.TextBox koefficientOfSuperdif;
+        private System.Windows.Forms.TextBox coefOfSuperdif;
+        private System.Windows.Forms.TextBox fermiAccelerationTheory;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox coefOfSuperdifTheory;
+        private System.Windows.Forms.Label label6;
     }
 }

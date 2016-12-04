@@ -181,6 +181,10 @@ namespace SuperdiffusionInBilliards
 
         abstract public void GetNextCollision();
 
+        abstract public double FermiAccelerationTheory();
+
+        abstract public double CoefficientOfSuperdiffusionTheory();
+
         /// <summary>
         /// Функция, выдающая список рассеивателей-кругов, с координатами центров и конкретными радиусами в данный момент времени
         /// </summary>

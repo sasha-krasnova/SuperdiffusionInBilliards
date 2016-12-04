@@ -37,6 +37,28 @@ namespace SuperdiffusionInBilliards
             Scatterers[4].Center.Y = latticeSize / 2;
         }
 
+        public override double FermiAccelerationTheory()
+        {
+            double area = latticeSize * latticeSize - Math.PI * (Scatterers[0].Radius0 * Scatterers[0].Radius0 + Scatterers[4].Radius0 * Scatterers[4].Radius0);
+            double perimeter = 2 * Math.PI * (Scatterers[0].Radius0 + Scatterers[4].Radius0);
+            double lambda = Math.PI * area / perimeter;
+            double fermiAccelerationTheory;
+            if (Scatterers[0] is ScattererPeriodic)
+                fermiAccelerationTheory = Scatterers[0].U0 * Scatterers[0].U0 / lambda;
+            else
+                fermiAccelerationTheory = Scatterers[0].U0 * Scatterers[0].U0 / 3 / lambda;
+            return fermiAccelerationTheory;
+        }
+
+        public override double CoefficientOfSuperdiffusionTheory()
+        {
+            double coefficietnOfSuperdif;
+            double part1 = 2 * latticeSize * latticeSize * Scatterers[0].U0 * (Scatterers[0].Radius0 + Scatterers[4].Radius0) * (latticeSize - 2 * Scatterers[0].Radius0);
+            double part2 = 3 * Math.PI * (latticeSize * latticeSize - Math.PI * (Scatterers[0].Radius0 * Scatterers[0].Radius0 + Scatterers[4].Radius0 * Scatterers[4].Radius0)) * (latticeSize * latticeSize - Math.PI * (Scatterers[0].Radius0 * Scatterers[0].Radius0 + Scatterers[4].Radius0 * Scatterers[4].Radius0));
+            coefficietnOfSuperdif = Math.Sqrt(part1 / part2);
+            return coefficietnOfSuperdif;
+        }
+
         /// <summary>
         /// Функция производит следующее соударение. Ищет времена соударения со всеми элементами сцены и выбирает наименьшее положительное
         /// </summary>
