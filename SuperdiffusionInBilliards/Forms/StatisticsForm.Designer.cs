@@ -35,13 +35,11 @@
             this.calculateCoeffisientOfSuperdif = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.drawVelocityOnTime = new System.Windows.Forms.Button();
             this.averVelOnTime = new System.Windows.Forms.PictureBox();
-            this.velOnTime = new System.Windows.Forms.PictureBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.fermiAcceleration = new System.Windows.Forms.TextBox();
+            this.koefficientOfSuperdif = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.meanSqareDispOnTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.averVelOnTime)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.velOnTime)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -75,28 +73,30 @@
             // 
             this.calculateAcceleration.BackColor = System.Drawing.Color.SpringGreen;
             this.calculateAcceleration.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.calculateAcceleration.Location = new System.Drawing.Point(347, 29);
+            this.calculateAcceleration.Location = new System.Drawing.Point(403, 29);
             this.calculateAcceleration.Name = "calculateAcceleration";
             this.calculateAcceleration.Size = new System.Drawing.Size(267, 65);
             this.calculateAcceleration.TabIndex = 4;
-            this.calculateAcceleration.Text = "Расчитать ускорение Ферми";
+            this.calculateAcceleration.Text = "Построить график и расчитать ускорение Ферми";
             this.calculateAcceleration.UseVisualStyleBackColor = false;
+            this.calculateAcceleration.Click += new System.EventHandler(this.calculateAcceleration_Click);
             // 
             // calculateCoeffisientOfSuperdif
             // 
             this.calculateCoeffisientOfSuperdif.BackColor = System.Drawing.Color.SpringGreen;
             this.calculateCoeffisientOfSuperdif.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.calculateCoeffisientOfSuperdif.Location = new System.Drawing.Point(347, 231);
+            this.calculateCoeffisientOfSuperdif.Location = new System.Drawing.Point(403, 231);
             this.calculateCoeffisientOfSuperdif.Name = "calculateCoeffisientOfSuperdif";
             this.calculateCoeffisientOfSuperdif.Size = new System.Drawing.Size(267, 65);
             this.calculateCoeffisientOfSuperdif.TabIndex = 5;
-            this.calculateCoeffisientOfSuperdif.Text = "Расчитать коэффициент супердиффузии";
+            this.calculateCoeffisientOfSuperdif.Text = "Построить график и расчитать коэффициент супердиффузии";
             this.calculateCoeffisientOfSuperdif.UseVisualStyleBackColor = false;
+            this.calculateCoeffisientOfSuperdif.Click += new System.EventHandler(this.calculateCoeffisientOfSuperdif_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(344, 136);
+            this.label3.Location = new System.Drawing.Point(401, 136);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(112, 13);
             this.label3.TabIndex = 6;
@@ -111,16 +111,6 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Коэффициент супердиффузии =";
             // 
-            // drawVelocityOnTime
-            // 
-            this.drawVelocityOnTime.Location = new System.Drawing.Point(667, 29);
-            this.drawVelocityOnTime.Name = "drawVelocityOnTime";
-            this.drawVelocityOnTime.Size = new System.Drawing.Size(267, 65);
-            this.drawVelocityOnTime.TabIndex = 8;
-            this.drawVelocityOnTime.Text = "Нарисовать скорость от времени";
-            this.drawVelocityOnTime.UseVisualStyleBackColor = true;
-            this.drawVelocityOnTime.Click += new System.EventHandler(this.drawVelocityOnTime_Click);
-            // 
             // averVelOnTime
             // 
             this.averVelOnTime.BackColor = System.Drawing.SystemColors.Window;
@@ -130,33 +120,28 @@
             this.averVelOnTime.TabIndex = 9;
             this.averVelOnTime.TabStop = false;
             // 
-            // velOnTime
+            // fermiAcceleration
             // 
-            this.velOnTime.BackColor = System.Drawing.SystemColors.Window;
-            this.velOnTime.Location = new System.Drawing.Point(667, 136);
-            this.velOnTime.Name = "velOnTime";
-            this.velOnTime.Size = new System.Drawing.Size(306, 257);
-            this.velOnTime.TabIndex = 10;
-            this.velOnTime.TabStop = false;
+            this.fermiAcceleration.Location = new System.Drawing.Point(519, 136);
+            this.fermiAcceleration.Name = "fermiAcceleration";
+            this.fermiAcceleration.Size = new System.Drawing.Size(151, 20);
+            this.fermiAcceleration.TabIndex = 13;
             // 
-            // label5
+            // koefficientOfSuperdif
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(667, 117);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(231, 13);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Зависимость средней скорости от времени";
+            this.koefficientOfSuperdif.Location = new System.Drawing.Point(519, 329);
+            this.koefficientOfSuperdif.Name = "koefficientOfSuperdif";
+            this.koefficientOfSuperdif.Size = new System.Drawing.Size(151, 20);
+            this.koefficientOfSuperdif.TabIndex = 14;
             // 
             // StatisticsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(985, 405);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.velOnTime);
+            this.ClientSize = new System.Drawing.Size(741, 405);
+            this.Controls.Add(this.koefficientOfSuperdif);
+            this.Controls.Add(this.fermiAcceleration);
             this.Controls.Add(this.averVelOnTime);
-            this.Controls.Add(this.drawVelocityOnTime);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.calculateCoeffisientOfSuperdif);
@@ -166,9 +151,9 @@
             this.Controls.Add(this.label1);
             this.Name = "StatisticsForm";
             this.Text = "Статистика движегия частицы";
+            this.Load += new System.EventHandler(this.StatisticsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.meanSqareDispOnTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.averVelOnTime)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.velOnTime)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -183,9 +168,8 @@
         private System.Windows.Forms.Button calculateCoeffisientOfSuperdif;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button drawVelocityOnTime;
         private System.Windows.Forms.PictureBox averVelOnTime;
-        private System.Windows.Forms.PictureBox velOnTime;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox fermiAcceleration;
+        private System.Windows.Forms.TextBox koefficientOfSuperdif;
     }
 }

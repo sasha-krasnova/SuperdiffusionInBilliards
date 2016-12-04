@@ -138,6 +138,11 @@ namespace SuperdiffusionInBilliards
         /// </summary>
         public void Run()
         {
+            if (statMode == SuperdiffusionRunModes.Standart)
+                statistics.Add(new StateOfParticle(particle, 0, displacement)); //Добавляем элемент в статистику
+            else if (statMode == SuperdiffusionRunModes.Detail)
+                statistics.Add(new StateOfParticleDetailed(particle, 0, displacement, GetScatterersByTime(0))); //Добавляем элемент в статистику
+
             while (time < fullTime) //Цикл, запускающий функцию <c>GetNextCollision</c>, пока текущее время не будет больше или равно времени эксперимента
             {
                 GetNextCollision();                                             //Функция, выдающая состояние частицы после соударения.

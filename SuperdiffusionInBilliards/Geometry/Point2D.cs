@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace SuperdiffusionInBilliards
 {
@@ -53,6 +54,11 @@ namespace SuperdiffusionInBilliards
         public double Norm()
         {
             return Math.Sqrt(x * x + y * y);
+        }
+
+        public Point ConvertToPoint()
+        {
+            return new Point(Convert.ToInt32(x), Convert.ToInt32(y));
         }
     }
 }

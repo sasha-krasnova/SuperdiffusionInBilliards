@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 
 namespace SuperdiffusionInBilliards
 {
@@ -15,16 +16,27 @@ namespace SuperdiffusionInBilliards
         private SuperdiffusionDrawingModes drawingMode = SuperdiffusionDrawingModes.Points;
         private bool render = true;
 
+        public Graph(List<Point2D> points, System.Drawing.Pen pen, SuperdiffusionDrawingModes drawingMode, bool render)
+            : this(points, pen, drawingMode)
+        {
+            this.render = render;
+        }
+
+        public Graph(List<Point2D> points, System.Drawing.Pen pen, SuperdiffusionDrawingModes drawingMode) : this(points, pen)
+        {
+            this.drawingMode = drawingMode;
+        }
+
         public Graph(List<Point2D> points, System.Drawing.Pen pen)
         {
             this.pen = pen;
             this.points = points;
 
-            GetMinMaxPoints();
+            CalculateMinMaxPoints();
 
         }
 
-        private void GetMinMaxPoints()
+        private void CalculateMinMaxPoints()
         {
             min = new Point2D(points[0].X, points[0].Y);
             max = (Point2D)min.Clone();
@@ -44,6 +56,22 @@ namespace SuperdiffusionInBilliards
                     max.Y = points[i].Y;
             }
 
+        }
+
+        public bool Render
+        {
+            get
+            {
+                return render;
+            }
+        }
+
+        public SuperdiffusionDrawingModes DrawingMode
+        {
+            get
+            {
+                return drawingMode;
+            }
         }
 
         public List<Point2D> Points
@@ -81,7 +109,8 @@ namespace SuperdiffusionInBilliards
 
         public object Clone()
         {
-            return new Graph(points, pen);
+            return new Graph(points, (Pen)pen.Clone(),drawingMode, render);
+
         }
 
     }

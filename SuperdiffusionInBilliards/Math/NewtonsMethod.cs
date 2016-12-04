@@ -12,7 +12,7 @@ namespace SuperdiffusionInBilliards
     { 
         //TODO: Остановку в случае расходимости
         const double epsilon = 0.0001;  // 
-        const int maxCount = 50; // Максимальное чило итераций
+        const int maxCount = 20; // Максимальное чило итераций
         static public List<double> Solve(Function f, double x0)
         {
             List<double> roots = new List<double>();    // Создаем список корней
@@ -30,8 +30,16 @@ namespace SuperdiffusionInBilliards
             }
             while (!success && counter < maxCount);
 
-            if(success)
+            if (success)
+            {
                 roots.Add(x);
+                string line = "newtonsMethodCounter = ";
+                string line1 = Convert.ToString(counter);
+                string line2 = "\r\n";
+                line += line1;
+                line += line2;
+                System.IO.File.AppendAllText(@"c:\Users\Sasha\Documents\Visual Studio 2010\Projects\SuperdiffusionInBilliards\NewtonsMethodCounter.txt", line);
+            }
             return roots;
         }    
     }

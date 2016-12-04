@@ -13,6 +13,7 @@ namespace SuperdiffusionInBilliards
 
         private List<double> averageVelocities;
         private List<Point2D> averageDisplacements;
+        private List<Point2D> averageDisplacementOnTime;
         private List<double> times;
         private List<Point2D> averageVelocityOnTime;
 
@@ -26,6 +27,22 @@ namespace SuperdiffusionInBilliards
             get
             {
                 return averageVelocityOnTime;
+            }
+        }
+
+        public List<double> AverageVelocities
+        {
+            get
+            {
+                return averageVelocities;
+            }
+        }
+
+        public List<Point2D> AverageDisplacementOnTime
+        {
+            get
+            {
+                return averageDisplacementOnTime;
             }
         }
 
@@ -46,25 +63,30 @@ namespace SuperdiffusionInBilliards
         }
 */
 
-        public void Run()
+        public void Run(CallbackRealSetStepFunc callBack = null)
         {
-            foreach (SceneBase scene in scenes)
+
+            for (int i = 0; i < scenes.Count; i++)
             {
+                SceneBase scene = scenes[i];
                 scene.Run();
                 //SceneBase sceneTemp = new SceneBase;
                 List<StateOfParticle> statisticsTemp = new List<StateOfParticle>();
                 statisticsTemp = scene.Statistics;
                 statisticsSet.Add(statisticsTemp);
                 //statisticsSet.Add(scene.Statistics);
+                if (callBack != null)
+                    callBack.f(i);
             }
-            GetTimes();
-            GetAverageVelocities();
-            GetAverageDisplacements();
-            GetVelocityOnTime();
+            CalculateTimes();
+            CalculateAverageVelocitiesAndDisplacements();
+            //CalculateAverageDisplacements();
+            CalculateVelocityAndDisplacementOnTime();
+            //CalculateDisplacementOnTime();
 
         }
 
-        private void GetTimes()
+        private void CalculateTimes()
         {
             times = new List<double>();
             foreach(StateOfParticle state in statisticsSet[0])
@@ -73,7 +95,7 @@ namespace SuperdiffusionInBilliards
             }
         }
 
-        private void GetAverageVelocities()
+/*        private void CalculateAverageVelocities()
         {
             averageVelocities = new List<double>();
             //List<List>
@@ -87,8 +109,27 @@ namespace SuperdiffusionInBilliards
                 averageVelocities.Add(Averaging.Average(stepVelocities));
             }
         }
-
-        private void GetAverageDisplacements()
+*/
+        private void CalculateAverageVelocitiesAndDisplacements()
+        {
+            averageVelocities = new List<double>();
+            averageDisplacements = new List<Point2D>();
+            //List<List>
+            for (int i = 0; i < statisticsSet[0].Count; i++)
+            {
+                List<double> stepVelocities = new List<double>();
+                List<Point2D> stepDisplacements = new List<Point2D>();
+                foreach (List<StateOfParticle> states in statisticsSet)
+                {
+                    stepVelocities.Add(states[i].Particle.Velocity.Norm());
+                    stepDisplacements.Add(states[i].Displacement);
+                }
+                averageVelocities.Add(Averaging.Average(stepVelocities));
+                averageDisplacements.Add(Averaging.Average(stepDisplacements));
+            }
+        }
+/*
+        private void CalculateAverageDisplacements()
         {
             averageDisplacements = new List<Point2D>();
             for (int i = 0; i < statisticsSet[0].Count; i++)
@@ -103,16 +144,32 @@ namespace SuperdiffusionInBilliards
                 averageDisplacements.Add(Averaging.Average(stepDisplacements));
             }
         }
-
-        private void GetVelocityOnTime()
+*/
+        private void CalculateVelocityAndDisplacementOnTime()
         {
             averageVelocityOnTime = new List<Point2D>();
+            averageDisplacementOnTime = new List<Point2D>();
             for (int i = 0; i < times.Count; i++)
             {
-                Point2D pointTemp = new Point2D(times[i], averageVelocities[i]);
-                averageVelocityOnTime.Add(pointTemp);
+                Point2D pointVelTemp = new Point2D(times[i], averageVelocities[i]);
+                averageVelocityOnTime.Add(pointVelTemp);
+                Point2D pointDispTemp = new Point2D(times[i], averageDisplacements[i].Norm());
+                averageDisplacementOnTime.Add(pointDispTemp);
             }
         }
+
+/*        private void CalculateDisplacementOnTime()
+        {
+            averageDisplacementOnTime = new List<Point2D>();
+            for (int i = 0; i < times.Count; i++)
+            {
+                Point2D averageDispTemp = (Point2D)averageDisplacements[i].Clone();
+                double averDispTemp = averageDispTemp.Norm();
+                Point2D pointTemp = new Point2D(times[i], averageDisplacements[i].Norm());
+                averageDisplacementOnTime.Add(pointTemp);
+            }
+        }
+*/
 
     }
 }
