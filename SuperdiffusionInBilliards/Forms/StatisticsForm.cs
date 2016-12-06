@@ -80,7 +80,7 @@ namespace SuperdiffusionInBilliards
             List<Graph> graphs = new List<Graph>();
             graphs.Add((Graph)graph.Clone());
             graphs.Add((Graph)graphLeastSquares.Clone());
-            //graphs.Add((Graph)graphTheory.Clone());
+            graphs.Add((Graph)graphTheory.Clone());
             
             GraphDrawer graphDrawer = new GraphDrawer(graphs, meanSqareDispOnTime);
             graphDrawer.DrawGraph();
@@ -152,7 +152,7 @@ namespace SuperdiffusionInBilliards
 
 
 
-        class StatusBarChanger : CallbackRealSetStepFunc
+        public class StatusBarChanger : CallbackRealSetStepFunc
         {
             private WaitForm wf;
             private int scenesCount;

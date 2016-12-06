@@ -12,7 +12,8 @@ namespace SuperdiffusionInBilliards
         private List<List<StateOfParticle>> statisticsSet = new List<List<StateOfParticle>>();
 
         private List<double> averageVelocities;
-        private List<Point2D> averageDisplacements;
+        private List<Point2D> averageDisplacementsPoint2D;
+        private List<double> averageDisplacements;
         private List<Point2D> averageDisplacementOnTime;
         private List<double> times;
         private List<Point2D> averageVelocityOnTime;
@@ -43,6 +44,14 @@ namespace SuperdiffusionInBilliards
             get
             {
                 return averageDisplacementOnTime;
+            }
+        }
+
+        public List<SceneBase> Scenes
+        {
+            get
+            {
+                return scenes;
             }
         }
 
@@ -113,19 +122,19 @@ namespace SuperdiffusionInBilliards
         private void CalculateAverageVelocitiesAndDisplacements()
         {
             averageVelocities = new List<double>();
-            averageDisplacements = new List<Point2D>();
+            averageDisplacements = new List<double>();
             //List<List>
             for (int i = 0; i < statisticsSet[0].Count; i++)
             {
                 List<double> stepVelocities = new List<double>();
-                List<Point2D> stepDisplacements = new List<Point2D>();
+                List<double> stepDisplacements2 = new List<double>();
                 foreach (List<StateOfParticle> states in statisticsSet)
                 {
                     stepVelocities.Add(states[i].Particle.Velocity.Norm());
-                    stepDisplacements.Add(states[i].Displacement);
+                    stepDisplacements2.Add(states[i].Displacement.Norm() * states[i].Displacement.Norm());
                 }
                 averageVelocities.Add(Averaging.Average(stepVelocities));
-                averageDisplacements.Add(Averaging.Average(stepDisplacements));
+                averageDisplacements.Add(Math.Sqrt(Averaging.Average(stepDisplacements2)));
             }
         }
 /*
@@ -153,7 +162,7 @@ namespace SuperdiffusionInBilliards
             {
                 Point2D pointVelTemp = new Point2D(times[i], averageVelocities[i]);
                 averageVelocityOnTime.Add(pointVelTemp);
-                Point2D pointDispTemp = new Point2D(times[i], averageDisplacements[i].Norm());
+                Point2D pointDispTemp = new Point2D(times[i], averageDisplacements[i]);
                 averageDisplacementOnTime.Add(pointDispTemp);
             }
         }

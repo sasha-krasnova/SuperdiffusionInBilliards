@@ -57,8 +57,32 @@
             this.statistics = new System.Windows.Forms.Button();
             this.leastSquares = new System.Windows.Forms.Button();
             this.averagingForm = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.statisticsOnPeriod = new System.Windows.Forms.RadioButton();
+            this.statisticsOnScatRadius = new System.Windows.Forms.RadioButton();
+            this.statisticsOnScatVel = new System.Windows.Forms.RadioButton();
+            this.staticticsStandart = new System.Windows.Forms.RadioButton();
+            this.textBoxInitAmp = new System.Windows.Forms.TextBox();
+            this.textBoxStepAmp = new System.Windows.Forms.TextBox();
+            this.textBoxNumPointsAmp = new System.Windows.Forms.TextBox();
+            this.textBoxInitRadius = new System.Windows.Forms.TextBox();
+            this.textBoxStepRadius = new System.Windows.Forms.TextBox();
+            this.textBoxNumPointsRadius = new System.Windows.Forms.TextBox();
+            this.textBoxInitPeriod = new System.Windows.Forms.TextBox();
+            this.textBoxStepPeriod = new System.Windows.Forms.TextBox();
+            this.textBoxNumPointsPeriod = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.typeOfOscillations.SuspendLayout();
             this.lattice.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // typeOfOscillations
@@ -94,6 +118,7 @@
             this.harmonicScatterer.TabStop = true;
             this.harmonicScatterer.Text = "Гармонические";
             this.harmonicScatterer.UseVisualStyleBackColor = true;
+            this.harmonicScatterer.CheckedChanged += new System.EventHandler(this.harmonicScatterer_CheckedChanged);
             // 
             // lattice
             // 
@@ -128,7 +153,6 @@
             this.triangularScene.TabIndex = 1;
             this.triangularScene.Text = "Треугольная";
             this.triangularScene.UseVisualStyleBackColor = true;
-            this.triangularScene.CheckedChanged += new System.EventHandler(this.triangularScene_CheckedChanged);
             // 
             // squareScene
             // 
@@ -237,7 +261,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(255)))));
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.button1.Location = new System.Drawing.Point(418, 300);
+            this.button1.Location = new System.Drawing.Point(833, 278);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(356, 58);
             this.button1.TabIndex = 12;
@@ -321,7 +345,7 @@
             // 
             this.statistics.BackColor = System.Drawing.Color.Red;
             this.statistics.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.statistics.Location = new System.Drawing.Point(17, 300);
+            this.statistics.Location = new System.Drawing.Point(370, 278);
             this.statistics.Name = "statistics";
             this.statistics.Size = new System.Drawing.Size(356, 58);
             this.statistics.TabIndex = 21;
@@ -331,7 +355,7 @@
             // 
             // leastSquares
             // 
-            this.leastSquares.Location = new System.Drawing.Point(17, 226);
+            this.leastSquares.Location = new System.Drawing.Point(888, 510);
             this.leastSquares.Name = "leastSquares";
             this.leastSquares.Size = new System.Drawing.Size(224, 32);
             this.leastSquares.TabIndex = 22;
@@ -341,7 +365,7 @@
             // 
             // averagingForm
             // 
-            this.averagingForm.Location = new System.Drawing.Point(259, 226);
+            this.averagingForm.Location = new System.Drawing.Point(888, 472);
             this.averagingForm.Name = "averagingForm";
             this.averagingForm.Size = new System.Drawing.Size(224, 32);
             this.averagingForm.TabIndex = 23;
@@ -349,11 +373,253 @@
             this.averagingForm.UseVisualStyleBackColor = true;
             this.averagingForm.Click += new System.EventHandler(this.averagingForm_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.statisticsOnPeriod);
+            this.groupBox1.Controls.Add(this.statisticsOnScatRadius);
+            this.groupBox1.Controls.Add(this.statisticsOnScatVel);
+            this.groupBox1.Controls.Add(this.staticticsStandart);
+            this.groupBox1.Location = new System.Drawing.Point(12, 199);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(268, 137);
+            this.groupBox1.TabIndex = 24;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Тип статистики";
+            // 
+            // statisticsOnPeriod
+            // 
+            this.statisticsOnPeriod.AutoSize = true;
+            this.statisticsOnPeriod.Location = new System.Drawing.Point(23, 91);
+            this.statisticsOnPeriod.Name = "statisticsOnPeriod";
+            this.statisticsOnPeriod.Size = new System.Drawing.Size(209, 17);
+            this.statisticsOnPeriod.TabIndex = 3;
+            this.statisticsOnPeriod.TabStop = true;
+            this.statisticsOnPeriod.Text = "Зависимость от периода колебаний";
+            this.statisticsOnPeriod.UseVisualStyleBackColor = true;
+            this.statisticsOnPeriod.CheckedChanged += new System.EventHandler(this.statisticsOnPeriod_CheckedChanged);
+            // 
+            // statisticsOnScatRadius
+            // 
+            this.statisticsOnScatRadius.AutoSize = true;
+            this.statisticsOnScatRadius.Location = new System.Drawing.Point(23, 67);
+            this.statisticsOnScatRadius.Name = "statisticsOnScatRadius";
+            this.statisticsOnScatRadius.Size = new System.Drawing.Size(231, 17);
+            this.statisticsOnScatRadius.TabIndex = 2;
+            this.statisticsOnScatRadius.TabStop = true;
+            this.statisticsOnScatRadius.Text = "Зависимость от радиуса рассеивателей";
+            this.statisticsOnScatRadius.UseVisualStyleBackColor = true;
+            this.statisticsOnScatRadius.CheckedChanged += new System.EventHandler(this.statisticsOnScatRadius_CheckedChanged);
+            // 
+            // statisticsOnScatVel
+            // 
+            this.statisticsOnScatVel.AutoSize = true;
+            this.statisticsOnScatVel.Location = new System.Drawing.Point(23, 43);
+            this.statisticsOnScatVel.Name = "statisticsOnScatVel";
+            this.statisticsOnScatVel.Size = new System.Drawing.Size(231, 17);
+            this.statisticsOnScatVel.TabIndex = 1;
+            this.statisticsOnScatVel.TabStop = true;
+            this.statisticsOnScatVel.Text = "Зависимость от скорости рассеивателя";
+            this.statisticsOnScatVel.UseVisualStyleBackColor = true;
+            this.statisticsOnScatVel.CheckedChanged += new System.EventHandler(this.statisticsOnScatVel_CheckedChanged);
+            // 
+            // staticticsStandart
+            // 
+            this.staticticsStandart.AutoSize = true;
+            this.staticticsStandart.Location = new System.Drawing.Point(23, 19);
+            this.staticticsStandart.Name = "staticticsStandart";
+            this.staticticsStandart.Size = new System.Drawing.Size(90, 17);
+            this.staticticsStandart.TabIndex = 0;
+            this.staticticsStandart.TabStop = true;
+            this.staticticsStandart.Text = "Стандартная";
+            this.staticticsStandart.UseVisualStyleBackColor = true;
+            this.staticticsStandart.CheckedChanged += new System.EventHandler(this.staticticsStandart_CheckedChanged);
+            // 
+            // textBoxInitAmp
+            // 
+            this.textBoxInitAmp.Location = new System.Drawing.Point(1126, 24);
+            this.textBoxInitAmp.Name = "textBoxInitAmp";
+            this.textBoxInitAmp.Size = new System.Drawing.Size(100, 20);
+            this.textBoxInitAmp.TabIndex = 25;
+            this.textBoxInitAmp.Text = "0,01";
+            this.textBoxInitAmp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBoxStepAmp
+            // 
+            this.textBoxStepAmp.Location = new System.Drawing.Point(1127, 50);
+            this.textBoxStepAmp.Name = "textBoxStepAmp";
+            this.textBoxStepAmp.Size = new System.Drawing.Size(100, 20);
+            this.textBoxStepAmp.TabIndex = 26;
+            this.textBoxStepAmp.Text = "0,01";
+            this.textBoxStepAmp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBoxNumPointsAmp
+            // 
+            this.textBoxNumPointsAmp.Location = new System.Drawing.Point(1127, 76);
+            this.textBoxNumPointsAmp.Name = "textBoxNumPointsAmp";
+            this.textBoxNumPointsAmp.Size = new System.Drawing.Size(100, 20);
+            this.textBoxNumPointsAmp.TabIndex = 27;
+            this.textBoxNumPointsAmp.Text = "6";
+            this.textBoxNumPointsAmp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBoxInitRadius
+            // 
+            this.textBoxInitRadius.Location = new System.Drawing.Point(1126, 102);
+            this.textBoxInitRadius.Name = "textBoxInitRadius";
+            this.textBoxInitRadius.Size = new System.Drawing.Size(100, 20);
+            this.textBoxInitRadius.TabIndex = 28;
+            this.textBoxInitRadius.Text = "6";
+            this.textBoxInitRadius.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBoxStepRadius
+            // 
+            this.textBoxStepRadius.Location = new System.Drawing.Point(1127, 128);
+            this.textBoxStepRadius.Name = "textBoxStepRadius";
+            this.textBoxStepRadius.Size = new System.Drawing.Size(100, 20);
+            this.textBoxStepRadius.TabIndex = 29;
+            this.textBoxStepRadius.Text = "0,5";
+            this.textBoxStepRadius.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBoxNumPointsRadius
+            // 
+            this.textBoxNumPointsRadius.Location = new System.Drawing.Point(1127, 154);
+            this.textBoxNumPointsRadius.Name = "textBoxNumPointsRadius";
+            this.textBoxNumPointsRadius.Size = new System.Drawing.Size(100, 20);
+            this.textBoxNumPointsRadius.TabIndex = 30;
+            this.textBoxNumPointsRadius.Text = "7";
+            this.textBoxNumPointsRadius.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBoxInitPeriod
+            // 
+            this.textBoxInitPeriod.Location = new System.Drawing.Point(1127, 180);
+            this.textBoxInitPeriod.Name = "textBoxInitPeriod";
+            this.textBoxInitPeriod.Size = new System.Drawing.Size(100, 20);
+            this.textBoxInitPeriod.TabIndex = 31;
+            this.textBoxInitPeriod.Text = "10";
+            this.textBoxInitPeriod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBoxStepPeriod
+            // 
+            this.textBoxStepPeriod.Location = new System.Drawing.Point(1126, 206);
+            this.textBoxStepPeriod.Name = "textBoxStepPeriod";
+            this.textBoxStepPeriod.Size = new System.Drawing.Size(100, 20);
+            this.textBoxStepPeriod.TabIndex = 32;
+            this.textBoxStepPeriod.Text = "2";
+            this.textBoxStepPeriod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBoxNumPointsPeriod
+            // 
+            this.textBoxNumPointsPeriod.Location = new System.Drawing.Point(1126, 232);
+            this.textBoxNumPointsPeriod.Name = "textBoxNumPointsPeriod";
+            this.textBoxNumPointsPeriod.Size = new System.Drawing.Size(100, 20);
+            this.textBoxNumPointsPeriod.TabIndex = 33;
+            this.textBoxNumPointsPeriod.Text = "6";
+            this.textBoxNumPointsPeriod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(820, 27);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(300, 13);
+            this.label10.TabIndex = 34;
+            this.label10.Text = "Начальная амплитуда колебаний скорости рассеивателя";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(972, 53);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(149, 13);
+            this.label11.TabIndex = 35;
+            this.label11.Text = "Шаг по амплитуде скорости";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(1024, 79);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(97, 13);
+            this.label12.TabIndex = 36;
+            this.label12.Text = "Количество точек";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(900, 105);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(221, 13);
+            this.label13.TabIndex = 37;
+            this.label13.Text = "Начальный средний радиус рассеивателя";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(983, 131);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(137, 13);
+            this.label14.TabIndex = 38;
+            this.label14.Text = "Шаг по среднему радиусу";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(1024, 157);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(97, 13);
+            this.label15.TabIndex = 39;
+            this.label15.Text = "Количество точек";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(886, 183);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(234, 13);
+            this.label16.TabIndex = 40;
+            this.label16.Text = "Начальный период колебаний рассеивателя";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(978, 209);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(143, 13);
+            this.label17.TabIndex = 41;
+            this.label17.Text = "Шаг по периоду колебаний";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(1023, 235);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(97, 13);
+            this.label18.TabIndex = 42;
+            this.label18.Text = "Количество точек";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(793, 370);
+            this.ClientSize = new System.Drawing.Size(1239, 562);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.textBoxNumPointsPeriod);
+            this.Controls.Add(this.textBoxStepPeriod);
+            this.Controls.Add(this.textBoxInitPeriod);
+            this.Controls.Add(this.textBoxNumPointsRadius);
+            this.Controls.Add(this.textBoxStepRadius);
+            this.Controls.Add(this.textBoxInitRadius);
+            this.Controls.Add(this.textBoxNumPointsAmp);
+            this.Controls.Add(this.textBoxStepAmp);
+            this.Controls.Add(this.textBoxInitAmp);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.averagingForm);
             this.Controls.Add(this.leastSquares);
             this.Controls.Add(this.statistics);
@@ -384,6 +650,8 @@
             this.typeOfOscillations.PerformLayout();
             this.lattice.ResumeLayout(false);
             this.lattice.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -420,6 +688,29 @@
         private System.Windows.Forms.Button statistics;
         private System.Windows.Forms.Button leastSquares;
         private System.Windows.Forms.Button averagingForm;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton statisticsOnScatRadius;
+        private System.Windows.Forms.RadioButton statisticsOnScatVel;
+        private System.Windows.Forms.RadioButton staticticsStandart;
+        private System.Windows.Forms.RadioButton statisticsOnPeriod;
+        private System.Windows.Forms.TextBox textBoxInitAmp;
+        private System.Windows.Forms.TextBox textBoxStepAmp;
+        private System.Windows.Forms.TextBox textBoxNumPointsAmp;
+        private System.Windows.Forms.TextBox textBoxInitRadius;
+        private System.Windows.Forms.TextBox textBoxStepRadius;
+        private System.Windows.Forms.TextBox textBoxNumPointsRadius;
+        private System.Windows.Forms.TextBox textBoxInitPeriod;
+        private System.Windows.Forms.TextBox textBoxStepPeriod;
+        private System.Windows.Forms.TextBox textBoxNumPointsPeriod;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
     }
 }
 

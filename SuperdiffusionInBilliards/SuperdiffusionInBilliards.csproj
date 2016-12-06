@@ -46,11 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CallbackRealSetStepFunc.cs" />
-    <Compile Include="Forms\DependenceOnAmpOfScVelForm.cs">
+    <Compile Include="Forms\StatisticsOnScatVelForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DependenceOnAmpOfScVelForm.Designer.cs">
-      <DependentUpon>DependenceOnAmpOfScVelForm.cs</DependentUpon>
+    <Compile Include="Forms\StatisticsOnScatVelForm.Designer.cs">
+      <DependentUpon>StatisticsOnScatVelForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Graph.cs" />
     <Compile Include="GraphDrawer.cs" />
@@ -117,8 +117,8 @@
     <EmbeddedResource Include="Forms\AveragingForm.resx">
       <DependentUpon>AveragingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DependenceOnAmpOfScVelForm.resx">
-      <DependentUpon>DependenceOnAmpOfScVelForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\StatisticsOnScatVelForm.resx">
+      <DependentUpon>StatisticsOnScatVelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DrawingForm.resx">
       <DependentUpon>DrawingForm.cs</DependentUpon>
