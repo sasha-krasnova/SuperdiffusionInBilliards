@@ -122,6 +122,7 @@ namespace SuperdiffusionInBilliards
         private void calculateAcceleration_Click(object sender, EventArgs e)
         {
             Pen pen = new Pen(Color.Black, 1);
+            //SuperdiffusionDrawingModes drawingMode = SuperdiffusionDrawingModes.Points;
             Graph graph = new Graph(realizationSet.AverageVelocityOnTime, pen);
 
             Pen penLS = new Pen(Color.Red, 1);

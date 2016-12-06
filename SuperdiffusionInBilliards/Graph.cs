@@ -13,7 +13,7 @@ namespace SuperdiffusionInBilliards
         private List<Point2D> points;
         //private System.Drawing.Color color;
         private System.Drawing.Pen pen;
-        private SuperdiffusionDrawingModes drawingMode = SuperdiffusionDrawingModes.Points;
+        private SuperdiffusionDrawingModes drawingMode = SuperdiffusionDrawingModes.Polyline;
         private bool render = true;
 
         public Graph(List<Point2D> points, System.Drawing.Pen pen, SuperdiffusionDrawingModes drawingMode, bool render)

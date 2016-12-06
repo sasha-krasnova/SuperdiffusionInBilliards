@@ -55,9 +55,13 @@ namespace SuperdiffusionInBilliards
             Graphics g = pictureBox.CreateGraphics();
             foreach (Graph graph in graphs)
             {
+                
                 Point2D point1 = DrawingHelper.ConvertCoordinate(pictureSize, graphSize, new Point2D(graph.Points[0].X - min.X, graph.Points[0].Y - min.Y));
                 //Point pt1 = point1.ConvertToPoint(); 
                 Point pt1 = new Point(Convert.ToInt32(point1.X), Convert.ToInt32(pictureSize.Y - point1.Y));
+                if (graph.DrawingMode == SuperdiffusionDrawingModes.Points)
+                    //g.FillRectangle(Brushes.Black, pt1.X-1, pt1.Y-1, 3, 3);
+                    g.DrawEllipse(graph.Pen, pt1.X-1, pt1.Y-1, 3, 3);
 
                 for (int i = 1; i < (graph.Points.Count); i++)
                 {
@@ -65,7 +69,11 @@ namespace SuperdiffusionInBilliards
                     Point2D point2 = DrawingHelper.ConvertCoordinate(pictureSize, graphSize, new Point2D(graph.Points[i].X - min.X, graph.Points[i].Y - min.Y));
                     Point pt2 = new Point(Convert.ToInt32(point2.X), Convert.ToInt32(pictureSize.Y - point2.Y));
 
-                    g.DrawLine(graph.Pen, pt1, pt2);
+                    if (graph.DrawingMode == SuperdiffusionDrawingModes.Polyline)
+                        g.DrawLine(graph.Pen, pt1, pt2);
+                    else if (graph.DrawingMode == SuperdiffusionDrawingModes.Points)
+                        //g.FillRectangle(Brushes.Black, pt2.X-1, pt2.Y-1, 3, 3);
+                        g.DrawEllipse(graph.Pen, pt2.X-1, pt2.Y-1, 3, 3);
 
                     pt1 = pt2;
                 }
