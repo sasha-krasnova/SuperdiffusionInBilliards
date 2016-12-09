@@ -114,6 +114,7 @@
     <Compile Include="Forms\StatisticsForm.Designer.cs">
       <DependentUpon>StatisticsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="WritingInFile.cs" />
     <EmbeddedResource Include="Forms\AveragingForm.resx">
       <DependentUpon>AveragingForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -164,7 +165,9 @@
   <ItemGroup>
     <None Include="Resources\clear.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Service References\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
