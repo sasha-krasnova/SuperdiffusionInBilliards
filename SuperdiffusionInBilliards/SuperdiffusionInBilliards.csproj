@@ -52,8 +52,8 @@
     <Compile Include="Forms\StatisticsOnScatVelForm.Designer.cs">
       <DependentUpon>StatisticsOnScatVelForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Graph.cs" />
-    <Compile Include="GraphDrawer.cs" />
+    <Compile Include="GraphDrawing\Graph.cs" />
+    <Compile Include="GraphDrawing\GraphDrawer.cs" />
     <Compile Include="Forms\AveragingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,7 +67,7 @@
       <DependentUpon>WaitForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Math\Averaging.cs" />
-    <Compile Include="DrawingHelper.cs" />
+    <Compile Include="GraphDrawing\DrawingHelper.cs" />
     <Compile Include="Geometry\Circle.cs" />
     <Compile Include="CollisionTime.cs" />
     <Compile Include="Functions\CollisionTimeEquation.cs" />
@@ -114,7 +114,8 @@
     <Compile Include="Forms\StatisticsForm.Designer.cs">
       <DependentUpon>StatisticsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="WritingInFile.cs" />
+    <Compile Include="WritingInFile\CsvFileWriter.cs" />
+    <Compile Include="WritingInFile\ICsvLine.cs" />
     <EmbeddedResource Include="Forms\AveragingForm.resx">
       <DependentUpon>AveragingForm.cs</DependentUpon>
     </EmbeddedResource>

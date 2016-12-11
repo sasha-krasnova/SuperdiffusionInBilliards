@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace SuperdiffusionInBilliards
 {
-    public class Point2D : ICloneable
+    public class Point2D : ICloneable, ICsvLine
     {
         double x, y;
 
@@ -59,6 +59,11 @@ namespace SuperdiffusionInBilliards
         public Point ConvertToPoint()
         {
             return new Point(Convert.ToInt32(x), Convert.ToInt32(y));
+        }
+
+        public String GetCSV()
+        {
+            return Convert.ToString(x) + ";" + Convert.ToString(y) + ";";
         }
     }
 }

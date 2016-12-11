@@ -5,10 +5,8 @@ using System.Text;
 
 namespace SuperdiffusionInBilliards
 {
-    class WritingInFile
+    interface ICsvLine
     {
-        List<Graph> graphs = new List<Graph>();
-
-
+        String GetCSV();
     }
 }
