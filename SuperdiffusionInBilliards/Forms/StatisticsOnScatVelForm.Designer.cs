@@ -33,6 +33,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBoxSuperdifCoef = new System.Windows.Forms.PictureBox();
             this.buttonPlotGraphs = new System.Windows.Forms.Button();
+            this.buttonFermiAcc = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFermiAcc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSuperdifCoef)).BeginInit();
             this.SuspendLayout();
@@ -85,11 +87,26 @@
             this.buttonPlotGraphs.UseVisualStyleBackColor = false;
             this.buttonPlotGraphs.Click += new System.EventHandler(this.buttonPlotGraphs_Click);
             // 
+            // buttonFermiAcc
+            // 
+            this.buttonFermiAcc.Location = new System.Drawing.Point(459, 156);
+            this.buttonFermiAcc.Name = "buttonFermiAcc";
+            this.buttonFermiAcc.Size = new System.Drawing.Size(184, 51);
+            this.buttonFermiAcc.TabIndex = 5;
+            this.buttonFermiAcc.Text = "Записать в файл";
+            this.buttonFermiAcc.UseVisualStyleBackColor = true;
+            this.buttonFermiAcc.Click += new System.EventHandler(this.buttonFermiAcc_Click);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.Filter = "Таблицы | *.csv";
+            // 
             // StatisticsOnScatVelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(714, 489);
+            this.Controls.Add(this.buttonFermiAcc);
             this.Controls.Add(this.buttonPlotGraphs);
             this.Controls.Add(this.pictureBoxSuperdifCoef);
             this.Controls.Add(this.label2);
@@ -112,5 +129,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBoxSuperdifCoef;
         private System.Windows.Forms.Button buttonPlotGraphs;
+        private System.Windows.Forms.Button buttonFermiAcc;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

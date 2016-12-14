@@ -17,6 +17,11 @@ namespace SuperdiffusionInBilliards
         private WaitForm wf;
         private double initVelocity;
         private double fullTime;
+        private List<Graph> graphsAverVel, graphsMSD;
+        private Pen pen = new Pen(Color.Black, 1);
+        private Pen penLS = new Pen(Color.Red, 1);
+        private Pen penTheory = new Pen(Color.Blue, 1);
+
 //        private double ampOfScatVel;
 //        private double lattic
 
@@ -62,27 +67,25 @@ namespace SuperdiffusionInBilliards
 
         private void calculateCoeffisientOfSuperdif_Click(object sender, EventArgs e)
         {
-            Pen pen = new Pen(Color.Black, 1);
+            buttonWriteDispInFile.Enabled = true;
             Graph graph = new Graph(realizationSet.AverageDisplacementOnTime, pen);
 
-            Pen penLS = new Pen(Color.Red, 1);
             LeastSquares leastSquares = new LeastSquares(realizationSet.AverageDisplacementOnTime);
             double k = leastSquares.Slope(0);
             List<Point2D> pointsLeastSquares = MakeLineBySlope(k, new Point2D(0, 0), fullTime);
             Graph graphLeastSquares = new Graph(pointsLeastSquares, penLS);
 
-            Pen penTheory = new Pen(Color.Blue, 1);
             double kTheory = scenes[0].CoefficientOfSuperdiffusionTheory();
             List<Point2D> pointsTheory = MakeLineBySlope(kTheory, new Point2D(0, 0), fullTime);
             Graph graphTheory = new Graph(pointsTheory, penTheory);
             
             
-            List<Graph> graphs = new List<Graph>();
-            graphs.Add((Graph)graph.Clone());
-            graphs.Add((Graph)graphLeastSquares.Clone());
-            graphs.Add((Graph)graphTheory.Clone());
-            
-            GraphDrawer graphDrawer = new GraphDrawer(graphs, meanSqareDispOnTime);
+            graphsMSD = new List<Graph>();
+            graphsMSD.Add((Graph)graph.Clone());
+            graphsMSD.Add((Graph)graphLeastSquares.Clone());
+            graphsMSD.Add((Graph)graphTheory.Clone());
+
+            GraphDrawer graphDrawer = new GraphDrawer(graphsMSD, meanSqareDispOnTime);
             graphDrawer.DrawGraph();
 
             coefOfSuperdif.Text = Convert.ToString(k);
@@ -121,27 +124,25 @@ namespace SuperdiffusionInBilliards
 
         private void calculateAcceleration_Click(object sender, EventArgs e)
         {
-            Pen pen = new Pen(Color.Black, 1);
+            buttonWriteVelToFile.Enabled = true;
             //SuperdiffusionDrawingModes drawingMode = SuperdiffusionDrawingModes.Points;
             Graph graph = new Graph(realizationSet.AverageVelocityOnTime, pen);
 
-            Pen penLS = new Pen(Color.Red, 1);
             LeastSquares leastSquares = new LeastSquares(realizationSet.AverageVelocityOnTime);
             double k = leastSquares.Slope(initVelocity);
             List<Point2D> pointsLeastSquares = MakeLineBySlope(k, new Point2D(0, initVelocity), fullTime);
             Graph graphLeastSquares = new Graph(pointsLeastSquares, penLS);
 
-            Pen penTheory = new Pen(Color.Blue, 1);
             double kTheory = scenes[0].FermiAccelerationTheory();
             List<Point2D> pointsTheory = MakeLineBySlope(kTheory, new Point2D(0, initVelocity), fullTime);
             Graph graphTheory = new Graph(pointsTheory, penTheory);
 
-            List<Graph> graphs = new List<Graph>();
-            graphs.Add((Graph)graph.Clone());
-            graphs.Add((Graph)graphLeastSquares.Clone());
-            graphs.Add((Graph)graphTheory.Clone());
+            graphsAverVel = new List<Graph>();
+            graphsAverVel.Add((Graph)graph.Clone());
+            graphsAverVel.Add((Graph)graphLeastSquares.Clone());
+            graphsAverVel.Add((Graph)graphTheory.Clone());
 
-            GraphDrawer graphDrawer = new GraphDrawer(graphs, averVelOnTime);
+            GraphDrawer graphDrawer = new GraphDrawer(graphsAverVel, averVelOnTime);
             graphDrawer.DrawGraph();
 
             fermiAcceleration.Text = Convert.ToString(k);
@@ -168,6 +169,33 @@ namespace SuperdiffusionInBilliards
             {
                 //почему + 1??
                 wf.ChangePercentThread(idxOfReal + 1, scenesCount);
+            }
+        }
+
+        private void buttonWriteVelToFile_Click(object sender, EventArgs e)
+        {
+            WriteToFile(graphsAverVel[0].Points);
+        }
+
+        private void buttonWriteDispInFile_Click(object sender, EventArgs e)
+        {
+            WriteToFile(graphsMSD[0].Points);
+        }
+
+        private void WriteToFile (List<Point2D> points)
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    CsvFileWriter csvFileWriter = new CsvFileWriter(saveFileDialog1.FileName, new List<ICsvLine>(points));
+                    csvFileWriter.WriteToFile();
+                    MessageBox.Show("Записано");
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Произошла ошибка при записи в файл" + e);
+                }
             }
         }
     }

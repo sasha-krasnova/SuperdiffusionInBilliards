@@ -10,11 +10,20 @@ namespace SuperdiffusionInBilliards
         private string fileName;
         private List<ICsvLine> fileContent;
 
+        public CsvFileWriter(string fileName, List<ICsvLine> fileContent)
+        {
+            this.fileName = fileName;
+            this.fileContent = fileContent;
+        }
+
         public void WriteToFile()
         {
+            using (System.IO.StreamWriter file = 
+                new System.IO.StreamWriter(fileName))
+
             foreach (ICsvLine line in fileContent)
-            { 
-            
+            {
+                file.WriteLine(line.GetCSV());
             }
         }
 

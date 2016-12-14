@@ -15,6 +15,8 @@ namespace SuperdiffusionInBilliards
         List<RealizationSet> realizationSets;
         WaitForm wf;
         double initVelocity;
+        List<Graph> graphsFA;
+
         public StatisticsOnScatVelForm()
         {
             InitializeComponent();
@@ -72,7 +74,7 @@ namespace SuperdiffusionInBilliards
             }
 
             Graph graphFA = new Graph(pointsFA, pen);
-            List<Graph> graphsFA = new List<Graph>();
+            graphsFA = new List<Graph>();
             graphsFA.Add(graphFA);
             GraphDrawer graphDrawerFA = new GraphDrawer(graphsFA, pictureBoxFermiAcc);
             graphDrawerFA.DrawGraph();
@@ -83,6 +85,28 @@ namespace SuperdiffusionInBilliards
             GraphDrawer graphDrawerSC = new GraphDrawer(graphsSC, pictureBoxSuperdifCoef);
             graphDrawerSC.DrawGraph();
 
+        }
+
+        private void buttonFermiAcc_Click(object sender, EventArgs e)
+        {
+            WriteToFile(graphsFA[0].Points);
+        }
+
+        private void WriteToFile(List<Point2D> points)
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    CsvFileWriter csvFileWriter = new CsvFileWriter(saveFileDialog1.FileName, new List<ICsvLine>(points));
+                    csvFileWriter.WriteToFile();
+                    MessageBox.Show("Записано");
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Произошла ошибка при записи в файл" + e);
+                }
+            }
         }
     }
 }
