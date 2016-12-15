@@ -18,6 +18,7 @@ namespace SuperdiffusionInBilliards
         private double initVelocity;
         private double fullTime;
         private List<Graph> graphsAverVel, graphsMSD;
+        private Graph graph, graphLeastSquares, graphTheory;
         private Pen pen = new Pen(Color.Black, 1);
         private Pen penLS = new Pen(Color.Red, 1);
         private Pen penTheory = new Pen(Color.Blue, 1);
@@ -39,52 +40,20 @@ namespace SuperdiffusionInBilliards
             this.fullTime = fullTime;
         }
 
-        /*private void drawVelocityOnTime_Click(object sender, EventArgs e)
-        {  
-            Pen pen = new Pen(Color.Black, 1);
-            Graph graph = new Graph(realizationSet.AverageVelocityOnTime, pen);
-            List<Graph> graphs = new List<Graph>();
-            graphs.Add((Graph)graph.Clone());
-            GraphDrawer graphDrawer = new GraphDrawer(graphs, averVelOnTime);
-            graphDrawer.DrawGraph();
-
-            
-            Graphics g2 = velOnTime.CreateGraphics();
-            Rectangle rect2 = new Rectangle(0, 0, velOnTime.Width / 2, velOnTime.Height / 2);
-            g2.DrawEllipse(graph.Pen, rect2);
-            g2.DrawLine(new Pen(Brushes.Red, 4), new Point(2, 2), new Point(10, 100));
-
-            Graphics g = averVelOnTime.CreateGraphics();
-            Rectangle rect = new Rectangle(0, 0, averVelOnTime.Width / 2, averVelOnTime.Height / 2);
-            g.DrawEllipse(graph.Pen, rect);
-            g.DrawLine(new Pen(Brushes.Red, 4), new Point(2, 2), new Point(10, 100));
-
-            Graphics g1 = meanSqareDispOnTime.CreateGraphics();
-            Rectangle rect1 = new Rectangle(0, 0, meanSqareDispOnTime.Width / 2, meanSqareDispOnTime.Height / 2);
-            g1.DrawEllipse(graph.Pen, rect1);
-            g1.DrawLine(new Pen(Brushes.Red, 4), new Point(2, 2), new Point(10, 100));
-        }*/
 
         private void calculateCoeffisientOfSuperdif_Click(object sender, EventArgs e)
         {
             buttonWriteDispInFile.Enabled = true;
-            Graph graph = new Graph(realizationSet.AverageDisplacementOnTime, pen);
+            graph = new Graph(realizationSet.AverageDisplacementOnTime, pen);
 
-            LeastSquares leastSquares = new LeastSquares(realizationSet.AverageDisplacementOnTime);
-            double k = leastSquares.Slope(0);
-            List<Point2D> pointsLeastSquares = MakeLineBySlope(k, new Point2D(0, 0), fullTime);
-            Graph graphLeastSquares = new Graph(pointsLeastSquares, penLS);
+            double k = GetSlope(0);
+            MakeGraphLeastSquares(0);
 
             double kTheory = scenes[0].CoefficientOfSuperdiffusionTheory();
-            List<Point2D> pointsTheory = MakeLineBySlope(kTheory, new Point2D(0, 0), fullTime);
-            Graph graphTheory = new Graph(pointsTheory, penTheory);
-            
-            
-            graphsMSD = new List<Graph>();
-            graphsMSD.Add((Graph)graph.Clone());
-            graphsMSD.Add((Graph)graphLeastSquares.Clone());
-            graphsMSD.Add((Graph)graphTheory.Clone());
+            MakeGraphTheory(0, kTheory);
 
+            graphsMSD = GetGraphs();
+            
             GraphDrawer graphDrawer = new GraphDrawer(graphsMSD, meanSqareDispOnTime);
             graphDrawer.DrawGraph();
 
@@ -126,22 +95,16 @@ namespace SuperdiffusionInBilliards
         {
             buttonWriteVelToFile.Enabled = true;
             //SuperdiffusionDrawingModes drawingMode = SuperdiffusionDrawingModes.Points;
-            Graph graph = new Graph(realizationSet.AverageVelocityOnTime, pen);
+            graph = new Graph(realizationSet.AverageVelocityOnTime, pen);
 
-            LeastSquares leastSquares = new LeastSquares(realizationSet.AverageVelocityOnTime);
-            double k = leastSquares.Slope(initVelocity);
-            List<Point2D> pointsLeastSquares = MakeLineBySlope(k, new Point2D(0, initVelocity), fullTime);
-            Graph graphLeastSquares = new Graph(pointsLeastSquares, penLS);
+            double k = GetSlope(initVelocity);
+            MakeGraphLeastSquares(initVelocity);
 
             double kTheory = scenes[0].FermiAccelerationTheory();
-            List<Point2D> pointsTheory = MakeLineBySlope(kTheory, new Point2D(0, initVelocity), fullTime);
-            Graph graphTheory = new Graph(pointsTheory, penTheory);
+            MakeGraphTheory(initVelocity, kTheory);
 
-            graphsAverVel = new List<Graph>();
-            graphsAverVel.Add((Graph)graph.Clone());
-            graphsAverVel.Add((Graph)graphLeastSquares.Clone());
-            graphsAverVel.Add((Graph)graphTheory.Clone());
-
+            graphsAverVel = GetGraphs();
+            
             GraphDrawer graphDrawer = new GraphDrawer(graphsAverVel, averVelOnTime);
             graphDrawer.DrawGraph();
 
@@ -150,9 +113,35 @@ namespace SuperdiffusionInBilliards
             //graphDrawer.DrawGraph(graphLeastSquares);
         }
 
+        private List<Graph> GetGraphs()
+        {
+            List<Graph> graphs = new List<Graph>();
+            graphs.Add((Graph)graph.Clone());
+            graphs.Add((Graph)graphLeastSquares.Clone());
+            graphs.Add((Graph)graphTheory.Clone());
 
+            return graphs;
+        }
 
+        private void MakeGraphLeastSquares(double shift)
+        {
+            double k = GetSlope(shift);
+            List<Point2D> pointsLeastSquares = MakeLineBySlope(k, new Point2D(0, shift), fullTime);
+            graphLeastSquares = new Graph(pointsLeastSquares, penLS);
+        }
 
+        private void MakeGraphTheory(double shift, double slope)
+        {
+            List<Point2D> pointsTheory = MakeLineBySlope(slope, new Point2D(0, shift), fullTime);
+            graphTheory = new Graph(pointsTheory, penTheory);
+        }
+
+        private double GetSlope(double shift)
+        {
+            LeastSquares leastSquares = new LeastSquares(graph.Points);
+            double k = leastSquares.Slope(shift);
+            return k;
+        }
 
         public class StatusBarChanger : CallbackRealSetStepFunc
         {

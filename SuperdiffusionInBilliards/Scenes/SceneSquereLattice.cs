@@ -53,7 +53,7 @@ namespace SuperdiffusionInBilliards
         public override double CoefficientOfSuperdiffusionTheory()
         {
             double coefficietnOfSuperdif;
-            double part1 = 2 * latticeSize * latticeSize * Scatterers[0].U0 * Scatterers[0].U0 * (Scatterers[0].Radius0 + Scatterers[4].Radius0) * (latticeSize - 2 * Scatterers[0].Radius0);
+            double part1 = 4 * latticeSize * latticeSize * Scatterers[0].U0 * Scatterers[0].U0 * (Scatterers[0].Radius0 + Scatterers[4].Radius0) * (latticeSize - 2 * Scatterers[0].Radius0);
             double part2 = 3 * Math.PI * (latticeSize * latticeSize - Math.PI * (Scatterers[0].Radius0 * Scatterers[0].Radius0 + Scatterers[4].Radius0 * Scatterers[4].Radius0)) * (latticeSize * latticeSize - Math.PI * (Scatterers[0].Radius0 * Scatterers[0].Radius0 + Scatterers[4].Radius0 * Scatterers[4].Radius0));
             coefficietnOfSuperdif = Math.Sqrt(part1 / part2);
             return coefficietnOfSuperdif;
