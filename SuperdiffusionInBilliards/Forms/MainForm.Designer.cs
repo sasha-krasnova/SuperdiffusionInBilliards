@@ -329,7 +329,7 @@
             this.numberOfRealisations.Name = "numberOfRealisations";
             this.numberOfRealisations.Size = new System.Drawing.Size(100, 20);
             this.numberOfRealisations.TabIndex = 19;
-            this.numberOfRealisations.Text = "10";
+            this.numberOfRealisations.Text = "100";
             this.numberOfRealisations.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label9
@@ -449,7 +449,7 @@
             this.textBoxStepAmp.Name = "textBoxStepAmp";
             this.textBoxStepAmp.Size = new System.Drawing.Size(100, 20);
             this.textBoxStepAmp.TabIndex = 26;
-            this.textBoxStepAmp.Text = "0,01";
+            this.textBoxStepAmp.Text = "0,02";
             this.textBoxStepAmp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBoxNumPointsAmp
@@ -458,7 +458,7 @@
             this.textBoxNumPointsAmp.Name = "textBoxNumPointsAmp";
             this.textBoxNumPointsAmp.Size = new System.Drawing.Size(100, 20);
             this.textBoxNumPointsAmp.TabIndex = 27;
-            this.textBoxNumPointsAmp.Text = "6";
+            this.textBoxNumPointsAmp.Text = "12";
             this.textBoxNumPointsAmp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBoxInitRadius
