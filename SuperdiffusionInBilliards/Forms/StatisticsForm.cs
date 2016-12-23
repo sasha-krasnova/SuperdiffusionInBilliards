@@ -46,11 +46,12 @@ namespace SuperdiffusionInBilliards
             buttonWriteDispInFile.Enabled = true;
             graph = new Graph(realizationSet.AverageDisplacementOnTime, pen);
 
-            double k = GetSlope(0);
-            MakeGraphLeastSquares(0);
+            Line lineMNK = GetShiftAndSlope();
+            double k = lineMNK.A;
+            MakeGraphLeastSquares(lineMNK.C);
 
             double kTheory = scenes[0].CoefficientOfSuperdiffusionTheory();
-            MakeGraphTheory(0, kTheory);
+            MakeGraphTheory(lineMNK.C, kTheory);
 
             graphsMSD = GetGraphs();
             
@@ -134,6 +135,13 @@ namespace SuperdiffusionInBilliards
         {
             List<Point2D> pointsTheory = MakeLineBySlope(slope, new Point2D(0, shift), fullTime);
             graphTheory = new Graph(pointsTheory, penTheory);
+        }
+
+        private Line GetShiftAndSlope()
+        {
+            LeastSquares leastSquares = new LeastSquares(graph.Points);
+            Line lineMNK = leastSquares.ShiftAndSlope();
+            return lineMNK;
         }
 
         private double GetSlope(double shift)
