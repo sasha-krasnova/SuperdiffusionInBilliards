@@ -89,7 +89,7 @@ namespace SuperdiffusionInBilliards
             double tetta = Math.Atan2((newParticle.coordinate.Y-scatterer.Center.Y), (newParticle.coordinate.X-scatterer.Center.X));
             double vn = velocity.X * Math.Cos(tetta) + velocity.Y * Math.Sin(tetta);
             double vt = -velocity.X * Math.Sin(tetta) + velocity.Y * Math.Cos(tetta);
-            vn = -vn + 2 * scatterer.Derivative(time);
+            vn = -vn + 2 * scatterer.ScattererVelocity(time);
             newParticle.velocity.X = vn * Math.Cos(tetta) - vt * Math.Sin(tetta);
             newParticle.velocity.Y = vn * Math.Sin(tetta) + vt * Math.Cos(tetta);
             return newParticle;

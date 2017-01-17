@@ -15,6 +15,17 @@ namespace SuperdiffusionInBilliards
             frequency = 2 * Math.PI / period;
         }
 
+        public ScattererPeriodic() 
+            : base()
+        {
+
+        }
+
+        public override double ScattererVelocity(double time)
+        {
+            return Derivative(time);
+        }
+
         public double Frequency
         {
             get

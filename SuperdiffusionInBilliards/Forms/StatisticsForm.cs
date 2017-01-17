@@ -63,6 +63,27 @@ namespace SuperdiffusionInBilliards
 
         }
 
+        private void calculateAcceleration_Click(object sender, EventArgs e)
+        {
+            buttonWriteVelToFile.Enabled = true;
+            //SuperdiffusionDrawingModes drawingMode = SuperdiffusionDrawingModes.Points;
+            graph = new Graph(realizationSet.AverageVelocityOnTime, pen);
+
+            double k = GetSlope(initVelocity);
+            MakeGraphLeastSquares(initVelocity);
+
+            double kTheory = scenes[0].FermiAccelerationTheory();
+            MakeGraphTheory(initVelocity, kTheory);
+
+            graphsAverVel = GetGraphs();
+
+            GraphDrawer graphDrawer = new GraphDrawer(graphsAverVel, averVelOnTime);
+            graphDrawer.DrawGraph();
+
+            fermiAcceleration.Text = Convert.ToString(k);
+            fermiAccelerationTheory.Text = Convert.ToString(kTheory);
+            //graphDrawer.DrawGraph(graphLeastSquares);
+        }
         private List<Point2D> MakeLineBySlope(double slope, Point2D initPoint, double endPointX)
         {
             List<Point2D> points = new List<Point2D>();
@@ -92,27 +113,7 @@ namespace SuperdiffusionInBilliards
             wf.CloseThread();
         }
 
-        private void calculateAcceleration_Click(object sender, EventArgs e)
-        {
-            buttonWriteVelToFile.Enabled = true;
-            //SuperdiffusionDrawingModes drawingMode = SuperdiffusionDrawingModes.Points;
-            graph = new Graph(realizationSet.AverageVelocityOnTime, pen);
-
-            double k = GetSlope(initVelocity);
-            MakeGraphLeastSquares(initVelocity);
-
-            double kTheory = scenes[0].FermiAccelerationTheory();
-            MakeGraphTheory(initVelocity, kTheory);
-
-            graphsAverVel = GetGraphs();
-            
-            GraphDrawer graphDrawer = new GraphDrawer(graphsAverVel, averVelOnTime);
-            graphDrawer.DrawGraph();
-
-            fermiAcceleration.Text = Convert.ToString(k);
-            fermiAccelerationTheory.Text = Convert.ToString(kTheory);
-            //graphDrawer.DrawGraph(graphLeastSquares);
-        }
+        
 
         private List<Graph> GetGraphs()
         {

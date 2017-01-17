@@ -6,21 +6,27 @@ using System.Threading.Tasks;
 
 namespace SuperdiffusionInBilliards
 {
-    public class SceneSquereLattice : ScenePeriodic
+    public class SceneSquareLattice : SceneSquareBase
     {
-        private double latticeSize;     //Размер ячейки для квадратной решетки
-        public SceneSquereLattice(Scatterer[] scatterers, double fullTime, double deltaTime, double vParticle, double latticeSize)
-            : base(scatterers, fullTime, deltaTime, vParticle)
+        
+        public SceneSquareLattice(Scatterer scattererSample, Scatterer centralScattererSample, double fullTime, double deltaTime, double vParticle, double latticeSize)
+            : base(scattererSample, fullTime, deltaTime, vParticle, latticeSize)
         {
             InitParticleCoordinates(new Point2D(latticeSize / 2, latticeSize / 16));
-            this.latticeSize = latticeSize;
-            Lines = new Line[4];    // Создаем массив из черырех линий
-            Lines[0] = new Line(0, 1, 0);
-            Lines[1] = new Line(1, 0, -latticeSize);
-            Lines[2] = new Line(0, 1, -latticeSize);
-            Lines[3] = new Line(1 ,0, 0);
+            
 
             // Присваиваем значения центрам рассеивателей
+
+            //Scatterer scatterer = Scatterer.GetScattererByType(scTypeWithRadius.Type);
+
+            for (int i = 0; i < 4; i++)
+            {
+                Scatterers.Add((Scatterer)scattererSample.Clone());
+                //Scatterers[i] = (Scatterer)scattererSample.Clone();
+            }
+
+            Scatterers.Add((Scatterer)centralScattererSample.Clone());
+            
             Scatterers[0].Center.X = 0;
             Scatterers[0].Center.Y = 0;
 
@@ -71,7 +77,7 @@ namespace SuperdiffusionInBilliards
 
                 CollisionTime minCollTimeSc = new CollisionTime(0, false);  // Минимальное время соударения со всеми рассеивателями
                 int minIndexSc = 0;     // Индекс рассеивателя, время соударения с которым минимально. Не должно ли здесь быть -1? Или это не имеет значения?
-                for (int i = 0; i < Scatterers.Length; i++)
+                for (int i = 0; i < Scatterers.Count; i++)
                 {
                     CollisionTime collisionTime = ParticleScene.FindCollisionTimeScatterer(Scatterers[i]);  // Ищем время соударерния с i-тым рассеивателем, если оно существует
                     if (collisionTime.Existence && (collisionTime.Time < minCollTimeSc.Time || !minCollTimeSc.Existence))   // Если существует минимальне время соударения с рассеивателями, и если время соударерния с i-м рассеивателем существует, сравниваем его с минимальным временем

@@ -30,40 +30,51 @@ namespace SuperdiffusionInBilliards
 
         private SceneBase GetScene()
         {
-            Scatterer[] scatterers = null;
+            Scatterer scattererSample = null;
             SceneBase scene = null;
+            Scatterer centralScattererSample = null;
             if (squareScene.Checked)
             {
-                scatterers = new Scatterer[5];
+                //scatterers = new Scatterer[5];
                 if (harmonicScatterer.Checked)
                 {
-                    for (int i = 0; i < scatterers.Length - 1; i++)
-                    {
-                        scatterers[i] = new ScattererHarmonic(new Point2D(0, 0), Convert.ToDouble(averageRadius.Text), Convert.ToDouble(amplitudeOfScattererVelocity.Text), Convert.ToDouble(periodOfScattererOsc.Text));
-                    }
-                    scatterers[4] = new ScattererHarmonic(new Point2D(0, 0), Convert.ToDouble(averageRadiusOfCentralSc.Text), Convert.ToDouble(amplitudeOfScattererVelocity.Text), Convert.ToDouble(periodOfScattererOsc.Text));
+                    //for (int i = 0; i < scatterers.Length - 1; i++)
+                    //{
+                    scattererSample = new ScattererHarmonic(new Point2D(0, 0), Convert.ToDouble(averageRadius.Text), Convert.ToDouble(amplitudeOfScattererVelocity.Text), Convert.ToDouble(periodOfScattererOsc.Text));
+                    //}
+                    centralScattererSample = new ScattererHarmonic(new Point2D(0, 0), Convert.ToDouble(averageRadiusOfCentralSc.Text), Convert.ToDouble(amplitudeOfScattererVelocity.Text), Convert.ToDouble(periodOfScattererOsc.Text));
                 }
-                scene = new SceneSquereLattice(scatterers, Convert.ToDouble(fullTime.Text), Convert.ToDouble(deltaTime.Text), Convert.ToDouble(initialVelocity.Text), Convert.ToDouble(latticeSize.Text));
+                if (randomScatterer.Checked)
+                {
+                    //for (int i = 0; i < scatterers.Length - 1; i++)
+                    //{
+                    scattererSample = new ScattererRandom(new Point2D(0, 0), Convert.ToDouble(averageRadius.Text), Convert.ToDouble(amplitudeOfScattererVelocity.Text));
+                    //}
+                    centralScattererSample = new ScattererRandom(new Point2D(0, 0), Convert.ToDouble(averageRadiusOfCentralSc.Text), Convert.ToDouble(amplitudeOfScattererVelocity.Text));
+                }
+                scene = new SceneSquareLattice(scattererSample, centralScattererSample, Convert.ToDouble(fullTime.Text), Convert.ToDouble(deltaTime.Text), Convert.ToDouble(initialVelocity.Text), Convert.ToDouble(latticeSize.Text));
             }
+
             return scene;
         }
 
         private SceneBase GetScene(double ampOfScattererVelocity)
         {
-            Scatterer[] scatterers = null;
+            Scatterer scattererSample = null;
+            Scatterer centralScattererSample = null;
             SceneBase scene = null;
             if (squareScene.Checked)
             {
-                scatterers = new Scatterer[5];
+                //scatterers = new Scatterer[5];
                 if (harmonicScatterer.Checked)
                 {
-                    for (int i = 0; i < scatterers.Length - 1; i++)
-                    {
-                        scatterers[i] = new ScattererHarmonic(new Point2D(0, 0), Convert.ToDouble(averageRadius.Text), ampOfScattererVelocity, Convert.ToDouble(periodOfScattererOsc.Text));
-                    }
-                    scatterers[4] = new ScattererHarmonic(new Point2D(0, 0), Convert.ToDouble(averageRadiusOfCentralSc.Text), ampOfScattererVelocity, Convert.ToDouble(periodOfScattererOsc.Text));
+                    //for (int i = 0; i < scatterers.Length - 1; i++)
+                    //{
+                    scattererSample = new ScattererHarmonic(new Point2D(0, 0), Convert.ToDouble(averageRadius.Text), ampOfScattererVelocity, Convert.ToDouble(periodOfScattererOsc.Text));
+                    //}
+                    centralScattererSample = new ScattererHarmonic(new Point2D(0, 0), Convert.ToDouble(averageRadiusOfCentralSc.Text), ampOfScattererVelocity, Convert.ToDouble(periodOfScattererOsc.Text));
                 }
-                scene = new SceneSquereLattice(scatterers, Convert.ToDouble(fullTime.Text), Convert.ToDouble(deltaTime.Text), Convert.ToDouble(initialVelocity.Text), Convert.ToDouble(latticeSize.Text));
+                scene = new SceneSquareLattice(scattererSample, centralScattererSample, Convert.ToDouble(fullTime.Text), Convert.ToDouble(deltaTime.Text), Convert.ToDouble(initialVelocity.Text), Convert.ToDouble(latticeSize.Text));
             }
             return scene;
         }
@@ -241,6 +252,12 @@ namespace SuperdiffusionInBilliards
         private void harmonicScatterer_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ScattererHarmonic scattererSample = new ScattererHarmonic(new Point2D(0, 0), Convert.ToDouble(averageRadius.Text), Convert.ToDouble(amplitudeOfScattererVelocity.Text), Convert.ToDouble(periodOfScattererOsc.Text));
+            RandomScattererSet rndmScattererSet = new RandomScattererSet(scattererSample, 0.05);
         }
     }
 }

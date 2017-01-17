@@ -16,13 +16,15 @@ namespace SuperdiffusionInBilliards
         private double time;                            //Текущее время
         private double fullTime;                        //Время эксперимента
         private double deltaTime;                       //Время между точками записи в файл
-        private Scatterer[] scatterers;                 //Массив рассеивателей
+        private List<Scatterer> scatterers = new List<Scatterer>();//Массив рассеивателей
         private Particle particle;     //Частица
         private StateOfParticle oldState;               //Старое, сохраненное состояние системы, от которого строятся точки до нового состояния
         private List<StateOfParticle> statistics = new List<StateOfParticle>();
         private static Random rndm = new Random();
         private SuperdiffusionRunModes statMode = SuperdiffusionRunModes.Standart;
-
+        private Line[] lines;                   // Массив линий
+        private int lastLineIndex = -1;         // Индекс последней линии, с которой произошло соударение. Если последнее соударение было с рассеивателем, то значение этого параметра -1
+        
         /// <summary>
         /// Конструктор
         /// </summary>
@@ -30,7 +32,7 @@ namespace SuperdiffusionInBilliards
         /// <param name="fullTime">Время эксперимента</param>
         /// <param name="deltaTime">Время между точками записи в файл</param>
         /// <param name="vParticle">Начальная скорость частицы</param>
-        public SceneBase(Scatterer[] scatterers, double fullTime, double deltaTime, double vParticle)
+        public SceneBase(Scatterer scattererSample, double fullTime, double deltaTime, double vParticle)
         {
             displacement = new Point2D(0, 0);
             //Считаем vx vy по vParticle
@@ -39,10 +41,34 @@ namespace SuperdiffusionInBilliards
             double vY = vParticle * Math.Sin(alpha);
             particle = new Particle(new Point2D(0, 0), new Point2D(vX, vY), this);
             time = 0;
-            this.scatterers = scatterers;
             this.fullTime = fullTime;
             this.deltaTime = deltaTime;
          }
+
+        public int LastLineIndex
+        {
+            get
+            {
+                return lastLineIndex;
+            }
+            set
+            {
+                lastLineIndex = value;
+            }
+        }
+
+
+        public Line[] Lines
+        {
+            get
+            {
+                return lines;
+            }
+            set
+            {
+                lines = value;
+            }
+        }
 
         public SuperdiffusionRunModes StatMode
         {
@@ -84,7 +110,7 @@ namespace SuperdiffusionInBilliards
         /// <summary>
         /// Сеттер и геттер для массива рассеивателей
         /// </summary>
-        public Scatterer[] Scatterers
+        public List<Scatterer> Scatterers
         {
             get
             {

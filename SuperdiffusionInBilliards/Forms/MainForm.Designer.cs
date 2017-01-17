@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.typeOfOscillations = new System.Windows.Forms.GroupBox();
-            this.stochasticScatterer = new System.Windows.Forms.RadioButton();
+            this.randomScatterer = new System.Windows.Forms.RadioButton();
             this.harmonicScatterer = new System.Windows.Forms.RadioButton();
             this.lattice = new System.Windows.Forms.GroupBox();
             this.randomScene = new System.Windows.Forms.RadioButton();
@@ -80,6 +80,7 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.typeOfOscillations.SuspendLayout();
             this.lattice.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -87,7 +88,7 @@
             // 
             // typeOfOscillations
             // 
-            this.typeOfOscillations.Controls.Add(this.stochasticScatterer);
+            this.typeOfOscillations.Controls.Add(this.randomScatterer);
             this.typeOfOscillations.Controls.Add(this.harmonicScatterer);
             this.typeOfOscillations.Location = new System.Drawing.Point(12, 12);
             this.typeOfOscillations.Name = "typeOfOscillations";
@@ -96,16 +97,15 @@
             this.typeOfOscillations.TabStop = false;
             this.typeOfOscillations.Text = "Тип колебаний скорости стенки рассеивателей";
             // 
-            // stochasticScatterer
+            // randomScatterer
             // 
-            this.stochasticScatterer.AutoSize = true;
-            this.stochasticScatterer.Enabled = false;
-            this.stochasticScatterer.Location = new System.Drawing.Point(23, 19);
-            this.stochasticScatterer.Name = "stochasticScatterer";
-            this.stochasticScatterer.Size = new System.Drawing.Size(80, 17);
-            this.stochasticScatterer.TabIndex = 1;
-            this.stochasticScatterer.Text = "Случайные";
-            this.stochasticScatterer.UseVisualStyleBackColor = true;
+            this.randomScatterer.AutoSize = true;
+            this.randomScatterer.Location = new System.Drawing.Point(23, 19);
+            this.randomScatterer.Name = "randomScatterer";
+            this.randomScatterer.Size = new System.Drawing.Size(80, 17);
+            this.randomScatterer.TabIndex = 1;
+            this.randomScatterer.Text = "Случайные";
+            this.randomScatterer.UseVisualStyleBackColor = true;
             // 
             // harmonicScatterer
             // 
@@ -293,7 +293,7 @@
             this.fullTime.Name = "fullTime";
             this.fullTime.Size = new System.Drawing.Size(100, 20);
             this.fullTime.TabIndex = 15;
-            this.fullTime.Text = "1000";
+            this.fullTime.Text = "10";
             this.fullTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // deltaTime
@@ -302,7 +302,7 @@
             this.deltaTime.Name = "deltaTime";
             this.deltaTime.Size = new System.Drawing.Size(100, 20);
             this.deltaTime.TabIndex = 16;
-            this.deltaTime.Text = "20";
+            this.deltaTime.Text = "0,05";
             this.deltaTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label7
@@ -596,11 +596,22 @@
             this.label18.TabIndex = 42;
             this.label18.Text = "Количество точек";
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(868, 415);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(346, 31);
+            this.button2.TabIndex = 43;
+            this.button2.Text = "Проверка RandomScattererSet";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1239, 562);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label16);
@@ -660,7 +671,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox typeOfOscillations;
-        private System.Windows.Forms.RadioButton stochasticScatterer;
+        private System.Windows.Forms.RadioButton randomScatterer;
         private System.Windows.Forms.RadioButton harmonicScatterer;
         private System.Windows.Forms.GroupBox lattice;
         private System.Windows.Forms.RadioButton triangularScene;
@@ -711,6 +722,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Button button2;
     }
 }
 

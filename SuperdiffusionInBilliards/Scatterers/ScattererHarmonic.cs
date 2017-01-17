@@ -13,11 +13,27 @@ namespace SuperdiffusionInBilliards
         {
 
         }
+
+        public ScattererHarmonic()
+            : base ()
+        { 
         
+        }
+
         public override double Radius(double time)
         {
             double radius = Radius0 + U0 * Math.Sin(Frequency * time) / Frequency;
             return radius;
+        }
+
+        public override double MaxRadius()
+        {
+            return Radius0 + U0 * Math.Sin(Math.PI / 2) / Frequency;
+        }
+
+        public override object Clone()
+        {
+            return new ScattererHarmonic(Center, Radius0, U0, 2 * Math.PI / Frequency);
         }
     }
 }

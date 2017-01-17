@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SuperdiffusionInBilliards
 {
-    abstract public class Scatterer : Function
+    abstract public class Scatterer : Function, ICloneable
     {
         private Point2D center;     //Координаты центра рассеивателя
         private double radius0, u0; //Средний радиус рассеивателя, амплитуда скорости рассеивателя
@@ -19,6 +19,18 @@ namespace SuperdiffusionInBilliards
             this.radius0 = radius0;
         }
 
+        public Scatterer()
+        {
+        }
+
+        /*public static Scatterer GetScattererByType(ScattererType scType)
+        {
+            Scatterer scatterer = null;
+            if (scType == ScattererType.Harmonic)
+                scatterer = new ScattererHarmonic();
+            return scatterer;
+        }*/
+
         public override double F(double x)
         {
             return (Radius(x));
@@ -26,6 +38,8 @@ namespace SuperdiffusionInBilliards
 
         public abstract double Radius(double time);
 
+        public abstract double ScattererVelocity(double time);
+        
         public Point2D Center
         {
             get
@@ -44,6 +58,10 @@ namespace SuperdiffusionInBilliards
             {
                 return radius0;
             }
+            set
+            {
+                radius0 = value;
+            }
         }
 
         public double U0
@@ -53,6 +71,10 @@ namespace SuperdiffusionInBilliards
                 return u0;
             }
         }
+
+        public abstract double MaxRadius();
+
+        abstract public object Clone();
 
     }
 }
