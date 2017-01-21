@@ -293,7 +293,7 @@
             this.fullTime.Name = "fullTime";
             this.fullTime.Size = new System.Drawing.Size(100, 20);
             this.fullTime.TabIndex = 15;
-            this.fullTime.Text = "10";
+            this.fullTime.Text = "1000";
             this.fullTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // deltaTime
@@ -302,7 +302,7 @@
             this.deltaTime.Name = "deltaTime";
             this.deltaTime.Size = new System.Drawing.Size(100, 20);
             this.deltaTime.TabIndex = 16;
-            this.deltaTime.Text = "0,05";
+            this.deltaTime.Text = "20";
             this.deltaTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label7
