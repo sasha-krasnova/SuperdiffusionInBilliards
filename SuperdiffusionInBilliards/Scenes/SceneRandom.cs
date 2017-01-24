@@ -7,9 +7,13 @@ namespace SuperdiffusionInBilliards
 {
     class SceneRandom : SceneSquareBase
     {
-        public SceneRandom(Scatterer scattererSample, double fullTime, double deltaTime, double vParticle, double latticeSize)
+        RandomScattererSet randomSet;
+        public SceneRandom(Scatterer scattererSample, double fullTime, double deltaTime, double vParticle, double latticeSize, double scattererConcentration)
             : base(scattererSample, fullTime, deltaTime, vParticle, latticeSize)
         {
+            randomSet = new RandomScattererSet(scattererSample, scattererConcentration);
+            ReloadScetterers();
+
         }
 
         public override double FermiAccelerationTheory()
@@ -22,8 +26,9 @@ namespace SuperdiffusionInBilliards
             return 0;
         }
 
-        public override void GetNextCollision()
+        protected override void ReloadScetterers() 
         {
+            randomSet.GetScatterersForScene(Displacement, new Point2D(latticeSize, latticeSize));
         }
     }
 }

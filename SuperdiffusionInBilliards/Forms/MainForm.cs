@@ -257,7 +257,7 @@ namespace SuperdiffusionInBilliards
         private void button2_Click(object sender, EventArgs e)
         {
             ScattererHarmonic scattererSample = new ScattererHarmonic(new Point2D(0, 0), Convert.ToDouble(averageRadius.Text), Convert.ToDouble(amplitudeOfScattererVelocity.Text), Convert.ToDouble(periodOfScattererOsc.Text));
-            RandomScattererSet rndmScattererSet = new RandomScattererSet(scattererSample, 0.05);
+            RandomScattererSet rndmScattererSet = new RandomScattererSet(scattererSample, 0.0001);
         }
     }
 }

@@ -52,6 +52,7 @@
     <Compile Include="Forms\StatisticsOnScatVelForm.Designer.cs">
       <DependentUpon>StatisticsOnScatVelForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Geometry\Rectangle.cs" />
     <Compile Include="GraphDrawing\Graph.cs" />
     <Compile Include="GraphDrawing\GraphDrawer.cs" />
     <Compile Include="Forms\AveragingForm.cs">
@@ -171,9 +172,7 @@
   <ItemGroup>
     <None Include="Resources\clear.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Service References\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
