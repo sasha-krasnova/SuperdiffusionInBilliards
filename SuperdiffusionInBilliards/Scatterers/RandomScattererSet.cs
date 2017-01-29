@@ -11,7 +11,7 @@ namespace SuperdiffusionInBilliards
         private List<Scatterer> scatterers = new List<Scatterer>();
         private double maxScattererSampleRadius;
 
-        public static Point2D FIELD_SIZE = new Point2D(300, 300);
+        public static Point2D FIELD_SIZE = new Point2D(1000, 1000);
 
         //private static const Point2D LATTICE_SIZE = new Point2D(100, 100);
 
@@ -138,23 +138,31 @@ namespace SuperdiffusionInBilliards
             }
         }
 
-        public List<Scatterer> GetScatterersForScene(Point2D displacement, Point2D lattiseSize)
+        public List<Scatterer> GetScatterersForScene(Point2D displacement, Point2D latticeSize)
         {
-            if (FIELD_SIZE.X % lattiseSize.X != 0 || FIELD_SIZE.Y % lattiseSize.Y != 0)
+            if (FIELD_SIZE.X % latticeSize.X != 0 || FIELD_SIZE.Y % latticeSize.Y != 0)
             {
                 throw new Exception("Поле не кратно ячейке.");
             }
             Point2D displacementCut = new Point2D();
 
             displacementCut.X = displacement.X % FIELD_SIZE.X;
+            if (displacementCut.X < 0)
+                displacementCut.X = displacementCut.X + FIELD_SIZE.X;
             displacementCut.Y = displacement.Y % FIELD_SIZE.Y;
+            if (displacementCut.Y < 0)
+                displacementCut.Y = displacementCut.Y + FIELD_SIZE.Y;
+            
 
             List<Scatterer> scatterersForScene = new List<Scatterer>();
             foreach (Scatterer scatterer in scatterers)
             {
-                if (IsScattererInRectangle(scatterer, new Rectangle(displacementCut, lattiseSize)))
+                if (IsScattererInRectangle(scatterer, new Rectangle(displacementCut, latticeSize)))
                 {
-                    scatterersForScene.Add(scatterer);
+                    Scatterer scattererTemp = (Scatterer) scatterer.Clone();
+                    scattererTemp.Center.X -= displacementCut.X;
+                    scattererTemp.Center.Y -= displacementCut.Y;
+                    scatterersForScene.Add(scattererTemp);
                 }
             }
 
@@ -169,7 +177,6 @@ namespace SuperdiffusionInBilliards
                 return true;
 
             return false;
-            //TODO: написать код
         }
     }
 }
