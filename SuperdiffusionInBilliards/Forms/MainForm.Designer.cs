@@ -81,6 +81,8 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
+            this.label19 = new System.Windows.Forms.Label();
+            this.scattererConcentrationTextBox = new System.Windows.Forms.TextBox();
             this.typeOfOscillations.SuspendLayout();
             this.lattice.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -135,11 +137,12 @@
             // randomScene
             // 
             this.randomScene.AutoSize = true;
-            this.randomScene.Enabled = false;
+            this.randomScene.Checked = true;
             this.randomScene.Location = new System.Drawing.Point(23, 19);
             this.randomScene.Name = "randomScene";
             this.randomScene.Size = new System.Drawing.Size(78, 17);
             this.randomScene.TabIndex = 2;
+            this.randomScene.TabStop = true;
             this.randomScene.Text = "Случайная";
             this.randomScene.UseVisualStyleBackColor = true;
             // 
@@ -157,12 +160,10 @@
             // squareScene
             // 
             this.squareScene.AutoSize = true;
-            this.squareScene.Checked = true;
             this.squareScene.Location = new System.Drawing.Point(23, 42);
             this.squareScene.Name = "squareScene";
             this.squareScene.Size = new System.Drawing.Size(85, 17);
             this.squareScene.TabIndex = 0;
-            this.squareScene.TabStop = true;
             this.squareScene.Text = "Квадратная";
             this.squareScene.UseVisualStyleBackColor = true;
             this.squareScene.CheckedChanged += new System.EventHandler(this.squareScene_CheckedChanged);
@@ -261,7 +262,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(255)))));
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.button1.Location = new System.Drawing.Point(833, 278);
+            this.button1.Location = new System.Drawing.Point(833, 295);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(356, 58);
             this.button1.TabIndex = 12;
@@ -275,7 +276,7 @@
             this.latticeSize.Name = "latticeSize";
             this.latticeSize.Size = new System.Drawing.Size(100, 20);
             this.latticeSize.TabIndex = 13;
-            this.latticeSize.Text = "20";
+            this.latticeSize.Text = "100";
             this.latticeSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label6
@@ -293,7 +294,7 @@
             this.fullTime.Name = "fullTime";
             this.fullTime.Size = new System.Drawing.Size(100, 20);
             this.fullTime.TabIndex = 15;
-            this.fullTime.Text = "1000";
+            this.fullTime.Text = "100";
             this.fullTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // deltaTime
@@ -302,7 +303,7 @@
             this.deltaTime.Name = "deltaTime";
             this.deltaTime.Size = new System.Drawing.Size(100, 20);
             this.deltaTime.TabIndex = 16;
-            this.deltaTime.Text = "20";
+            this.deltaTime.Text = "0,05";
             this.deltaTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label7
@@ -345,7 +346,7 @@
             // 
             this.statistics.BackColor = System.Drawing.Color.Red;
             this.statistics.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.statistics.Location = new System.Drawing.Point(370, 278);
+            this.statistics.Location = new System.Drawing.Point(370, 295);
             this.statistics.Name = "statistics";
             this.statistics.Size = new System.Drawing.Size(356, 58);
             this.statistics.TabIndex = 21;
@@ -606,11 +607,30 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(628, 257);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(41, 13);
+            this.label19.TabIndex = 44;
+            this.label19.Text = "label19";
+            // 
+            // scattererConcentrationTextBox
+            // 
+            this.scattererConcentrationTextBox.Location = new System.Drawing.Point(679, 256);
+            this.scattererConcentrationTextBox.Name = "scattererConcentrationTextBox";
+            this.scattererConcentrationTextBox.Size = new System.Drawing.Size(100, 20);
+            this.scattererConcentrationTextBox.TabIndex = 45;
+            this.scattererConcentrationTextBox.Text = "0,001";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1239, 562);
+            this.Controls.Add(this.scattererConcentrationTextBox);
+            this.Controls.Add(this.label19);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label17);
@@ -723,6 +743,8 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox scattererConcentrationTextBox;
     }
 }
 

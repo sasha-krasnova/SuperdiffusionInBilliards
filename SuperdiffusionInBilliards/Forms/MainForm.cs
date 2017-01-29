@@ -55,6 +55,28 @@ namespace SuperdiffusionInBilliards
                 scene = new SceneSquareLattice(scattererSample, centralScattererSample, Convert.ToDouble(fullTime.Text), Convert.ToDouble(deltaTime.Text), Convert.ToDouble(initialVelocity.Text), Convert.ToDouble(latticeSize.Text));
             }
 
+            if (randomScene.Checked)
+            {
+                //scatterers = new Scatterer[5];
+                if (harmonicScatterer.Checked)
+                {
+                    //for (int i = 0; i < scatterers.Length - 1; i++)
+                    //{
+                    scattererSample = new ScattererHarmonic(new Point2D(0, 0), Convert.ToDouble(averageRadius.Text), Convert.ToDouble(amplitudeOfScattererVelocity.Text), Convert.ToDouble(periodOfScattererOsc.Text));
+                    //}
+                    
+                }
+                if (randomScatterer.Checked)
+                {
+                    //for (int i = 0; i < scatterers.Length - 1; i++)
+                    //{
+                    scattererSample = new ScattererRandom(new Point2D(0, 0), Convert.ToDouble(averageRadius.Text), Convert.ToDouble(amplitudeOfScattererVelocity.Text));
+                    //}
+                   
+                }
+                scene = new SceneRandom(scattererSample, Convert.ToDouble(fullTime.Text), Convert.ToDouble(deltaTime.Text), Convert.ToDouble(initialVelocity.Text), Convert.ToDouble(latticeSize.Text), Convert.ToDouble(scattererConcentrationTextBox.Text));
+            }
+
             return scene;
         }
 

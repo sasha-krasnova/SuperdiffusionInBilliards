@@ -20,7 +20,7 @@ namespace SuperdiffusionInBilliards
         private Particle particle;     //Частица
         private StateOfParticle oldState;               //Старое, сохраненное состояние системы, от которого строятся точки до нового состояния
         private List<StateOfParticle> statistics = new List<StateOfParticle>();
-        private static Random rndm = new Random();
+        public static Random rndm = new Random();
         private SuperdiffusionRunModes statMode = SuperdiffusionRunModes.Standart;
         private Line[] lines;                   // Массив линий
         private int lastLineIndex = -1;         // Индекс последней линии, с которой произошло соударение. Если последнее соударение было с рассеивателем, то значение этого параметра -1

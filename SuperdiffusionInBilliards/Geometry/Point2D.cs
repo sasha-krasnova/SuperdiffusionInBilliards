@@ -65,5 +65,10 @@ namespace SuperdiffusionInBilliards
         {
             return Convert.ToString(x) + ";" + Convert.ToString(y) + ";";
         }
+
+        public static double getDistance(Point2D one, Point2D two)
+        {
+            return Math.Sqrt((one.X - two.X) * (one.X - two.X) + (one.Y - two.Y) * (one.Y - two.Y));
+        }
     }
 }

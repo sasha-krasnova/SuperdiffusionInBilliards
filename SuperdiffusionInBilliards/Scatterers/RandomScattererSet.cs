@@ -11,7 +11,7 @@ namespace SuperdiffusionInBilliards
         private List<Scatterer> scatterers = new List<Scatterer>();
         private double maxScattererSampleRadius;
 
-        public static Point2D FIELD_SIZE = new Point2D(1000, 1000);
+        public static Point2D FIELD_SIZE = new Point2D(300, 300);
 
         //private static const Point2D LATTICE_SIZE = new Point2D(100, 100);
 
@@ -34,27 +34,91 @@ namespace SuperdiffusionInBilliards
                     scattererTemp = GenerateScatterer(scattererSample, rndm);
                 }
                 while (!IsScattererPositionValid(scattererTemp));
-                scatterers.Add(scattererTemp);
+
+                addScatterers(scattererTemp);
+            }
+        }
+        private void addScatterers(Scatterer scattererTemp)
+        {
+            List<List<double>> displacements = getDisplacements(scattererTemp);
+
+            foreach (double displacementX in displacements[0])
+            {
+                foreach (double displacementY in displacements[1])
+                {
+                    Scatterer sc = (Scatterer)scattererTemp.Clone();
+                    sc.Center.X += displacementX;
+                    sc.Center.Y += displacementY;
+                    scatterers.Add(sc);
+                }
             }
         }
 
         private Scatterer GenerateScatterer(Scatterer scattererSample, Random rndm)
         {
             Scatterer scatterer = (Scatterer)scattererSample.Clone();
-            scatterer.Center.X = (FIELD_SIZE.X - 2 * maxScattererSampleRadius) * rndm.NextDouble() + maxScattererSampleRadius;
-            scatterer.Center.Y = (FIELD_SIZE.Y - 2 * maxScattererSampleRadius) * rndm.NextDouble() + maxScattererSampleRadius;
+            scatterer.Center.X = FIELD_SIZE.X * rndm.NextDouble();
+            scatterer.Center.Y = FIELD_SIZE.Y * rndm.NextDouble();
             return scatterer;
         }
 
         private bool IsScattererPositionValid(Scatterer scattererTemp)
         {
 
-            foreach (Scatterer scatterer in scatterers)
+            List<List<double>> displacements = getDisplacements(scattererTemp);
+
+            foreach (double displacementX in displacements[0])
             {
-                if (DoesScatterersConflict(scatterer, scattererTemp))
-                    return false;
+                foreach (double displacementY in displacements[1])
+                {
+                    foreach (Scatterer scatterer in scatterers)
+                    {
+                        Scatterer sc = (Scatterer)scattererTemp.Clone();
+                        sc.Center.X += displacementX;
+                        sc.Center.Y += displacementY;
+                        if (DoesScatterersConflict(scatterer, sc))
+                            return false;
+                    }
+                }
             }
             return true;
+        }
+
+        private List<List<double>> getDisplacements(Scatterer sc)
+        {
+            List<List<double>> result = new List<List<double>>();
+
+            //список смещений по x
+            List<double> displacementsX = new List<double>();
+            displacementsX.Add(0);
+
+            //список смещений по y
+            List<double> displacementsY = new List<double>();
+            displacementsY.Add(0);
+
+            if (sc.Center.X < sc.MaxRadius())
+            {
+                displacementsX.Add(FIELD_SIZE.X);
+            }
+
+            if (sc.Center.X > FIELD_SIZE.X - sc.MaxRadius())
+            {
+                displacementsX.Add(-FIELD_SIZE.X);
+            }
+
+            if (sc.Center.Y < sc.MaxRadius())
+            {
+                displacementsY.Add(FIELD_SIZE.Y);
+            }
+
+            if (sc.Center.Y > FIELD_SIZE.Y - sc.MaxRadius())
+            {
+                displacementsY.Add(-FIELD_SIZE.Y);
+            }
+
+            result.Add(displacementsX);
+            result.Add(displacementsY);
+            return result;
         }
 
         private bool DoesScatterersConflict(Scatterer scattererOne, Scatterer scattererTwo)
@@ -81,6 +145,7 @@ namespace SuperdiffusionInBilliards
                 throw new Exception("Поле не кратно ячейке.");
             }
             Point2D displacementCut = new Point2D();
+
             displacementCut.X = displacement.X % FIELD_SIZE.X;
             displacementCut.Y = displacement.Y % FIELD_SIZE.Y;
 
@@ -98,13 +163,12 @@ namespace SuperdiffusionInBilliards
 
         public bool IsScattererInRectangle(Scatterer scatterer, Rectangle rect)
         {
-       //     maxScattererSampleRadius;
             bool isXInRectangle = scatterer.Center.X > rect.LeftTop.X - maxScattererSampleRadius && scatterer.Center.X < rect.RightBottom.X + maxScattererSampleRadius;
             bool isYInRectangle = scatterer.Center.Y > rect.LeftTop.Y - maxScattererSampleRadius && scatterer.Center.Y < rect.RightBottom.Y + maxScattererSampleRadius;
             if (isXInRectangle && isYInRectangle)
                 return true;
-            else
-                return false;
+
+            return false;
             //TODO: написать код
         }
     }
