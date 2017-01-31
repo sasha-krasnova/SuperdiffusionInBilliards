@@ -15,104 +15,106 @@ namespace SuperdiffusionInBilliards
         public MainForm()
         {
             InitializeComponent();
-            staticticsStandart.Checked = true;
+            //staticticsStandart.Checked = true;
+            //averageRadiusOfCentralSc.Enabled = false;
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        
+        /// <summary>
+        /// Делает доступными все TextBox
+        /// </summary>
+        private void MakeAllTextBoxesEnabled()
         {
-            Function f = new TestFunction();
-            List<double> roots = NewtonsMethod.Solve(f, 0);
-            foreach(double root in roots)
-            {
-                MessageBox.Show(root.ToString());
-            }
+            initialVelocity.Enabled = true;
+            amplitudeOfScattererVelocity.Enabled = true;
+            periodOfScattererOsc.Enabled = true;
+            averageRadius.Enabled = true;
+            averageRadiusOfCentralSc.Enabled = true;
+            latticeSize.Enabled = true;
+            fullTime.Enabled = true;
+            deltaTime.Enabled = true;
+            numberOfRealisations.Enabled = true;
+            scattererConcentrationTextBox.Enabled = true;
+
+            textBoxInitAmp.Enabled = true;
+            textBoxStepAmp.Enabled = true;
+            textBoxNumPointsAmp.Enabled = true;
+
+            textBoxInitRadius.Enabled = true;
+            textBoxStepRadius.Enabled = true;
+            textBoxNumPointsRadius.Enabled = true;
+
+            textBoxInitPeriod.Enabled = true;
+            textBoxStepPeriod.Enabled = true;
+            textBoxNumPointsPeriod.Enabled = true;
+
         }
 
-        private SceneBase GetScene()
+        /// <summary>
+        /// Создает образец рассеивателя в зависимости от того, какой тип рассеивателявыбран 
+        /// </summary>
+        /// <param name="amplitudeOfScattererVelocity">Амплитуда скорости рассеивателя</param>
+        /// <param name="periodOfScattererOsc">Период колебаний рассеивателя</param>
+        /// <param name="averageRadius">Средний радиус рассеивателя</param>
+        /// <returns></returns>
+        private Scatterer GetScattererSample(double amplitudeOfScattererVelocity, double periodOfScattererOsc, double averageRadius)
         {
             Scatterer scattererSample = null;
-            SceneBase scene = null;
-            Scatterer centralScattererSample = null;
-            if (squareScene.Checked)
+
+            //Если выбран гармонический рассеиватель
+            if (harmonicScatterer.Checked)
             {
-                //scatterers = new Scatterer[5];
-                if (harmonicScatterer.Checked)
-                {
-                    //for (int i = 0; i < scatterers.Length - 1; i++)
-                    //{
-                    scattererSample = new ScattererHarmonic(new Point2D(0, 0), Convert.ToDouble(averageRadius.Text), Convert.ToDouble(amplitudeOfScattererVelocity.Text), Convert.ToDouble(periodOfScattererOsc.Text));
-                    //}
-                    centralScattererSample = new ScattererHarmonic(new Point2D(0, 0), Convert.ToDouble(averageRadiusOfCentralSc.Text), Convert.ToDouble(amplitudeOfScattererVelocity.Text), Convert.ToDouble(periodOfScattererOsc.Text));
-                }
-                if (randomScatterer.Checked)
-                {
-                    //for (int i = 0; i < scatterers.Length - 1; i++)
-                    //{
-                    scattererSample = new ScattererRandom(new Point2D(0, 0), Convert.ToDouble(averageRadius.Text), Convert.ToDouble(amplitudeOfScattererVelocity.Text));
-                    //}
-                    centralScattererSample = new ScattererRandom(new Point2D(0, 0), Convert.ToDouble(averageRadiusOfCentralSc.Text), Convert.ToDouble(amplitudeOfScattererVelocity.Text));
-                }
-                scene = new SceneSquareLattice(scattererSample, centralScattererSample, Convert.ToDouble(fullTime.Text), Convert.ToDouble(deltaTime.Text), Convert.ToDouble(initialVelocity.Text), Convert.ToDouble(latticeSize.Text));
+                scattererSample = new ScattererHarmonic(new Point2D(0, 0), averageRadius, amplitudeOfScattererVelocity , periodOfScattererOsc);
+            }
+            //Если выбран случайный рассеиватель
+            else if (randomScatterer.Checked)
+            {
+                scattererSample = new ScattererRandom(new Point2D(0, 0), averageRadius, amplitudeOfScattererVelocity);
             }
 
+            return scattererSample;
+        }
+
+        /// <summary>
+        /// Создает сцену в зависимости от того, какой тип сцены выбран
+        /// </summary>
+        /// <param name="amplitudeOfScattererVelocity">Амплитуда скорости рассеивателя</param>
+        /// <param name="periodOfScattererOsc">Период колебаний рассеивателя</param>
+        /// <param name="averageRadius">Средний радиус рассеиватееля (не центрального из квадратной ячейки, а обычного)</param>
+        /// <returns></returns>
+        private SceneBase GetScene(double amplitudeOfScattererVelocity, double periodOfScattererOsc, double averageRadius)
+        {
+            SceneBase scene = null;
+            Scatterer scattererSample = GetScattererSample(amplitudeOfScattererVelocity, periodOfScattererOsc, averageRadius);
+            if (squareScene.Checked)
+            {
+                Scatterer centralScattererSample = GetScattererSample(amplitudeOfScattererVelocity, periodOfScattererOsc, Convert.ToDouble(averageRadiusOfCentralSc.Text));
+                scene = new SceneSquareLattice(scattererSample, centralScattererSample, Convert.ToDouble(fullTime.Text), Convert.ToDouble(deltaTime.Text), Convert.ToDouble(initialVelocity.Text), Convert.ToDouble(latticeSize.Text));
+            }
+            
             if (randomScene.Checked)
             {
-                //scatterers = new Scatterer[5];
-                if (harmonicScatterer.Checked)
-                {
-                    //for (int i = 0; i < scatterers.Length - 1; i++)
-                    //{
-                    scattererSample = new ScattererHarmonic(new Point2D(0, 0), Convert.ToDouble(averageRadius.Text), Convert.ToDouble(amplitudeOfScattererVelocity.Text), Convert.ToDouble(periodOfScattererOsc.Text));
-                    //}
-                    
-                }
-                if (randomScatterer.Checked)
-                {
-                    //for (int i = 0; i < scatterers.Length - 1; i++)
-                    //{
-                    scattererSample = new ScattererRandom(new Point2D(0, 0), Convert.ToDouble(averageRadius.Text), Convert.ToDouble(amplitudeOfScattererVelocity.Text));
-                    //}
-                   
-                }
                 scene = new SceneRandom(scattererSample, Convert.ToDouble(fullTime.Text), Convert.ToDouble(deltaTime.Text), Convert.ToDouble(initialVelocity.Text), Convert.ToDouble(latticeSize.Text), Convert.ToDouble(scattererConcentrationTextBox.Text));
             }
 
             return scene;
         }
-
-        private SceneBase GetScene(double ampOfScattererVelocity)
-        {
-            Scatterer scattererSample = null;
-            Scatterer centralScattererSample = null;
-            SceneBase scene = null;
-            if (squareScene.Checked)
-            {
-                //scatterers = new Scatterer[5];
-                if (harmonicScatterer.Checked)
-                {
-                    //for (int i = 0; i < scatterers.Length - 1; i++)
-                    //{
-                    scattererSample = new ScattererHarmonic(new Point2D(0, 0), Convert.ToDouble(averageRadius.Text), ampOfScattererVelocity, Convert.ToDouble(periodOfScattererOsc.Text));
-                    //}
-                    centralScattererSample = new ScattererHarmonic(new Point2D(0, 0), Convert.ToDouble(averageRadiusOfCentralSc.Text), ampOfScattererVelocity, Convert.ToDouble(periodOfScattererOsc.Text));
-                }
-                scene = new SceneSquareLattice(scattererSample, centralScattererSample, Convert.ToDouble(fullTime.Text), Convert.ToDouble(deltaTime.Text), Convert.ToDouble(initialVelocity.Text), Convert.ToDouble(latticeSize.Text));
-            }
-            return scene;
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
+        /// <summary>
+        /// Запускает одну реализацию с графикой
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void startWithGraphics_Click_1(object sender, EventArgs e)
         {
 
-            SceneBase scene = GetScene();
+            SceneBase scene = GetScene(Convert.ToDouble(amplitudeOfScattererVelocity.Text), Convert.ToDouble(periodOfScattererOsc.Text), Convert.ToDouble(averageRadius.Text));
 
-            WaitForm wf = new WaitForm();
-            wf.Show();
+            //WaitForm wf = new WaitForm();
+            //wf.Show();
             scene.StatMode = SuperdiffusionRunModes.Detail;
             scene.Run();
-            wf.Close();
-            DrawingForm df = new DrawingForm(scene.Statistics, new Point2D(Convert.ToDouble(latticeSize.Text), Convert.ToDouble(latticeSize.Text)));
-            df.Show();
+            //wf.Close();
+            //DrawingForm df = new DrawingForm(scene.Statistics, new Point2D(Convert.ToDouble(latticeSize.Text), Convert.ToDouble(latticeSize.Text)));
+            //df.Show();
         }
 
         private void randomScene_CheckedChanged(object sender, EventArgs e)
@@ -130,10 +132,19 @@ namespace SuperdiffusionInBilliards
             averageRadiusOfCentralSc.Enabled = false;
         }
 
-        private void randomScene_Click(object sender, EventArgs e)
+        /*private void randomScene_Click(object sender, EventArgs e)
         {
-        }
+        }*/
 
+        /// <summary>
+        /// Запускает расчет статистики. 
+        /// Стандартная - зависимость скорости частицы и среднеквадратичного отклонения от времени.
+        /// Зависимость от скорости рассеивателя - зависимость ускорения Ферми и коэффициента супердиффузии от амплитуды скорости рассеивателя
+        /// Зависимость от радиуса рассеивателя - зависимость ускорения Ферми и коэффициента супердиффузии от радиуса рассеивателей
+        /// Зависимость от периода колебаний - зависимость ускорения Ферми и коэффициента супердиффузии от периода колебаний рассеивателя
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void statistics_Click(object sender, EventArgs e)
         {
             if (staticticsStandart.Checked)
@@ -142,8 +153,8 @@ namespace SuperdiffusionInBilliards
                 
                 for (int i = 0; i < Convert.ToInt64(numberOfRealisations.Text); i++)
                 {
-                    
-                    scenes.Add(GetScene());
+
+                    scenes.Add(GetScene(Convert.ToDouble(amplitudeOfScattererVelocity.Text), Convert.ToDouble(periodOfScattererOsc.Text), Convert.ToDouble(averageRadius.Text)));
                 }
 
 
@@ -168,6 +179,21 @@ namespace SuperdiffusionInBilliards
                 StatisticsOnScatVelForm sAmpF = new StatisticsOnScatVelForm(realizationSets, Convert.ToDouble(initialVelocity.Text));
                 sAmpF.Show();
             }
+
+            if (statisticsOnScatRadius.Checked)
+            {
+                List<RealizationSet> realizationSets = new List<RealizationSet>();
+                double averageRadius;
+                for (int i = 0; i < Convert.ToInt32(textBoxNumPointsRadius.Text); i++)
+                {
+                    averageRadius = Convert.ToDouble(textBoxInitRadius.Text) + i * Convert.ToDouble(textBoxStepRadius.Text);
+                    RealizationSet realizationSetTemp = new RealizationSet(GetScenes(averageRadius));
+                    realizationSets.Add(realizationSetTemp);
+                    //List<SceneBase> scenes = new List<SceneBase>();
+                }
+                //StatisticsOnScatVelForm sAmpF = new StatisticsOnScatVelForm(realizationSets, Convert.ToDouble(initialVelocity.Text));
+                //sAmpF.Show();
+            }
         }
 
         private List<SceneBase> GetScenes(double ampOfScVel)
@@ -175,7 +201,7 @@ namespace SuperdiffusionInBilliards
             List<SceneBase> scenes = new List<SceneBase>();
             for (int i = 0; i < Convert.ToInt64(numberOfRealisations.Text); i++)
             {
-                scenes.Add(GetScene(ampOfScVel));
+                scenes.Add(GetScene(ampOfScVel, Convert.ToDouble(periodOfScattererOsc.Text), Convert.ToDouble(averageRadius.Text)));
             }
             return scenes;
         }
@@ -194,14 +220,10 @@ namespace SuperdiffusionInBilliards
 
         private void statisticsOnScatVel_CheckedChanged(object sender, EventArgs e)
         {
+            MakeAllTextBoxesEnabled();
+
             amplitudeOfScattererVelocity.Enabled = false;
-            averageRadius.Enabled = true;
-            periodOfScattererOsc.Enabled = true;
-
-            textBoxInitAmp.Enabled = true;
-            textBoxStepAmp.Enabled = true;
-            textBoxNumPointsAmp.Enabled = true;
-
+            
             textBoxInitRadius.Enabled = false;
             textBoxStepRadius.Enabled = false;
             textBoxNumPointsRadius.Enabled = false;
@@ -213,30 +235,25 @@ namespace SuperdiffusionInBilliards
 
         private void statisticsOnScatRadius_CheckedChanged(object sender, EventArgs e)
         {
+            MakeAllTextBoxesEnabled();
+            
             averageRadius.Enabled = false;
-            periodOfScattererOsc.Enabled = true;
-            amplitudeOfScattererVelocity.Enabled = true;
-
+            
             textBoxInitAmp.Enabled = false;
             textBoxStepAmp.Enabled = false;
             textBoxNumPointsAmp.Enabled = false;
 
-            textBoxInitRadius.Enabled = true;
-            textBoxStepRadius.Enabled = true;
-            textBoxNumPointsRadius.Enabled = true;
-
             textBoxInitPeriod.Enabled = false;
             textBoxStepPeriod.Enabled = false;
             textBoxNumPointsPeriod.Enabled = false;
-
         }
 
         private void statisticsOnPeriod_CheckedChanged(object sender, EventArgs e)
         {
-            periodOfScattererOsc.Enabled = false;
-            amplitudeOfScattererVelocity.Enabled = true;
-            averageRadius.Enabled = true;
+            MakeAllTextBoxesEnabled();
 
+            periodOfScattererOsc.Enabled = false;
+            
             textBoxInitAmp.Enabled = false;
             textBoxStepAmp.Enabled = false;
             textBoxNumPointsAmp.Enabled = false;
@@ -244,18 +261,11 @@ namespace SuperdiffusionInBilliards
             textBoxInitRadius.Enabled = false;
             textBoxStepRadius.Enabled = false;
             textBoxNumPointsRadius.Enabled = false;
-
-            textBoxInitPeriod.Enabled = true;
-            textBoxStepPeriod.Enabled = true;
-            textBoxNumPointsPeriod.Enabled = true;
-
         }
 
         private void staticticsStandart_CheckedChanged(object sender, EventArgs e)
         {
-            amplitudeOfScattererVelocity.Enabled = true;
-            averageRadius.Enabled = true;
-            periodOfScattererOsc.Enabled = true;
+            MakeAllTextBoxesEnabled();
             
             textBoxInitAmp.Enabled = false;
             textBoxStepAmp.Enabled = false;
@@ -281,5 +291,25 @@ namespace SuperdiffusionInBilliards
             ScattererHarmonic scattererSample = new ScattererHarmonic(new Point2D(0, 0), Convert.ToDouble(averageRadius.Text), Convert.ToDouble(amplitudeOfScattererVelocity.Text), Convert.ToDouble(periodOfScattererOsc.Text));
             RandomScattererSet rndmScattererSet = new RandomScattererSet(scattererSample, 0.0001);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Function f = new TestFunction();
+            List<double> roots = NewtonsMethod.Solve(f, 0);
+            foreach(double root in roots)
+            {
+                MessageBox.Show(root.ToString());
+            }
+        }
+
+        /*private void startWithGraphics_Click_1(object sender, EventArgs e)
+        {
+
+        }*/
+
+        /*private void randomScene_CheckedChanged_1(object sender, EventArgs e)
+        {
+            averageRadiusOfCentralSc.Enabled = false;
+        }*/
     }
 }

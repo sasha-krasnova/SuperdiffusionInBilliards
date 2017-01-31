@@ -34,7 +34,10 @@ namespace SuperdiffusionInBilliards
         {
             return Radius0;
         }
-        
 
+        public override double FermiAcceleration(double lambda)
+        {
+            return U0 * U0 / 3 / lambda;
+        }
     }
 }

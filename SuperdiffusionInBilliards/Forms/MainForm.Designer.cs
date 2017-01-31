@@ -45,7 +45,7 @@
             this.averageRadiusOfCentralSc = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.startWithGraphics = new System.Windows.Forms.Button();
             this.latticeSize = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.fullTime = new System.Windows.Forms.TextBox();
@@ -102,7 +102,7 @@
             // randomScatterer
             // 
             this.randomScatterer.AutoSize = true;
-            this.randomScatterer.Location = new System.Drawing.Point(23, 19);
+            this.randomScatterer.Location = new System.Drawing.Point(23, 42);
             this.randomScatterer.Name = "randomScatterer";
             this.randomScatterer.Size = new System.Drawing.Size(80, 17);
             this.randomScatterer.TabIndex = 1;
@@ -113,7 +113,7 @@
             // 
             this.harmonicScatterer.AutoSize = true;
             this.harmonicScatterer.Checked = true;
-            this.harmonicScatterer.Location = new System.Drawing.Point(23, 42);
+            this.harmonicScatterer.Location = new System.Drawing.Point(23, 19);
             this.harmonicScatterer.Name = "harmonicScatterer";
             this.harmonicScatterer.Size = new System.Drawing.Size(104, 17);
             this.harmonicScatterer.TabIndex = 0;
@@ -145,6 +145,7 @@
             this.randomScene.TabStop = true;
             this.randomScene.Text = "Случайная";
             this.randomScene.UseVisualStyleBackColor = true;
+            this.randomScene.CheckedChanged += new System.EventHandler(this.randomScene_CheckedChanged);
             // 
             // triangularScene
             // 
@@ -233,6 +234,7 @@
             // 
             // averageRadiusOfCentralSc
             // 
+            this.averageRadiusOfCentralSc.Enabled = false;
             this.averageRadiusOfCentralSc.Location = new System.Drawing.Point(679, 126);
             this.averageRadiusOfCentralSc.Name = "averageRadiusOfCentralSc";
             this.averageRadiusOfCentralSc.Size = new System.Drawing.Size(100, 20);
@@ -258,17 +260,17 @@
             this.label5.TabIndex = 11;
             this.label5.Text = "Средний радиус центрального рассеивателя (для квадратной решетки)";
             // 
-            // button1
+            // startWithGraphics
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(255)))));
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.button1.Location = new System.Drawing.Point(833, 295);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(356, 58);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Старт с графикой";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.startWithGraphics.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(255)))));
+            this.startWithGraphics.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.startWithGraphics.Location = new System.Drawing.Point(833, 295);
+            this.startWithGraphics.Name = "startWithGraphics";
+            this.startWithGraphics.Size = new System.Drawing.Size(356, 58);
+            this.startWithGraphics.TabIndex = 12;
+            this.startWithGraphics.Text = "Старт с графикой";
+            this.startWithGraphics.UseVisualStyleBackColor = false;
+            this.startWithGraphics.Click += new System.EventHandler(this.startWithGraphics_Click_1);
             // 
             // latticeSize
             // 
@@ -390,11 +392,11 @@
             // statisticsOnPeriod
             // 
             this.statisticsOnPeriod.AutoSize = true;
+            this.statisticsOnPeriod.Enabled = false;
             this.statisticsOnPeriod.Location = new System.Drawing.Point(23, 91);
             this.statisticsOnPeriod.Name = "statisticsOnPeriod";
             this.statisticsOnPeriod.Size = new System.Drawing.Size(209, 17);
             this.statisticsOnPeriod.TabIndex = 3;
-            this.statisticsOnPeriod.TabStop = true;
             this.statisticsOnPeriod.Text = "Зависимость от периода колебаний";
             this.statisticsOnPeriod.UseVisualStyleBackColor = true;
             this.statisticsOnPeriod.CheckedChanged += new System.EventHandler(this.statisticsOnPeriod_CheckedChanged);
@@ -402,11 +404,11 @@
             // statisticsOnScatRadius
             // 
             this.statisticsOnScatRadius.AutoSize = true;
+            this.statisticsOnScatRadius.Enabled = false;
             this.statisticsOnScatRadius.Location = new System.Drawing.Point(23, 67);
             this.statisticsOnScatRadius.Name = "statisticsOnScatRadius";
             this.statisticsOnScatRadius.Size = new System.Drawing.Size(231, 17);
             this.statisticsOnScatRadius.TabIndex = 2;
-            this.statisticsOnScatRadius.TabStop = true;
             this.statisticsOnScatRadius.Text = "Зависимость от радиуса рассеивателей";
             this.statisticsOnScatRadius.UseVisualStyleBackColor = true;
             this.statisticsOnScatRadius.CheckedChanged += new System.EventHandler(this.statisticsOnScatRadius_CheckedChanged);
@@ -426,6 +428,7 @@
             // staticticsStandart
             // 
             this.staticticsStandart.AutoSize = true;
+            this.staticticsStandart.Checked = true;
             this.staticticsStandart.Location = new System.Drawing.Point(23, 19);
             this.staticticsStandart.Name = "staticticsStandart";
             this.staticticsStandart.Size = new System.Drawing.Size(90, 17);
@@ -437,6 +440,7 @@
             // 
             // textBoxInitAmp
             // 
+            this.textBoxInitAmp.Enabled = false;
             this.textBoxInitAmp.Location = new System.Drawing.Point(1126, 24);
             this.textBoxInitAmp.Name = "textBoxInitAmp";
             this.textBoxInitAmp.Size = new System.Drawing.Size(100, 20);
@@ -446,6 +450,7 @@
             // 
             // textBoxStepAmp
             // 
+            this.textBoxStepAmp.Enabled = false;
             this.textBoxStepAmp.Location = new System.Drawing.Point(1127, 50);
             this.textBoxStepAmp.Name = "textBoxStepAmp";
             this.textBoxStepAmp.Size = new System.Drawing.Size(100, 20);
@@ -455,6 +460,7 @@
             // 
             // textBoxNumPointsAmp
             // 
+            this.textBoxNumPointsAmp.Enabled = false;
             this.textBoxNumPointsAmp.Location = new System.Drawing.Point(1127, 76);
             this.textBoxNumPointsAmp.Name = "textBoxNumPointsAmp";
             this.textBoxNumPointsAmp.Size = new System.Drawing.Size(100, 20);
@@ -464,7 +470,8 @@
             // 
             // textBoxInitRadius
             // 
-            this.textBoxInitRadius.Location = new System.Drawing.Point(1126, 102);
+            this.textBoxInitRadius.Enabled = false;
+            this.textBoxInitRadius.Location = new System.Drawing.Point(1127, 112);
             this.textBoxInitRadius.Name = "textBoxInitRadius";
             this.textBoxInitRadius.Size = new System.Drawing.Size(100, 20);
             this.textBoxInitRadius.TabIndex = 28;
@@ -473,7 +480,8 @@
             // 
             // textBoxStepRadius
             // 
-            this.textBoxStepRadius.Location = new System.Drawing.Point(1127, 128);
+            this.textBoxStepRadius.Enabled = false;
+            this.textBoxStepRadius.Location = new System.Drawing.Point(1128, 138);
             this.textBoxStepRadius.Name = "textBoxStepRadius";
             this.textBoxStepRadius.Size = new System.Drawing.Size(100, 20);
             this.textBoxStepRadius.TabIndex = 29;
@@ -482,7 +490,8 @@
             // 
             // textBoxNumPointsRadius
             // 
-            this.textBoxNumPointsRadius.Location = new System.Drawing.Point(1127, 154);
+            this.textBoxNumPointsRadius.Enabled = false;
+            this.textBoxNumPointsRadius.Location = new System.Drawing.Point(1128, 164);
             this.textBoxNumPointsRadius.Name = "textBoxNumPointsRadius";
             this.textBoxNumPointsRadius.Size = new System.Drawing.Size(100, 20);
             this.textBoxNumPointsRadius.TabIndex = 30;
@@ -491,7 +500,8 @@
             // 
             // textBoxInitPeriod
             // 
-            this.textBoxInitPeriod.Location = new System.Drawing.Point(1127, 180);
+            this.textBoxInitPeriod.Enabled = false;
+            this.textBoxInitPeriod.Location = new System.Drawing.Point(1128, 204);
             this.textBoxInitPeriod.Name = "textBoxInitPeriod";
             this.textBoxInitPeriod.Size = new System.Drawing.Size(100, 20);
             this.textBoxInitPeriod.TabIndex = 31;
@@ -500,7 +510,8 @@
             // 
             // textBoxStepPeriod
             // 
-            this.textBoxStepPeriod.Location = new System.Drawing.Point(1126, 206);
+            this.textBoxStepPeriod.Enabled = false;
+            this.textBoxStepPeriod.Location = new System.Drawing.Point(1127, 230);
             this.textBoxStepPeriod.Name = "textBoxStepPeriod";
             this.textBoxStepPeriod.Size = new System.Drawing.Size(100, 20);
             this.textBoxStepPeriod.TabIndex = 32;
@@ -509,7 +520,8 @@
             // 
             // textBoxNumPointsPeriod
             // 
-            this.textBoxNumPointsPeriod.Location = new System.Drawing.Point(1126, 232);
+            this.textBoxNumPointsPeriod.Enabled = false;
+            this.textBoxNumPointsPeriod.Location = new System.Drawing.Point(1127, 256);
             this.textBoxNumPointsPeriod.Name = "textBoxNumPointsPeriod";
             this.textBoxNumPointsPeriod.Size = new System.Drawing.Size(100, 20);
             this.textBoxNumPointsPeriod.TabIndex = 33;
@@ -546,7 +558,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(900, 105);
+            this.label13.Location = new System.Drawing.Point(901, 115);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(221, 13);
             this.label13.TabIndex = 37;
@@ -555,7 +567,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(983, 131);
+            this.label14.Location = new System.Drawing.Point(984, 141);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(137, 13);
             this.label14.TabIndex = 38;
@@ -564,7 +576,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(1024, 157);
+            this.label15.Location = new System.Drawing.Point(1025, 167);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(97, 13);
             this.label15.TabIndex = 39;
@@ -573,7 +585,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(886, 183);
+            this.label16.Location = new System.Drawing.Point(887, 207);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(234, 13);
             this.label16.TabIndex = 40;
@@ -582,7 +594,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(978, 209);
+            this.label17.Location = new System.Drawing.Point(979, 233);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(143, 13);
             this.label17.TabIndex = 41;
@@ -591,7 +603,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(1023, 235);
+            this.label18.Location = new System.Drawing.Point(1024, 259);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(97, 13);
             this.label18.TabIndex = 42;
@@ -610,11 +622,11 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(628, 257);
+            this.label19.Location = new System.Drawing.Point(510, 259);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(41, 13);
+            this.label19.Size = new System.Drawing.Size(159, 13);
             this.label19.TabIndex = 44;
-            this.label19.Text = "label19";
+            this.label19.Text = "Концентрация рассеивателей";
             // 
             // scattererConcentrationTextBox
             // 
@@ -623,6 +635,7 @@
             this.scattererConcentrationTextBox.Size = new System.Drawing.Size(100, 20);
             this.scattererConcentrationTextBox.TabIndex = 45;
             this.scattererConcentrationTextBox.Text = "0,001";
+            this.scattererConcentrationTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // MainForm
             // 
@@ -662,7 +675,7 @@
             this.Controls.Add(this.fullTime);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.latticeSize);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.startWithGraphics);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.averageRadiusOfCentralSc);
@@ -707,7 +720,7 @@
         private System.Windows.Forms.TextBox averageRadiusOfCentralSc;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button startWithGraphics;
         private System.Windows.Forms.TextBox latticeSize;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox fullTime;

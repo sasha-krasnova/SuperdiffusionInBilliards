@@ -76,5 +76,7 @@ namespace SuperdiffusionInBilliards
 
         abstract public object Clone();
 
+        public abstract double FermiAcceleration(double lambda);
+
     }
 }

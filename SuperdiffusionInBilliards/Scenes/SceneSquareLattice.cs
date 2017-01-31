@@ -48,13 +48,7 @@ namespace SuperdiffusionInBilliards
             double area = latticeSize * latticeSize - Math.PI * (Scatterers[0].Radius0 * Scatterers[0].Radius0 + Scatterers[4].Radius0 * Scatterers[4].Radius0);
             double perimeter = 2 * Math.PI * (Scatterers[0].Radius0 + Scatterers[4].Radius0);
             double lambda = Math.PI * area / perimeter;
-            double fermiAccelerationTheory;
-            if (Scatterers[0] is ScattererHarmonic)
-                fermiAccelerationTheory = Scatterers[0].U0 * Scatterers[0].U0 / lambda;
-            if (Scatterers[0] is ScattererRandom)
-                fermiAccelerationTheory = Scatterers[0].U0 * Scatterers[0].U0 / 3 / lambda;
-            else
-                fermiAccelerationTheory = Scatterers[0].U0 * Scatterers[0].U0 / 3 / lambda;
+            double fermiAccelerationTheory = Scatterers[0].FermiAcceleration(lambda);
             return fermiAccelerationTheory;
         }
 

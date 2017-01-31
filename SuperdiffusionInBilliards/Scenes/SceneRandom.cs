@@ -8,9 +8,11 @@ namespace SuperdiffusionInBilliards
     class SceneRandom : SceneSquareBase
     {
         RandomScattererSet randomSet;
+        double scattererConcentration;
         public SceneRandom(Scatterer scattererSample, double fullTime, double deltaTime, double vParticle, double latticeSize, double scattererConcentration)
             : base(scattererSample, fullTime, deltaTime, vParticle, latticeSize)
         {
+            this.scattererConcentration = scattererConcentration;
             randomSet = new RandomScattererSet(scattererSample, scattererConcentration);
             ReloadScetterers();
             Rectangle rect = new Rectangle(new Point2D(0, 0), new Point2D(2 * scattererSample.MaxRadius(), 2 * scattererSample.MaxRadius()));
@@ -50,7 +52,9 @@ namespace SuperdiffusionInBilliards
 
         public override double FermiAccelerationTheory()
         {
-            return 0;
+            double lambda = (1 - scattererConcentration * Math.PI * Scatterers[0].Radius0 * Scatterers[0].Radius0) / 2 / scattererConcentration / Scatterers[0].Radius0;
+            double fermiAccelerationTheory = Scatterers[0].FermiAcceleration(lambda);
+            return fermiAccelerationTheory;
         }
 
         public override double CoefficientOfSuperdiffusionTheory()
