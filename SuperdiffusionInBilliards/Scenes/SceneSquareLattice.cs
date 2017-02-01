@@ -8,7 +8,8 @@ namespace SuperdiffusionInBilliards
 {
     public class SceneSquareLattice : SceneSquareBase
     {
-        
+        //double meanFreePath;
+        double scatterersPerimeter;
         public SceneSquareLattice(Scatterer scattererSample, Scatterer centralScattererSample, double fullTime, double deltaTime, double vParticle, double latticeSize)
             : base(scattererSample, fullTime, deltaTime, vParticle, latticeSize)
         {
@@ -41,23 +42,24 @@ namespace SuperdiffusionInBilliards
 
             Scatterers[4].Center.X = latticeSize / 2;
             Scatterers[4].Center.Y = latticeSize / 2;
+
+            scatterersPerimeter = 2 * Math.PI * (Scatterers[0].Radius0 + Scatterers[4].Radius0);
+            double area = latticeSize * latticeSize - Math.PI * (Scatterers[0].Radius0 * Scatterers[0].Radius0 + Scatterers[4].Radius0 * Scatterers[4].Radius0);
+            MeanFreePath = Math.PI * area / scatterersPerimeter;
         }
 
         public override double FermiAccelerationTheory()
         {
-            double area = latticeSize * latticeSize - Math.PI * (Scatterers[0].Radius0 * Scatterers[0].Radius0 + Scatterers[4].Radius0 * Scatterers[4].Radius0);
-            double perimeter = 2 * Math.PI * (Scatterers[0].Radius0 + Scatterers[4].Radius0);
-            double lambda = Math.PI * area / perimeter;
-            double fermiAccelerationTheory = Scatterers[0].FermiAcceleration(lambda);
+            double fermiAccelerationTheory = Scatterers[0].FermiAcceleration(MeanFreePath);
             return fermiAccelerationTheory;
         }
 
-        public override double CoefficientOfSuperdiffusionTheory()
+        public override double CoefficientOfSuperdiffusionTheory(double fermiAccelerationTheory)
         {
             double coefficietnOfSuperdif;
-            double part1 = 2 * latticeSize * latticeSize * Scatterers[0].U0 * Scatterers[0].U0 * (Scatterers[0].Radius0 + Scatterers[4].Radius0) * (latticeSize - 2 * Scatterers[0].Radius0);
-            double part2 = Math.PI * (latticeSize * latticeSize - Math.PI * (Scatterers[0].Radius0 * Scatterers[0].Radius0 + Scatterers[4].Radius0 * Scatterers[4].Radius0)) * (latticeSize * latticeSize - Math.PI * (Scatterers[0].Radius0 * Scatterers[0].Radius0 + Scatterers[4].Radius0 * Scatterers[4].Radius0));
-            coefficietnOfSuperdif = Math.Sqrt(part1 / part2);
+            double meanSqareOfJump = latticeSize * latticeSize;
+            double corridorsWidth = 4 * (latticeSize - Scatterers[0].Radius0);
+            coefficietnOfSuperdif = Math.Sqrt(meanSqareOfJump * corridorsWidth * fermiAccelerationTheory / 2 / scatterersPerimeter / MeanFreePath);
             return coefficietnOfSuperdif;
         }
     }

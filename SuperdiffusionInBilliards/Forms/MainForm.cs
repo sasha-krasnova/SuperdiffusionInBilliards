@@ -113,8 +113,8 @@ namespace SuperdiffusionInBilliards
             scene.StatMode = SuperdiffusionRunModes.Detail;
             scene.Run();
             //wf.Close();
-            //DrawingForm df = new DrawingForm(scene.Statistics, new Point2D(Convert.ToDouble(latticeSize.Text), Convert.ToDouble(latticeSize.Text)));
-            //df.Show();
+            DrawingForm df = new DrawingForm(scene.Statistics, new Point2D(Convert.ToDouble(latticeSize.Text), Convert.ToDouble(latticeSize.Text)));
+            df.Show();
         }
 
         private void randomScene_CheckedChanged(object sender, EventArgs e)

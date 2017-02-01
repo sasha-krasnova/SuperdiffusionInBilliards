@@ -50,7 +50,7 @@ namespace SuperdiffusionInBilliards
             double k = lineMNK.A;
             MakeGraphLeastSquares(lineMNK.C);
 
-            double kTheory = scenes[0].CoefficientOfSuperdiffusionTheory();
+            double kTheory = scenes[0].CoefficientOfSuperdiffusionTheory(scenes[0].FermiAccelerationTheory());
             MakeGraphTheory(lineMNK.C, kTheory);
 
             graphsMSD = GetGraphs();

@@ -52,14 +52,14 @@ namespace SuperdiffusionInBilliards
 
         public override double FermiAccelerationTheory()
         {
-            double lambda = (1 - scattererConcentration * Math.PI * Scatterers[0].Radius0 * Scatterers[0].Radius0) / 2 / scattererConcentration / Scatterers[0].Radius0;
-            double fermiAccelerationTheory = Scatterers[0].FermiAcceleration(lambda);
+            MeanFreePath = (1 - scattererConcentration * Math.PI * Scatterers[0].Radius0 * Scatterers[0].Radius0) / 2 / scattererConcentration / Scatterers[0].Radius0;
+            double fermiAccelerationTheory = Scatterers[0].FermiAcceleration(MeanFreePath);
             return fermiAccelerationTheory;
         }
 
-        public override double CoefficientOfSuperdiffusionTheory()
+        public override double CoefficientOfSuperdiffusionTheory(double fermiAccelerationTheory)
         {
-            return 0;
+            return Math.Sqrt(fermiAccelerationTheory * MeanFreePath / 2);
         }
 
         protected override void ReloadScetterers() 

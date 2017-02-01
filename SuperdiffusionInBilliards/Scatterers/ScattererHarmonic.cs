@@ -36,9 +36,9 @@ namespace SuperdiffusionInBilliards
             return new ScattererHarmonic(Center, Radius0, U0, 2 * Math.PI / Frequency);
         }
 
-        public override double FermiAcceleration(double lambda)
+        public override double FermiAcceleration(double meanFreePath)
         {
-            return U0 * U0 /lambda;
+            return U0 * U0 / meanFreePath;
         }
     }
 }

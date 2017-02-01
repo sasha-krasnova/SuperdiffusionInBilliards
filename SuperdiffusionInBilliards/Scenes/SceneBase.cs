@@ -24,7 +24,8 @@ namespace SuperdiffusionInBilliards
         private SuperdiffusionRunModes statMode = SuperdiffusionRunModes.Standart;
         private Line[] lines;                   // Массив линий
         private int lastLineIndex = -1;         // Индекс последней линии, с которой произошло соударение. Если последнее соударение было с рассеивателем, то значение этого параметра -1
-        
+        private double meanFreePath;
+
         /// <summary>
         /// Конструктор
         /// </summary>
@@ -82,6 +83,17 @@ namespace SuperdiffusionInBilliards
             }
         }
 
+        public double MeanFreePath
+        {
+            get
+            {
+                return meanFreePath;
+            }
+            set
+            {
+                meanFreePath = value;
+            }
+        }
 
         public List<StateOfParticle> Statistics
         {
@@ -209,7 +221,7 @@ namespace SuperdiffusionInBilliards
 
         abstract public double FermiAccelerationTheory();
 
-        abstract public double CoefficientOfSuperdiffusionTheory();
+        abstract public double CoefficientOfSuperdiffusionTheory(double fermiAccelerationTheory);
 
         /// <summary>
         /// Функция, выдающая список рассеивателей-кругов, с координатами центров и конкретными радиусами в данный момент времени

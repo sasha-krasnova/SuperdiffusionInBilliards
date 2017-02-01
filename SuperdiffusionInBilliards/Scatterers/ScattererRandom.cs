@@ -35,9 +35,9 @@ namespace SuperdiffusionInBilliards
             return Radius0;
         }
 
-        public override double FermiAcceleration(double lambda)
+        public override double FermiAcceleration(double meanFreePath)
         {
-            return U0 * U0 / 3 / lambda;
+            return U0 * U0 / 3 / meanFreePath;
         }
     }
 }
