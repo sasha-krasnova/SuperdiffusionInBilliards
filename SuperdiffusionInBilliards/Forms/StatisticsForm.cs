@@ -37,9 +37,9 @@ namespace SuperdiffusionInBilliards
         {
             this.initVelocity = initVelocity;
             this.scenes = scenes;
+
             this.fullTime = fullTime;
         }
-
 
         private void calculateCoeffisientOfSuperdif_Click(object sender, EventArgs e)
         {

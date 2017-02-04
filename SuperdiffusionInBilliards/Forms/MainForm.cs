@@ -120,11 +120,13 @@ namespace SuperdiffusionInBilliards
         private void randomScene_CheckedChanged(object sender, EventArgs e)
         {
             averageRadiusOfCentralSc.Enabled = false;
+            scattererConcentrationTextBox.Enabled = true;
         }
 
         private void squareScene_CheckedChanged(object sender, EventArgs e)
         {
             averageRadiusOfCentralSc.Enabled = true;
+            scattererConcentrationTextBox.Enabled = false;
         }
 
         private void triangularScene_CheckedChanged(object sender, EventArgs e)
@@ -246,7 +248,8 @@ namespace SuperdiffusionInBilliards
             textBoxInitPeriod.Enabled = false;
             textBoxStepPeriod.Enabled = false;
             textBoxNumPointsPeriod.Enabled = false;
-        }
+
+         }
 
         private void statisticsOnPeriod_CheckedChanged(object sender, EventArgs e)
         {
