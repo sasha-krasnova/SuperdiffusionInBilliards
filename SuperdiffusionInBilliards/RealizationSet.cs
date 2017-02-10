@@ -12,7 +12,7 @@ namespace SuperdiffusionInBilliards
         private List<List<StateOfParticle>> statisticsSet = new List<List<StateOfParticle>>();
 
         private List<double> averageVelocities;
-        private List<Point2D> averageDisplacementsPoint2D;
+        //private List<Point2D> averageDisplacementsPoint2D;
         private List<double> averageDisplacements;
         private List<Point2D> averageDisplacementOnTime;
         private List<double> times;

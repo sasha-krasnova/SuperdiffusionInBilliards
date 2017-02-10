@@ -56,14 +56,14 @@ namespace SuperdiffusionInBilliards
         /// <param name="periodOfScattererOsc">Период колебаний рассеивателя</param>
         /// <param name="averageRadius">Средний радиус рассеивателя</param>
         /// <returns></returns>
-        private Scatterer GetScattererSample(double amplitudeOfScattererVelocity, double periodOfScattererOsc, double averageRadius)
+        private Scatterer GetScattererSample(double amplitudeOfScattererVelocity, double periodOfScattererOsc, double averageRadius, double initOscPhase)
         {
             Scatterer scattererSample = null;
 
             //Если выбран гармонический рассеиватель
             if (harmonicScatterer.Checked)
             {
-                scattererSample = new ScattererHarmonic(new Point2D(0, 0), averageRadius, amplitudeOfScattererVelocity , periodOfScattererOsc);
+                scattererSample = new ScattererHarmonic(new Point2D(0, 0), averageRadius, amplitudeOfScattererVelocity , periodOfScattererOsc, initOscPhase);
             }
             //Если выбран случайный рассеиватель
             else if (randomScatterer.Checked)
@@ -83,11 +83,12 @@ namespace SuperdiffusionInBilliards
         /// <returns></returns>
         private SceneBase GetScene(double amplitudeOfScattererVelocity, double periodOfScattererOsc, double averageRadius)
         {
-            SceneBase scene = null;
-            Scatterer scattererSample = GetScattererSample(amplitudeOfScattererVelocity, periodOfScattererOsc, averageRadius);
+            SceneBase scene = null; 
+            double initOscPhase = 2 * Math.PI * SceneBase.rndm.NextDouble();
+            Scatterer scattererSample = GetScattererSample(amplitudeOfScattererVelocity, periodOfScattererOsc, averageRadius, initOscPhase);
             if (squareScene.Checked)
             {
-                Scatterer centralScattererSample = GetScattererSample(amplitudeOfScattererVelocity, periodOfScattererOsc, Convert.ToDouble(averageRadiusOfCentralSc.Text));
+                Scatterer centralScattererSample = GetScattererSample(amplitudeOfScattererVelocity, periodOfScattererOsc, Convert.ToDouble(averageRadiusOfCentralSc.Text), initOscPhase);
                 scene = new SceneSquareLattice(scattererSample, centralScattererSample, Convert.ToDouble(fullTime.Text), Convert.ToDouble(deltaTime.Text), Convert.ToDouble(initialVelocity.Text), Convert.ToDouble(latticeSize.Text));
             }
             
@@ -291,7 +292,7 @@ namespace SuperdiffusionInBilliards
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ScattererHarmonic scattererSample = new ScattererHarmonic(new Point2D(0, 0), Convert.ToDouble(averageRadius.Text), Convert.ToDouble(amplitudeOfScattererVelocity.Text), Convert.ToDouble(periodOfScattererOsc.Text));
+            ScattererHarmonic scattererSample = new ScattererHarmonic(new Point2D(0, 0), Convert.ToDouble(averageRadius.Text), Convert.ToDouble(amplitudeOfScattererVelocity.Text), Convert.ToDouble(periodOfScattererOsc.Text), 2 * Math.PI * SceneBase.rndm.NextDouble());
             RandomScattererSet rndmScattererSet = new RandomScattererSet(scattererSample, 0.0001);
         }
 

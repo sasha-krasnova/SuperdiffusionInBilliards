@@ -9,9 +9,11 @@ namespace SuperdiffusionInBilliards
     abstract public class ScattererPeriodic : Scatterer
     {
         private double frequency; //Частота колебаний скорости рассеивателя
-        public ScattererPeriodic (Point2D center, double radius0, double u0, double period)
+        private double initOscPhase;
+        public ScattererPeriodic(Point2D center, double radius0, double u0, double period, double initOscPhase)
             : base(center, radius0, u0)
         {
+            this.initOscPhase = initOscPhase;
             frequency = 2 * Math.PI / period;
         }
 
@@ -31,6 +33,14 @@ namespace SuperdiffusionInBilliards
             get
             {
                 return frequency;
+            }
+        }
+
+        public double InitOscPhase
+        {
+            get
+            {
+                return initOscPhase;
             }
         }
     }
