@@ -12,6 +12,8 @@ namespace SuperdiffusionInBilliards
 	/// </summary>
     abstract public class SceneBase
     {
+        //public static string LOG_FILE = @"c:\Users\Sasha\Documents\Visual Studio 2010\Projects\SuperdiffusionInBilliards\log.txt";
+
         private Point2D displacement;                   //Координаты сцены
         private double time;                            //Текущее время
         private double fullTime;                        //Время эксперимента
@@ -25,6 +27,7 @@ namespace SuperdiffusionInBilliards
         private Line[] lines;                   // Массив линий
         private int lastLineIndex = -1;         // Индекс последней линии, с которой произошло соударение. Если последнее соударение было с рассеивателем, то значение этого параметра -1
         private double meanFreePath;
+        private DateTime startTime;
 
         /// <summary>
         /// Конструктор
@@ -35,6 +38,8 @@ namespace SuperdiffusionInBilliards
         /// <param name="vParticle">Начальная скорость частицы</param>
         public SceneBase(Scatterer scattererSample, double fullTime, double deltaTime, double vParticle)
         {
+            //WriteToLog("Начало новой реализации");
+            startTime = DateTime.Now;
             displacement = new Point2D(0, 0);
             //Считаем vx vy по vParticle
             double alpha = rndm.NextDouble() % (2 * Math.PI);
@@ -180,10 +185,12 @@ namespace SuperdiffusionInBilliards
                 statistics.Add(new StateOfParticle(particle, 0, displacement)); //Добавляем элемент в статистику
             else if (statMode == SuperdiffusionRunModes.Detail)
                 statistics.Add(new StateOfParticleDetailed(particle, 0, displacement, GetScatterersByTime(0))); //Добавляем элемент в статистику
-
+            int counter = 0;
             while (time < fullTime) //Цикл, запускающий функцию <c>GetNextCollision</c>, пока текущее время не будет больше или равно времени эксперимента
             {
+                //WriteToLog("\n\r Удар номрер " + counter + ": "+ GetEcxecutionTime() + ". Скорость: " + particle.Velocity);
                 GetNextCollision();                                             //Функция, выдающая состояние частицы после соударения.
+                counter++;
             }
         }
 
@@ -241,5 +248,14 @@ namespace SuperdiffusionInBilliards
             return circles;
         }
 
+        public String GetEcxecutionTime()
+        {
+            return ((DateTime.Now - startTime).Seconds * 1000 + (DateTime.Now - startTime).Milliseconds).ToString();
+        }
+
+        /*public void WriteToLog(String line) 
+        {
+            System.IO.File.AppendAllText(LOG_FILE, line);
+        }*/
     }
 }

@@ -26,8 +26,8 @@ namespace SuperdiffusionInBilliards
 
         public override double ScattererVelocity(double time)
         {
-            return U0 * rndm.NextDouble();
-            //return U0;
+            return U0 * Math.Cos(rndm.NextDouble() * 2 * Math.PI);
+            //return 0;
         }
 
         public override double MaxRadius()

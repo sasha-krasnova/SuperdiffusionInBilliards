@@ -70,5 +70,11 @@ namespace SuperdiffusionInBilliards
         {
             return Math.Sqrt((one.X - two.X) * (one.X - two.X) + (one.Y - two.Y) * (one.Y - two.Y));
         }
+
+        public override string ToString()
+        {
+            return " norm:" + Norm();
+            //return "x: " + X + " y: " + Y + " norm:" + Norm();
+        }
     }
 }
