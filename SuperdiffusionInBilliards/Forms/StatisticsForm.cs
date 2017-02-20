@@ -84,6 +84,7 @@ namespace SuperdiffusionInBilliards
             fermiAccelerationTheory.Text = Convert.ToString(kTheory);
             //graphDrawer.DrawGraph(graphLeastSquares);
         }
+
         private List<Point2D> MakeLineBySlope(double slope, Point2D initPoint, double endPointX)
         {
             List<Point2D> points = new List<Point2D>();

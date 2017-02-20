@@ -83,6 +83,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.scattererConcentrationTextBox = new System.Windows.Forms.TextBox();
+            this.GetStatisticsButton = new System.Windows.Forms.Button();
             this.typeOfOscillations.SuspendLayout();
             this.lattice.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -637,11 +638,23 @@
             this.scattererConcentrationTextBox.Text = "0,001";
             this.scattererConcentrationTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // GetStatisticsButton
+            // 
+            this.GetStatisticsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.GetStatisticsButton.Location = new System.Drawing.Point(370, 377);
+            this.GetStatisticsButton.Name = "GetStatisticsButton";
+            this.GetStatisticsButton.Size = new System.Drawing.Size(356, 58);
+            this.GetStatisticsButton.TabIndex = 46;
+            this.GetStatisticsButton.Text = "Рассчитать статистику";
+            this.GetStatisticsButton.UseVisualStyleBackColor = true;
+            this.GetStatisticsButton.Click += new System.EventHandler(this.GetStatisticsButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1239, 562);
+            this.Controls.Add(this.GetStatisticsButton);
             this.Controls.Add(this.scattererConcentrationTextBox);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.button2);
@@ -758,6 +771,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox scattererConcentrationTextBox;
+        private System.Windows.Forms.Button GetStatisticsButton;
     }
 }
 

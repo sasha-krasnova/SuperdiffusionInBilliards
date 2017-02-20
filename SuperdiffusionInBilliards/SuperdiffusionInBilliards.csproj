@@ -67,6 +67,13 @@
     <Compile Include="Forms\WaitForm.Designer.cs">
       <DependentUpon>WaitForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\StatisticForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StatisticForm.Designer.cs">
+      <DependentUpon>StatisticForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WritingInFile\LineInFile.cs" />
     <Compile Include="Math\Averaging.cs" />
     <Compile Include="GraphDrawing\DrawingHelper.cs" />
     <Compile Include="Geometry\Circle.cs" />
@@ -118,28 +125,13 @@
     <Compile Include="Forms\StatisticsForm.Designer.cs">
       <DependentUpon>StatisticsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\StatisticsOnScatRadiusForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\StatisticsOnScatRadiusForm.Designer.cs">
-      <DependentUpon>StatisticsOnScatRadiusForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\StatisticsOnScatPeriodForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\StatisticsOnScatPeriodForm.Designer.cs">
-      <DependentUpon>StatisticsOnScatPeriodForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="WritingInFile\CsvFileWriter.cs" />
     <Compile Include="WritingInFile\ICsvLine.cs" />
     <EmbeddedResource Include="Forms\AveragingForm.resx">
       <DependentUpon>AveragingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\StatisticsOnScatPeriodForm.resx">
-      <DependentUpon>StatisticsOnScatPeriodForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\StatisticsOnScatRadiusForm.resx">
-      <DependentUpon>StatisticsOnScatRadiusForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\StatisticForm.resx">
+      <DependentUpon>StatisticForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\StatisticsOnScatVelForm.resx">
       <DependentUpon>StatisticsOnScatVelForm.cs</DependentUpon>
@@ -190,9 +182,7 @@
   <ItemGroup>
     <None Include="Resources\clear.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Service References\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

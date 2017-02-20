@@ -306,6 +306,12 @@ namespace SuperdiffusionInBilliards
             }
         }
 
+        private void GetStatisticsButton_Click(object sender, EventArgs e)
+        {
+            StatisticForm statForm = new StatisticForm();
+            statForm.Show();
+        }
+
         /*private void startWithGraphics_Click_1(object sender, EventArgs e)
         {
 
