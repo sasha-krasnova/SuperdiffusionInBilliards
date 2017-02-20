@@ -138,12 +138,10 @@
             // randomScene
             // 
             this.randomScene.AutoSize = true;
-            this.randomScene.Checked = true;
             this.randomScene.Location = new System.Drawing.Point(23, 19);
             this.randomScene.Name = "randomScene";
             this.randomScene.Size = new System.Drawing.Size(78, 17);
             this.randomScene.TabIndex = 2;
-            this.randomScene.TabStop = true;
             this.randomScene.Text = "Случайная";
             this.randomScene.UseVisualStyleBackColor = true;
             this.randomScene.CheckedChanged += new System.EventHandler(this.randomScene_CheckedChanged);
@@ -162,10 +160,12 @@
             // squareScene
             // 
             this.squareScene.AutoSize = true;
+            this.squareScene.Checked = true;
             this.squareScene.Location = new System.Drawing.Point(23, 42);
             this.squareScene.Name = "squareScene";
             this.squareScene.Size = new System.Drawing.Size(85, 17);
             this.squareScene.TabIndex = 0;
+            this.squareScene.TabStop = true;
             this.squareScene.Text = "Квадратная";
             this.squareScene.UseVisualStyleBackColor = true;
             this.squareScene.CheckedChanged += new System.EventHandler(this.squareScene_CheckedChanged);
@@ -306,7 +306,7 @@
             this.deltaTime.Name = "deltaTime";
             this.deltaTime.Size = new System.Drawing.Size(100, 20);
             this.deltaTime.TabIndex = 16;
-            this.deltaTime.Text = "0,05";
+            this.deltaTime.Text = "20";
             this.deltaTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label7
@@ -333,7 +333,7 @@
             this.numberOfRealisations.Name = "numberOfRealisations";
             this.numberOfRealisations.Size = new System.Drawing.Size(100, 20);
             this.numberOfRealisations.TabIndex = 19;
-            this.numberOfRealisations.Text = "100";
+            this.numberOfRealisations.Text = "10";
             this.numberOfRealisations.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label9
@@ -393,7 +393,6 @@
             // statisticsOnPeriod
             // 
             this.statisticsOnPeriod.AutoSize = true;
-            this.statisticsOnPeriod.Enabled = false;
             this.statisticsOnPeriod.Location = new System.Drawing.Point(23, 91);
             this.statisticsOnPeriod.Name = "statisticsOnPeriod";
             this.statisticsOnPeriod.Size = new System.Drawing.Size(209, 17);
@@ -405,7 +404,6 @@
             // statisticsOnScatRadius
             // 
             this.statisticsOnScatRadius.AutoSize = true;
-            this.statisticsOnScatRadius.Enabled = false;
             this.statisticsOnScatRadius.Location = new System.Drawing.Point(23, 67);
             this.statisticsOnScatRadius.Name = "statisticsOnScatRadius";
             this.statisticsOnScatRadius.Size = new System.Drawing.Size(231, 17);

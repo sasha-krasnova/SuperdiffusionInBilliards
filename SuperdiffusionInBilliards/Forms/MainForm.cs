@@ -99,6 +99,24 @@ namespace SuperdiffusionInBilliards
 
             return scene;
         }
+
+        /// <summary>
+        /// Создает список сцен
+        /// </summary>
+        /// <param name="amplitudeOfScattererVelocity">Амплитуда скорости рассеивателя</param>
+        /// <param name="periodOfScattererOsc">Период осциляций рассеивателя</param>
+        /// <param name="averageRadius">Средний радиус рассеивателя</param>
+        /// <returns></returns>
+        private List<SceneBase> GetScenes(double amplitudeOfScattererVelocity, double periodOfScattererOsc, double averageRadius)
+        {
+            List<SceneBase> scenes = new List<SceneBase>();
+            for (int i = 0; i < Convert.ToInt64(numberOfRealisations.Text); i++)
+            {
+                scenes.Add(GetScene(amplitudeOfScattererVelocity, periodOfScattererOsc, averageRadius));
+            }
+            return scenes;
+        }
+
         /// <summary>
         /// Запускает одну реализацию с графикой
         /// </summary>
@@ -175,7 +193,7 @@ namespace SuperdiffusionInBilliards
                 for (int i = 0; i < Convert.ToInt32(textBoxNumPointsAmp.Text); i++)
                 {
                     ampOfScVel = Convert.ToDouble(textBoxInitAmp.Text) + i * Convert.ToDouble(textBoxStepAmp.Text);
-                    RealizationSet realizationSetTemp = new RealizationSet(GetScenes(ampOfScVel));
+                    RealizationSet realizationSetTemp = new RealizationSet(GetScenes(ampOfScVel, Convert.ToDouble(periodOfScattererOsc.Text), Convert.ToDouble(averageRadius.Text)));
                     realizationSets.Add(realizationSetTemp);
                     //List<SceneBase> scenes = new List<SceneBase>();
                 }
@@ -190,7 +208,7 @@ namespace SuperdiffusionInBilliards
                 for (int i = 0; i < Convert.ToInt32(textBoxNumPointsRadius.Text); i++)
                 {
                     averageRadius = Convert.ToDouble(textBoxInitRadius.Text) + i * Convert.ToDouble(textBoxStepRadius.Text);
-                    RealizationSet realizationSetTemp = new RealizationSet(GetScenes(averageRadius));
+                    RealizationSet realizationSetTemp = new RealizationSet(GetScenes(Convert.ToDouble(amplitudeOfScattererVelocity.Text), Convert.ToDouble(periodOfScattererOsc.Text), averageRadius));
                     realizationSets.Add(realizationSetTemp);
                     //List<SceneBase> scenes = new List<SceneBase>();
                 }
@@ -199,15 +217,7 @@ namespace SuperdiffusionInBilliards
             }
         }
 
-        private List<SceneBase> GetScenes(double ampOfScVel)
-        {
-            List<SceneBase> scenes = new List<SceneBase>();
-            for (int i = 0; i < Convert.ToInt64(numberOfRealisations.Text); i++)
-            {
-                scenes.Add(GetScene(ampOfScVel, Convert.ToDouble(periodOfScattererOsc.Text), Convert.ToDouble(averageRadius.Text)));
-            }
-            return scenes;
-        }
+
 
         private void leastSquares_Click(object sender, EventArgs e)
         {
@@ -308,7 +318,78 @@ namespace SuperdiffusionInBilliards
 
         private void GetStatisticsButton_Click(object sender, EventArgs e)
         {
+            SuperdiffusionStatisticsModes statMode;
             StatisticForm statForm = new StatisticForm();
+            List<RealizationSet> realizationSets = new List<RealizationSet>();;
+            if (staticticsStandart.Checked)
+            {
+                List<SceneBase> scenes = new List<SceneBase>();
+
+                for (int i = 0; i < Convert.ToInt64(numberOfRealisations.Text); i++)
+                {
+
+                    scenes.Add(GetScene(Convert.ToDouble(amplitudeOfScattererVelocity.Text), Convert.ToDouble(periodOfScattererOsc.Text), Convert.ToDouble(averageRadius.Text)));
+                }
+                realizationSets.Add(new RealizationSet(scenes));
+                
+                statMode = SuperdiffusionStatisticsModes.Standart;
+                statForm = new StatisticForm(realizationSets, statMode);
+
+                //Pen pen = new Pen(Color.Black);
+                //Graph graph = new Graph(realizationSet.AverageVelocityOnTime, pen);
+
+                //StatisticsForm sf = new StatisticsForm(scenes, Convert.ToDouble(initialVelocity.Text), Convert.ToDouble(fullTime.Text));
+                //sf.Show();
+            }
+
+            if (statisticsOnScatVel.Checked)
+            {
+                double ampOfScVel;
+                for (int i = 0; i < Convert.ToInt32(textBoxNumPointsAmp.Text); i++)
+                {
+                    ampOfScVel = Convert.ToDouble(textBoxInitAmp.Text) + i * Convert.ToDouble(textBoxStepAmp.Text);
+                    RealizationSet realizationSetTemp = new RealizationSet(GetScenes(ampOfScVel, Convert.ToDouble(periodOfScattererOsc.Text), Convert.ToDouble(averageRadius.Text)));
+                    realizationSets.Add(realizationSetTemp);
+                }
+                statMode = SuperdiffusionStatisticsModes.DependenceOnVelocity;
+                statForm = new StatisticForm(realizationSets, statMode);
+                //StatisticsOnScatVelForm sAmpF = new StatisticsOnScatVelForm(realizationSets, Convert.ToDouble(initialVelocity.Text));
+                //sAmpF.Show();
+            }
+
+            if (statisticsOnScatRadius.Checked)
+            {
+                realizationSets = new List<RealizationSet>();
+                double averageRadius;
+                for (int i = 0; i < Convert.ToInt32(textBoxNumPointsRadius.Text); i++)
+                {
+                    averageRadius = Convert.ToDouble(textBoxInitRadius.Text) + i * Convert.ToDouble(textBoxStepRadius.Text);
+                    RealizationSet realizationSetTemp = new RealizationSet(GetScenes(Convert.ToDouble(amplitudeOfScattererVelocity.Text), Convert.ToDouble(periodOfScattererOsc.Text), averageRadius));
+                    realizationSets.Add(realizationSetTemp);
+                    //List<SceneBase> scenes = new List<SceneBase>();
+                }
+                statMode = SuperdiffusionStatisticsModes.DependenceOnRadius;
+                statForm = new StatisticForm(realizationSets, statMode);
+                //StatisticsOnScatVelForm sAmpF = new StatisticsOnScatVelForm(realizationSets, Convert.ToDouble(initialVelocity.Text));
+                //sAmpF.Show();
+            }
+            if (statisticsOnPeriod.Checked)
+            {
+                realizationSets = new List<RealizationSet>();
+                double period;
+                for (int i = 0; i < Convert.ToInt32(textBoxNumPointsPeriod.Text); i++)
+                {
+                    period = Convert.ToDouble(textBoxInitPeriod.Text) + i * Convert.ToDouble(textBoxStepPeriod.Text);
+                    RealizationSet realizationSetTemp = new RealizationSet(GetScenes(Convert.ToDouble(amplitudeOfScattererVelocity.Text), period, Convert.ToDouble(averageRadius.Text)));
+                    realizationSets.Add(realizationSetTemp);
+                    //List<SceneBase> scenes = new List<SceneBase>();
+                }
+                statMode = SuperdiffusionStatisticsModes.DependenceOnPeriod;
+                statForm = new StatisticForm(realizationSets, statMode);
+                //StatisticsOnScatVelForm sAmpF = new StatisticsOnScatVelForm(realizationSets, Convert.ToDouble(initialVelocity.Text));
+                //sAmpF.Show();
+            }
+            //StatisticForm statForm = new StatisticForm();
             statForm.Show();
         }
 
