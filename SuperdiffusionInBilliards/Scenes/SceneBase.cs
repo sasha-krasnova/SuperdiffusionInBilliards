@@ -28,6 +28,7 @@ namespace SuperdiffusionInBilliards
         private int lastLineIndex = -1;         // Индекс последней линии, с которой произошло соударение. Если последнее соударение было с рассеивателем, то значение этого параметра -1
         private double meanFreePath;
         private DateTime startTime;
+        private double initVelocity;
 
         /// <summary>
         /// Конструктор
@@ -42,6 +43,7 @@ namespace SuperdiffusionInBilliards
             startTime = DateTime.Now;
             displacement = new Point2D(0, 0);
             //Считаем vx vy по vParticle
+            initVelocity = vParticle;
             double alpha = rndm.NextDouble() % (2 * Math.PI);
             double vX = vParticle * Math.Cos(alpha);
             double vY = vParticle * Math.Sin(alpha);
@@ -50,6 +52,30 @@ namespace SuperdiffusionInBilliards
             this.fullTime = fullTime;
             this.deltaTime = deltaTime;
          }
+
+        public double InitVelocity
+        {
+            get
+            {
+                return initVelocity;
+            }
+        }
+
+        public double DeltaTime
+        {
+            get
+            {
+                return deltaTime;
+            }
+        }
+
+        public double FullTime
+        {
+            get
+            {
+                return fullTime;
+            }
+        }
 
         public int LastLineIndex
         {

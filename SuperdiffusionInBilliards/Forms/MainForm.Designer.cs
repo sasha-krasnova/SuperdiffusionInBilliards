@@ -235,7 +235,6 @@
             // 
             // averageRadiusOfCentralSc
             // 
-            this.averageRadiusOfCentralSc.Enabled = false;
             this.averageRadiusOfCentralSc.Location = new System.Drawing.Point(679, 126);
             this.averageRadiusOfCentralSc.Name = "averageRadiusOfCentralSc";
             this.averageRadiusOfCentralSc.Size = new System.Drawing.Size(100, 20);
@@ -279,7 +278,7 @@
             this.latticeSize.Name = "latticeSize";
             this.latticeSize.Size = new System.Drawing.Size(100, 20);
             this.latticeSize.TabIndex = 13;
-            this.latticeSize.Text = "100";
+            this.latticeSize.Text = "20";
             this.latticeSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label6
@@ -629,6 +628,7 @@
             // 
             // scattererConcentrationTextBox
             // 
+            this.scattererConcentrationTextBox.Enabled = false;
             this.scattererConcentrationTextBox.Location = new System.Drawing.Point(679, 256);
             this.scattererConcentrationTextBox.Name = "scattererConcentrationTextBox";
             this.scattererConcentrationTextBox.Size = new System.Drawing.Size(100, 20);

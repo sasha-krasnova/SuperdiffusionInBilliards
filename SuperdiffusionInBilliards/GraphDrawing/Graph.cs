@@ -16,6 +16,10 @@ namespace SuperdiffusionInBilliards
         private SuperdiffusionDrawingModes drawingMode = SuperdiffusionDrawingModes.Polyline;
         private bool render = true;
 
+        public Graph()
+        {
+        }
+
         public Graph(List<Point2D> points, System.Drawing.Pen pen, SuperdiffusionDrawingModes drawingMode, bool render)
             : this(points, pen, drawingMode)
         {

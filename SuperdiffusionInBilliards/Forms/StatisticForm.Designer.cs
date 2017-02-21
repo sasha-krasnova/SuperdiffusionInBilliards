@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.velOrFApictureBox = new System.Windows.Forms.PictureBox();
+            this.velOrFAPictureBox = new System.Windows.Forms.PictureBox();
             this.velOrFALabel = new System.Windows.Forms.Label();
             this.msdOrSupCoefLabel = new System.Windows.Forms.Label();
             this.msdOrSupCoefPictureBox = new System.Windows.Forms.PictureBox();
@@ -40,23 +40,23 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.msdTheorTextBox = new System.Windows.Forms.TextBox();
-            this.msdTextBox = new System.Windows.Forms.TextBox();
+            this.scTheorTextBox = new System.Windows.Forms.TextBox();
+            this.scTextBox = new System.Windows.Forms.TextBox();
             this.writeInFileVelButton = new System.Windows.Forms.Button();
             this.writeInFileMSDButton = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            ((System.ComponentModel.ISupportInitialize)(this.velOrFApictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.velOrFAPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.msdOrSupCoefPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
-            // velOrFApictureBox
+            // velOrFAPictureBox
             // 
-            this.velOrFApictureBox.BackColor = System.Drawing.SystemColors.Window;
-            this.velOrFApictureBox.Location = new System.Drawing.Point(12, 38);
-            this.velOrFApictureBox.Name = "velOrFApictureBox";
-            this.velOrFApictureBox.Size = new System.Drawing.Size(461, 195);
-            this.velOrFApictureBox.TabIndex = 0;
-            this.velOrFApictureBox.TabStop = false;
+            this.velOrFAPictureBox.BackColor = System.Drawing.SystemColors.Window;
+            this.velOrFAPictureBox.Location = new System.Drawing.Point(12, 38);
+            this.velOrFAPictureBox.Name = "velOrFAPictureBox";
+            this.velOrFAPictureBox.Size = new System.Drawing.Size(461, 195);
+            this.velOrFAPictureBox.TabIndex = 0;
+            this.velOrFAPictureBox.TabStop = false;
             // 
             // velOrFALabel
             // 
@@ -107,6 +107,7 @@
             this.plotMSDOrSupCoefButton.TabIndex = 5;
             this.plotMSDOrSupCoefButton.Text = "Построить график и рассчитать коэффициент супердиффузии";
             this.plotMSDOrSupCoefButton.UseVisualStyleBackColor = false;
+            this.plotMSDOrSupCoefButton.Click += new System.EventHandler(this.plotMSDOrSupCoefButton_Click);
             // 
             // faTextBox
             // 
@@ -158,22 +159,23 @@
             this.label4.TabIndex = 12;
             this.label4.Text = "Коэффициент супердиффузии (эксп.) = ";
             // 
-            // msdTheorTextBox
+            // scTheorTextBox
             // 
-            this.msdTheorTextBox.Location = new System.Drawing.Point(720, 383);
-            this.msdTheorTextBox.Name = "msdTheorTextBox";
-            this.msdTheorTextBox.Size = new System.Drawing.Size(129, 20);
-            this.msdTheorTextBox.TabIndex = 11;
+            this.scTheorTextBox.Location = new System.Drawing.Point(720, 383);
+            this.scTheorTextBox.Name = "scTheorTextBox";
+            this.scTheorTextBox.Size = new System.Drawing.Size(129, 20);
+            this.scTheorTextBox.TabIndex = 11;
             // 
-            // msdTextBox
+            // scTextBox
             // 
-            this.msdTextBox.Location = new System.Drawing.Point(720, 350);
-            this.msdTextBox.Name = "msdTextBox";
-            this.msdTextBox.Size = new System.Drawing.Size(129, 20);
-            this.msdTextBox.TabIndex = 10;
+            this.scTextBox.Location = new System.Drawing.Point(720, 350);
+            this.scTextBox.Name = "scTextBox";
+            this.scTextBox.Size = new System.Drawing.Size(129, 20);
+            this.scTextBox.TabIndex = 10;
             // 
             // writeInFileVelButton
             // 
+            this.writeInFileVelButton.Enabled = false;
             this.writeInFileVelButton.Location = new System.Drawing.Point(676, 201);
             this.writeInFileVelButton.Name = "writeInFileVelButton";
             this.writeInFileVelButton.Size = new System.Drawing.Size(174, 32);
@@ -183,11 +185,12 @@
             // 
             // writeInFileMSDButton
             // 
+            this.writeInFileMSDButton.Enabled = false;
             this.writeInFileMSDButton.Location = new System.Drawing.Point(675, 427);
             this.writeInFileMSDButton.Name = "writeInFileMSDButton";
             this.writeInFileMSDButton.Size = new System.Drawing.Size(174, 32);
             this.writeInFileMSDButton.TabIndex = 15;
-            this.writeInFileMSDButton.Text = "button4";
+            this.writeInFileMSDButton.Text = "Записать в файл";
             this.writeInFileMSDButton.UseVisualStyleBackColor = true;
             // 
             // saveFileDialog1
@@ -203,8 +206,8 @@
             this.Controls.Add(this.writeInFileVelButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.msdTheorTextBox);
-            this.Controls.Add(this.msdTextBox);
+            this.Controls.Add(this.scTheorTextBox);
+            this.Controls.Add(this.scTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.faTheorTextBox);
@@ -214,10 +217,11 @@
             this.Controls.Add(this.msdOrSupCoefLabel);
             this.Controls.Add(this.msdOrSupCoefPictureBox);
             this.Controls.Add(this.velOrFALabel);
-            this.Controls.Add(this.velOrFApictureBox);
+            this.Controls.Add(this.velOrFAPictureBox);
             this.Name = "StatisticForm";
-            this.Text = "StatisticForm";
-            ((System.ComponentModel.ISupportInitialize)(this.velOrFApictureBox)).EndInit();
+            this.Text = "6";
+            this.Load += new System.EventHandler(this.StatisticForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.velOrFAPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.msdOrSupCoefPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -226,7 +230,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox velOrFApictureBox;
+        private System.Windows.Forms.PictureBox velOrFAPictureBox;
         private System.Windows.Forms.Label velOrFALabel;
         private System.Windows.Forms.Label msdOrSupCoefLabel;
         private System.Windows.Forms.PictureBox msdOrSupCoefPictureBox;
@@ -238,8 +242,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox msdTheorTextBox;
-        private System.Windows.Forms.TextBox msdTextBox;
+        private System.Windows.Forms.TextBox scTheorTextBox;
+        private System.Windows.Forms.TextBox scTextBox;
         private System.Windows.Forms.Button writeInFileVelButton;
         private System.Windows.Forms.Button writeInFileMSDButton;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
