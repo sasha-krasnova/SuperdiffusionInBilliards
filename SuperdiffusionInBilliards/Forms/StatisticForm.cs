@@ -97,7 +97,7 @@ namespace SuperdiffusionInBilliards
                 faTextBox.Text = Convert.ToString(k);
                 faTheorTextBox.Text = Convert.ToString(kTheory);
             }
-            if (statMode == SuperdiffusionStatisticsModes.DependenceOnVelocity || statMode == SuperdiffusionStatisticsModes.DependenceOnRadius)
+            if (statMode == SuperdiffusionStatisticsModes.DependenceOnVelocity || statMode == SuperdiffusionStatisticsModes.DependenceOnRadius || statMode == SuperdiffusionStatisticsModes.DependenceOnPeriod)
             {
                 graphFA = new Graph(GetPointsFermiAcceleration(), pen);
                 graphFATheory = new Graph(GetPointsFermiAccelerationTheory(), penTheory);
@@ -121,7 +121,7 @@ namespace SuperdiffusionInBilliards
                     points.Add(new Point2D(realizationSet.Scenes[0].Scatterers[0].U0 * realizationSet.Scenes[0].Scatterers[0].U0, kFA));
                 if (statMode == SuperdiffusionStatisticsModes.DependenceOnRadius)
                     points.Add(new Point2D(realizationSet.Scenes[0].Scatterers[0].Radius0, kFA));
-                if (statMode == SuperdiffusionStatisticsModes.DependenceOnVelocity)
+                if (statMode == SuperdiffusionStatisticsModes.DependenceOnPeriod)
                 {
                     ScattererPeriodic scatterer = (ScattererPeriodic)realizationSet.Scenes[0].Scatterers[0].Clone();
                     points.Add(new Point2D((2 * Math.PI / scatterer.Frequency), kFA));
@@ -139,7 +139,7 @@ namespace SuperdiffusionInBilliards
                     points.Add(new Point2D(realizationSet.Scenes[0].Scatterers[0].U0 * realizationSet.Scenes[0].Scatterers[0].U0, realizationSet.Scenes[0].FermiAccelerationTheory()));
                 if (statMode == SuperdiffusionStatisticsModes.DependenceOnRadius)
                     points.Add(new Point2D(realizationSet.Scenes[0].Scatterers[0].Radius0, realizationSet.Scenes[0].FermiAccelerationTheory()));
-                if (statMode == SuperdiffusionStatisticsModes.DependenceOnVelocity)
+                if (statMode == SuperdiffusionStatisticsModes.DependenceOnPeriod)
                 {
                     ScattererPeriodic scatterer = (ScattererPeriodic)realizationSet.Scenes[0].Scatterers[0].Clone();
                     points.Add(new Point2D((2 * Math.PI / scatterer.Frequency), realizationSet.Scenes[0].FermiAccelerationTheory()));
