@@ -318,7 +318,7 @@ namespace SuperdiffusionInBilliards
 
         private void GetStatisticsButton_Click(object sender, EventArgs e)
         {
-            SuperdiffusionStatisticsModes statMode;
+            SuperdiffusionStatisticsModes statMode = SuperdiffusionStatisticsModes.Standart;
             StatisticForm statForm = new StatisticForm();
             List<RealizationSet> realizationSets = new List<RealizationSet>();;
             if (staticticsStandart.Checked)
@@ -332,7 +332,7 @@ namespace SuperdiffusionInBilliards
                 }
                 realizationSets.Add(new RealizationSet(scenes));
                 
-                statMode = SuperdiffusionStatisticsModes.Standart;
+                //statMode = SuperdiffusionStatisticsModes.Standart;
                 statForm = new StatisticForm(realizationSets, statMode);
 
                 //Pen pen = new Pen(Color.Black);
@@ -386,11 +386,20 @@ namespace SuperdiffusionInBilliards
                 }
                 statMode = SuperdiffusionStatisticsModes.DependenceOnPeriod;
                 statForm = new StatisticForm(realizationSets, statMode);
+                
+                //MessageBox.Show("Ошибка! Рассеиватель не периодический.");
                 //StatisticsOnScatVelForm sAmpF = new StatisticsOnScatVelForm(realizationSets, Convert.ToDouble(initialVelocity.Text));
                 //sAmpF.Show();
             }
             //StatisticForm statForm = new StatisticForm();
-            statForm.Show();
+            if (!(realizationSets[0].Scenes[0].Scatterers[0] is ScattererPeriodic) && (statMode == SuperdiffusionStatisticsModes.DependenceOnPeriod))
+            {
+                MessageBox.Show("Ошибка! Рассеиватель не периодический.");
+            }
+            else
+            {
+                statForm.Show();
+            }
         }
 
         /*private void startWithGraphics_Click_1(object sender, EventArgs e)
