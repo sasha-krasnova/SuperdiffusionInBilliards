@@ -14,23 +14,16 @@ namespace SuperdiffusionInBilliards
     public partial class StatisticForm : Form
     {
         public List<RealizationSet> realizationSets;
-        //private RealizationSet realizationSet;
         public SuperdiffusionStatisticsModes statMode;
         private WaitForm wf;
-        //private double initVelocity;
-        //private double fullTime;
-        private List<Graph> graphsAverVel, graphsMSD, graphsFA, graphsSC;
+        private List<Graph> graphs;
         private Graph graph, graphLeastSquares, graphTheory;
-        private Graph graphFA, graphFATheory, graphSC, graphSCTheory;
         private Pen pen = new Pen(Color.Black, 1);
         private Pen penLS = new Pen(Color.Red, 1);
         private Pen penTheory = new Pen(Color.Blue, 1);
         public StatisticForm()
         {
             InitializeComponent();
-            //statMode = SuperdiffusionStatisticsModes.Standart;
-            //if (statMode == SuperdiffusionStatisticsModes.Standart)
-            //    VelOrFALabel.Text = "Зависимость средней скорости частицы от времени";
         }
 
         public StatisticForm(List<RealizationSet> realizationSets, SuperdiffusionStatisticsModes statMode)
@@ -75,7 +68,7 @@ namespace SuperdiffusionInBilliards
 
         private void plotVelOrFAButton_Click(object sender, EventArgs e)
         {
-            writeInFileVelButton.Enabled = true;
+            //writeInFileVelButton.Enabled = true;
             if (statMode == SuperdiffusionStatisticsModes.Standart)
             {
                 graph = new Graph(realizationSets[0].AverageVelocityOnTime, pen);
@@ -87,27 +80,18 @@ namespace SuperdiffusionInBilliards
                 double kTheory = realizationSets[0].Scenes[0].FermiAccelerationTheory();
                 List<Point2D> pointsTheory = GetPointsForLinearGraph(realizationSets[0].AverageVelocityOnTime[0], kTheory, realizationSets[0].Scenes[0].DeltaTime, realizationSets[0].Scenes[0].FullTime);
                 graphTheory = new Graph(pointsTheory, penTheory);
-                    
-
-                graphsAverVel = GetGraphs();
-
-                GraphDrawer graphDrawer = new GraphDrawer(graphsAverVel, velOrFAPictureBox);
-                graphDrawer.DrawGraph();
-
+                               
                 faTextBox.Text = Convert.ToString(k);
                 faTheorTextBox.Text = Convert.ToString(kTheory);
             }
             if (statMode == SuperdiffusionStatisticsModes.DependenceOnVelocity || statMode == SuperdiffusionStatisticsModes.DependenceOnRadius || statMode == SuperdiffusionStatisticsModes.DependenceOnPeriod)
             {
-                graphFA = new Graph(GetPointsFermiAcceleration(), pen);
-                graphFATheory = new Graph(GetPointsFermiAccelerationTheory(), penTheory);
-                //Graph graphFALeastSquares = 
-                graphsFA = new List<Graph>();                     
-                graphsFA.Add(graphFA);
-                graphsFA.Add(graphFATheory);
-                GraphDrawer graphDrawer = new GraphDrawer(graphsFA, velOrFAPictureBox);
-                graphDrawer.DrawGraph();
+                graph = new Graph(GetPointsFermiAcceleration(), pen);
+                graphTheory = new Graph(GetPointsFermiAccelerationTheory(), penTheory);
             }
+            graphs = GetGraphs();
+            GraphDrawer graphDrawer = new GraphDrawer(graphs, velOrFAPictureBox);
+            graphDrawer.DrawGraph();
         }
 
         private List<Point2D> GetPointsFermiAcceleration()
@@ -152,9 +136,10 @@ namespace SuperdiffusionInBilliards
         {
             List<Graph> graphs = new List<Graph>();
             graphs.Add((Graph)graph.Clone());
-            graphs.Add((Graph)graphLeastSquares.Clone());
             graphs.Add((Graph)graphTheory.Clone());
-
+            if (statMode == SuperdiffusionStatisticsModes.Standart)
+                graphs.Add((Graph)graphLeastSquares.Clone());
+            
             return graphs;
         }
 
@@ -203,7 +188,7 @@ namespace SuperdiffusionInBilliards
 
         private void plotMSDOrSupCoefButton_Click(object sender, EventArgs e)
         {
-            writeInFileMSDButton.Enabled = true;
+            //writeInFileMSDButton.Enabled = true;
             if (statMode == SuperdiffusionStatisticsModes.Standart)
             {
                 graph = new Graph(realizationSets[0].AverageDisplacementOnTime, pen);
@@ -215,25 +200,24 @@ namespace SuperdiffusionInBilliards
                 double kTheory = realizationSets[0].Scenes[0].CoefficientOfSuperdiffusionTheory(realizationSets[0].Scenes[0].FermiAccelerationTheory());
                 List<Point2D> pointsTheory = GetPointsForLinearGraph(realizationSets[0].AverageDisplacementOnTime[0], kTheory, realizationSets[0].Scenes[0].DeltaTime, realizationSets[0].Scenes[0].FullTime);
                 graphTheory = new Graph(pointsTheory, penTheory);
-                graphsMSD = GetGraphs();
                 
-                GraphDrawer graphDrawer = new GraphDrawer(graphsMSD, msdOrSupCoefPictureBox);
-                graphDrawer.DrawGraph();
 
                 scTextBox.Text = Convert.ToString(k);
                 scTheorTextBox.Text = Convert.ToString(kTheory);
             }
             if (statMode == SuperdiffusionStatisticsModes.DependenceOnVelocity || statMode == SuperdiffusionStatisticsModes.DependenceOnRadius || statMode == SuperdiffusionStatisticsModes.DependenceOnPeriod)
             {
-                graphSC = new Graph(GetPointsSuperdiffusionCoefficient(), pen);
-                graphSCTheory = new Graph(GetPointsSuperdiffusionCoefficientTheory(), penTheory);
-                //Graph graphFALeastSquares = 
-                graphsSC = new List<Graph>();
-                graphsSC.Add(graphSC);
-                graphsSC.Add(graphSCTheory);
-                GraphDrawer graphDrawer = new GraphDrawer(graphsSC, msdOrSupCoefPictureBox);
-                graphDrawer.DrawGraph();
+                graph = new Graph(GetPointsSuperdiffusionCoefficient(), pen);
+                graphTheory = new Graph(GetPointsSuperdiffusionCoefficientTheory(), penTheory);
             }
+            graphs = GetGraphs();
+            GraphDrawer graphDrawer = new GraphDrawer(graphs, msdOrSupCoefPictureBox);
+            graphDrawer.DrawGraph();
+        }
+
+        private List<LineInFile> MakeDataForFile()
+        {
+            return null;
         }
 
         private List<Point2D> GetPointsSuperdiffusionCoefficient()
@@ -273,6 +257,22 @@ namespace SuperdiffusionInBilliards
             }
             return points;
         }
-       
+
+        private void WriteToFile(List<LineInFile> linesInFile)
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    CsvFileWriter csvFileWriter = new CsvFileWriter(saveFileDialog1.FileName, new List<ICsvLine>(linesInFile));
+                    csvFileWriter.WriteToFile();
+                    MessageBox.Show("Записано");
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Произошла ошибка при записи в файл" + e);
+                }
+            }
+        }
     }
 }
