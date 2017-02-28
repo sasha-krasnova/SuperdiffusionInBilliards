@@ -18,8 +18,8 @@ namespace SuperdiffusionInBilliards
 
         public void WriteToFile()
         {
-            using (System.IO.StreamWriter file = 
-                new System.IO.StreamWriter(fileName))
+            using (System.IO.StreamWriter file =
+                new System.IO.StreamWriter(fileName, true, System.Text.Encoding.UTF8))
 
             foreach (ICsvLine line in fileContent)
             {

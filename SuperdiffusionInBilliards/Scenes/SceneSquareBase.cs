@@ -20,6 +20,14 @@ namespace SuperdiffusionInBilliards
             Lines[3] = new Line(1, 0, 0);
         }
 
+        public double LatticeSize
+        {
+            get
+            {
+                return latticeSize;
+            }
+        }
+
          /// <summary>
         /// Функция производит следующее соударение. Ищет времена соударения со всеми элементами сцены и выбирает наименьшее положительное
         /// </summary>

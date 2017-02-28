@@ -182,6 +182,7 @@
             this.writeInFileVelButton.TabIndex = 14;
             this.writeInFileVelButton.Text = "Записать в файл";
             this.writeInFileVelButton.UseVisualStyleBackColor = true;
+            this.writeInFileVelButton.Click += new System.EventHandler(this.writeInFileVelButton_Click);
             // 
             // writeInFileMSDButton
             // 
@@ -192,6 +193,7 @@
             this.writeInFileMSDButton.TabIndex = 15;
             this.writeInFileMSDButton.Text = "Записать в файл";
             this.writeInFileMSDButton.UseVisualStyleBackColor = true;
+            this.writeInFileMSDButton.Click += new System.EventHandler(this.writeInFileMSDButton_Click);
             // 
             // saveFileDialog1
             // 

@@ -7,20 +7,23 @@ namespace SuperdiffusionInBilliards
 {
     class LineInFile : ICsvLine
     {
-        private double variable;
-        private double function;
-        private double functionTheory;
-
-        public LineInFile(double variable, double function, double functionTheory)
+        private List<double> values = new List<double>();
+        public LineInFile(List<double> values)
         {
-            this.variable = variable;
-            this.function = function;
-            this.functionTheory = functionTheory;
+            this.values = values;
+        }
+        public LineInFile()
+        {
+           
         }
 
+            
         public String GetCSV()
         {
-            return Convert.ToString(variable) + ";" + Convert.ToString(function) + ";" + Convert.ToString(functionTheory) + ";";
+            string dataCsv = null;
+            foreach (double value in values)
+                dataCsv += Convert.ToString(value) + ";";
+            return dataCsv;
         }
     }
 }

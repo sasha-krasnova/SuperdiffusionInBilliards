@@ -19,6 +19,14 @@ namespace SuperdiffusionInBilliards
             InitParticleCoordinates(GenerateParticleCoordinates(rect));
         }
 
+        public double ScattererConcentration
+        {
+            get
+            {
+                return scattererConcentration;
+            }
+        }
+
         /// <summary>
         /// Генерирует координаты частицы вне рассеивателей 
         /// </summary>
