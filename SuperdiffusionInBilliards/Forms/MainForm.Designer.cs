@@ -54,9 +54,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.numberOfRealisations = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.statistics = new System.Windows.Forms.Button();
-            this.leastSquares = new System.Windows.Forms.Button();
-            this.averagingForm = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.statisticsOnPeriod = new System.Windows.Forms.RadioButton();
             this.statisticsOnScatRadius = new System.Windows.Forms.RadioButton();
@@ -80,7 +77,6 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.scattererConcentrationTextBox = new System.Windows.Forms.TextBox();
             this.GetStatisticsButton = new System.Windows.Forms.Button();
@@ -344,38 +340,6 @@
             this.label9.TabIndex = 20;
             this.label9.Text = "Количество реализаций";
             // 
-            // statistics
-            // 
-            this.statistics.BackColor = System.Drawing.Color.Red;
-            this.statistics.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.statistics.Location = new System.Drawing.Point(370, 295);
-            this.statistics.Name = "statistics";
-            this.statistics.Size = new System.Drawing.Size(356, 58);
-            this.statistics.TabIndex = 21;
-            this.statistics.Text = "Расчитать статистику";
-            this.statistics.UseVisualStyleBackColor = false;
-            this.statistics.Click += new System.EventHandler(this.statistics_Click);
-            // 
-            // leastSquares
-            // 
-            this.leastSquares.Location = new System.Drawing.Point(888, 510);
-            this.leastSquares.Name = "leastSquares";
-            this.leastSquares.Size = new System.Drawing.Size(224, 32);
-            this.leastSquares.TabIndex = 22;
-            this.leastSquares.Text = "Проверка МНК";
-            this.leastSquares.UseVisualStyleBackColor = true;
-            this.leastSquares.Click += new System.EventHandler(this.leastSquares_Click);
-            // 
-            // averagingForm
-            // 
-            this.averagingForm.Location = new System.Drawing.Point(888, 472);
-            this.averagingForm.Name = "averagingForm";
-            this.averagingForm.Size = new System.Drawing.Size(224, 32);
-            this.averagingForm.TabIndex = 23;
-            this.averagingForm.Text = "Проверка усреднения";
-            this.averagingForm.UseVisualStyleBackColor = true;
-            this.averagingForm.Click += new System.EventHandler(this.averagingForm_Click);
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.statisticsOnPeriod);
@@ -607,16 +571,6 @@
             this.label18.TabIndex = 42;
             this.label18.Text = "Количество точек";
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(868, 415);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(346, 31);
-            this.button2.TabIndex = 43;
-            this.button2.Text = "Проверка RandomScattererSet";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // label19
             // 
             this.label19.AutoSize = true;
@@ -638,24 +592,24 @@
             // 
             // GetStatisticsButton
             // 
+            this.GetStatisticsButton.BackColor = System.Drawing.Color.Red;
             this.GetStatisticsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.GetStatisticsButton.Location = new System.Drawing.Point(370, 377);
+            this.GetStatisticsButton.Location = new System.Drawing.Point(377, 295);
             this.GetStatisticsButton.Name = "GetStatisticsButton";
             this.GetStatisticsButton.Size = new System.Drawing.Size(356, 58);
             this.GetStatisticsButton.TabIndex = 46;
             this.GetStatisticsButton.Text = "Рассчитать статистику";
-            this.GetStatisticsButton.UseVisualStyleBackColor = true;
+            this.GetStatisticsButton.UseVisualStyleBackColor = false;
             this.GetStatisticsButton.Click += new System.EventHandler(this.GetStatisticsButton_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1239, 562);
+            this.ClientSize = new System.Drawing.Size(1239, 372);
             this.Controls.Add(this.GetStatisticsButton);
             this.Controls.Add(this.scattererConcentrationTextBox);
             this.Controls.Add(this.label19);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label16);
@@ -675,9 +629,6 @@
             this.Controls.Add(this.textBoxStepAmp);
             this.Controls.Add(this.textBoxInitAmp);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.averagingForm);
-            this.Controls.Add(this.leastSquares);
-            this.Controls.Add(this.statistics);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.numberOfRealisations);
             this.Controls.Add(this.label8);
@@ -740,9 +691,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox numberOfRealisations;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button statistics;
-        private System.Windows.Forms.Button leastSquares;
-        private System.Windows.Forms.Button averagingForm;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton statisticsOnScatRadius;
         private System.Windows.Forms.RadioButton statisticsOnScatVel;
@@ -766,7 +714,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox scattererConcentrationTextBox;
         private System.Windows.Forms.Button GetStatisticsButton;

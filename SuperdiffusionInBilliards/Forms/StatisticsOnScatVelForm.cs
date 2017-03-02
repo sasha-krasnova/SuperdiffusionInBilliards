@@ -48,7 +48,7 @@ namespace SuperdiffusionInBilliards
             
             foreach (RealizationSet realizationSet in realizationSets)
             {
-                realizationSet.Run(new StatisticsForm.StatusBarChanger(wf, realizationSet.Scenes.Count));
+                realizationSet.Run(new StatisticForm.StatusBarChanger(wf, realizationSet.Scenes.Count));
                 Thread.Sleep(1000);
             }
             

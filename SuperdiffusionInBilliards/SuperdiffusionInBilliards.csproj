@@ -122,12 +122,6 @@
     <Compile Include="StatesOfParticle\StateOfParticle.cs" />
     <Compile Include="StatesOfParticle\StateOfParticleDetailed.cs" />
     <Compile Include="Functions\TestFunction.cs" />
-    <Compile Include="Forms\StatisticsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\StatisticsForm.Designer.cs">
-      <DependentUpon>StatisticsForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="WritingInFile\CsvFileWriter.cs" />
     <Compile Include="WritingInFile\ICsvLine.cs" />
     <EmbeddedResource Include="Forms\AveragingForm.resx">
@@ -161,9 +155,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Forms\StatisticsForm.resx">
-      <DependentUpon>StatisticsForm.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

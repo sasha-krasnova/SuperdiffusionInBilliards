@@ -176,7 +176,7 @@ namespace SuperdiffusionInBilliards
             foreach (RealizationSet realizationSet in realizationSets)
             {
                 if (statMode == SuperdiffusionStatisticsModes.Standart)
-                    realizationSet.Run(new StatisticsForm.StatusBarChanger(wf, realizationSet.Scenes.Count));
+                    realizationSet.Run(new StatisticForm.StatusBarChanger(wf, realizationSet.Scenes.Count));
                 else
                 {
                     realizationSet.Run();
@@ -468,5 +468,23 @@ namespace SuperdiffusionInBilliards
             writeMode = SuperdiffusionWriteToFileModes.Diffusion;
             WriteToFile();
         }
+
+        public class StatusBarChanger : CallbackRealSetStepFunc
+        {
+            private WaitForm wf;
+            private int scenesCount;
+
+            public StatusBarChanger(WaitForm wf, int scenesCount)
+            {
+                this.wf = wf;
+                this.scenesCount = scenesCount;
+            }
+
+            public void f(int idxOfReal)
+            {
+                wf.ChangePercentThread(idxOfReal + 1, scenesCount);
+            }
+        }
+
     }
 }

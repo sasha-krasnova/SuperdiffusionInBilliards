@@ -183,8 +183,8 @@ namespace SuperdiffusionInBilliards
                 //Pen pen = new Pen(Color.Black);
                 //Graph graph = new Graph(realizationSet.AverageVelocityOnTime, pen);
 
-                StatisticsForm sf = new StatisticsForm(scenes, Convert.ToDouble(initialVelocity.Text), Convert.ToDouble(fullTime.Text));
-                sf.Show();
+                //StatisticsForm sf = new StatisticsForm(scenes, Convert.ToDouble(initialVelocity.Text), Convert.ToDouble(fullTime.Text));
+                //sf.Show();
             }
 
             if (statisticsOnScatVel.Checked)
