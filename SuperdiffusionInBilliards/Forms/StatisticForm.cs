@@ -195,12 +195,14 @@ namespace SuperdiffusionInBilliards
             {
                 graphDiff = new Graph(realizationSets[0].AverageDisplacementOnTime, pen);
 
-                double k = GetSlope(0, graphDiff);
-                List<Point2D> pointsLeastSquares = GetPointsForLinearGraph(realizationSets[0].AverageDisplacementOnTime[0], k, realizationSets[0].Scenes[0].DeltaTime, realizationSets[0].Scenes[0].FullTime);
+                Line lineMNK = GetShiftAndSlope(graphDiff);
+                double k = lineMNK.A;
+                Point2D initPoint = new Point2D(realizationSets[0].AverageDisplacementOnTime[0].X, lineMNK.C);
+                List<Point2D> pointsLeastSquares = GetPointsForLinearGraph(initPoint, k, realizationSets[0].Scenes[0].DeltaTime, realizationSets[0].Scenes[0].FullTime);
                 graphLeastSquaresDiff = new Graph(pointsLeastSquares, penLS);
 
                 double kTheory = realizationSets[0].Scenes[0].CoefficientOfSuperdiffusionTheory(realizationSets[0].Scenes[0].FermiAccelerationTheory());
-                List<Point2D> pointsTheory = GetPointsForLinearGraph(realizationSets[0].AverageDisplacementOnTime[0], kTheory, realizationSets[0].Scenes[0].DeltaTime, realizationSets[0].Scenes[0].FullTime);
+                List<Point2D> pointsTheory = GetPointsForLinearGraph(initPoint, kTheory, realizationSets[0].Scenes[0].DeltaTime, realizationSets[0].Scenes[0].FullTime);
                 graphTheoryDiff = new Graph(pointsTheory, penTheory);
                 
 
@@ -215,6 +217,13 @@ namespace SuperdiffusionInBilliards
             graphsDiff = GetGraphsDiff();
             GraphDrawer graphDrawer = new GraphDrawer(graphsDiff, msdOrSupCoefPictureBox);
             graphDrawer.DrawGraph();
+        }
+
+        private Line GetShiftAndSlope(Graph graph)
+        {
+            LeastSquares leastSquares = new LeastSquares(graph.Points);
+            Line lineMNK = leastSquares.ShiftAndSlope();
+            return lineMNK;
         }
 
         /*private List<LineInFile> MakeDataForFile()
