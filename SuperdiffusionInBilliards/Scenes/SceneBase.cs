@@ -10,7 +10,7 @@ namespace SuperdiffusionInBilliards
     /// <summary>
 	/// Базовый класс сцены
 	/// </summary>
-    abstract public class SceneBase
+    abstract public class SceneBase : Function
     {
         //public static string LOG_FILE = @"c:\Users\Sasha\Documents\Visual Studio 2010\Projects\SuperdiffusionInBilliards\log.txt";
 

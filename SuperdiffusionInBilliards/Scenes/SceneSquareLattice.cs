@@ -43,9 +43,30 @@ namespace SuperdiffusionInBilliards
             Scatterers[4].Center.X = latticeSize / 2;
             Scatterers[4].Center.Y = latticeSize / 2;
 
-            scatterersPerimeter = 2 * Math.PI * (Scatterers[0].Radius0 + Scatterers[4].Radius0);
-            double area = latticeSize * latticeSize - Math.PI * (Scatterers[0].Radius0 * Scatterers[0].Radius0 + Scatterers[4].Radius0 * Scatterers[4].Radius0);
-            MeanFreePath = Math.PI * area / scatterersPerimeter;
+            
+            if(Scatterers[0] is ScattererPeriodic)
+            {
+                ScattererPeriodic scatterer = (ScattererPeriodic) Scatterers[0].Clone();
+                MeanFreePath = Integral(0, 2 * Math.PI / scatterer.Frequency) / (2 * Math.PI / scatterer.Frequency);
+                //scatterersPerimeter = 2 * Math.PI * (Scatterers[0].Radius0 + Scatterers[4].Radius0);
+                //double area = latticeSize * latticeSize - Math.PI * (Scatterers[0].Radius0 * Scatterers[0].Radius0 + Scatterers[4].Radius0 * Scatterers[4].Radius0);
+                //double meanFreePathWithoutAveraging = Math.PI * area / scatterersPerimeter;
+            }
+            else
+            {
+                scatterersPerimeter = 2 * Math.PI * (Scatterers[0].Radius0 + Scatterers[4].Radius0);
+                double area = latticeSize * latticeSize - Math.PI * (Scatterers[0].Radius0 * Scatterers[0].Radius0 + Scatterers[4].Radius0 * Scatterers[4].Radius0);
+                MeanFreePath = Math.PI * area / scatterersPerimeter;
+            }
+        }
+
+        public override double F(double x)
+        {
+            double scatterersPerimeter = 2 * Math.PI * (Scatterers[0].Radius(x) + Scatterers[4].Radius(x));
+            double area = latticeSize * latticeSize - Math.PI * (Scatterers[0].Radius(x) * Scatterers[0].Radius(x) + Scatterers[4].Radius(x) * Scatterers[4].Radius(x));
+            double meanFreePath = Math.PI * area / scatterersPerimeter;
+            return meanFreePath;
+            //throw new NotImplementedException();
         }
 
         public override double FermiAccelerationTheory()

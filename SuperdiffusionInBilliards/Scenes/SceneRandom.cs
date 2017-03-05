@@ -17,6 +17,25 @@ namespace SuperdiffusionInBilliards
             ReloadScetterers();
             Rectangle rect = new Rectangle(new Point2D(0, 0), new Point2D(2 * scattererSample.MaxRadius(), 2 * scattererSample.MaxRadius()));
             InitParticleCoordinates(GenerateParticleCoordinates(rect));
+
+            if (Scatterers[0] is ScattererPeriodic)
+            {
+                ScattererPeriodic scatterer = (ScattererPeriodic)Scatterers[0].Clone();
+                MeanFreePath = Integral(0, 2 * Math.PI / scatterer.Frequency) / (2 * Math.PI / scatterer.Frequency);
+                //double meanFreePathWithoutAveraging = (1 - scattererConcentration * Math.PI * Scatterers[0].Radius0 * Scatterers[0].Radius0) / 2 / scattererConcentration / Scatterers[0].Radius0;
+            }
+            else
+            {
+                MeanFreePath = (1 - scattererConcentration * Math.PI * Scatterers[0].Radius0 * Scatterers[0].Radius0) / 2 / scattererConcentration / Scatterers[0].Radius0;
+            }
+            
+        }
+
+        public override double F(double x)
+        {
+            double meanFreePath = (1 - scattererConcentration * Math.PI * Scatterers[0].Radius(x) * Scatterers[0].Radius(x)) / 2 / scattererConcentration / Scatterers[0].Radius(x);
+            return meanFreePath;
+            //throw new NotImplementedException();
         }
 
         public double ScattererConcentration

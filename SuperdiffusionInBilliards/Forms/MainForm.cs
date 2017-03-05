@@ -403,6 +403,7 @@ namespace SuperdiffusionInBilliards
             }
         }
 
+
         /*private void startWithGraphics_Click_1(object sender, EventArgs e)
         {
 

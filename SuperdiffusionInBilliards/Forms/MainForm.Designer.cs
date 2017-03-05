@@ -226,7 +226,7 @@
             this.averageRadius.Name = "averageRadius";
             this.averageRadius.Size = new System.Drawing.Size(100, 20);
             this.averageRadius.TabIndex = 8;
-            this.averageRadius.Text = "9";
+            this.averageRadius.Text = "9,2";
             this.averageRadius.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // averageRadiusOfCentralSc
@@ -235,7 +235,7 @@
             this.averageRadiusOfCentralSc.Name = "averageRadiusOfCentralSc";
             this.averageRadiusOfCentralSc.Size = new System.Drawing.Size(100, 20);
             this.averageRadiusOfCentralSc.TabIndex = 9;
-            this.averageRadiusOfCentralSc.Text = "3";
+            this.averageRadiusOfCentralSc.Text = "1";
             this.averageRadiusOfCentralSc.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label4
@@ -292,7 +292,7 @@
             this.fullTime.Name = "fullTime";
             this.fullTime.Size = new System.Drawing.Size(100, 20);
             this.fullTime.TabIndex = 15;
-            this.fullTime.Text = "1000";
+            this.fullTime.Text = "5000";
             this.fullTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // deltaTime
@@ -301,7 +301,7 @@
             this.deltaTime.Name = "deltaTime";
             this.deltaTime.Size = new System.Drawing.Size(100, 20);
             this.deltaTime.TabIndex = 16;
-            this.deltaTime.Text = "20";
+            this.deltaTime.Text = "500";
             this.deltaTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label7
@@ -328,7 +328,7 @@
             this.numberOfRealisations.Name = "numberOfRealisations";
             this.numberOfRealisations.Size = new System.Drawing.Size(100, 20);
             this.numberOfRealisations.TabIndex = 19;
-            this.numberOfRealisations.Text = "10";
+            this.numberOfRealisations.Text = "50";
             this.numberOfRealisations.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label9

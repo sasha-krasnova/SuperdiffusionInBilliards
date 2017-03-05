@@ -426,9 +426,12 @@ namespace SuperdiffusionInBilliards
 
             if (!(statMode == SuperdiffusionStatisticsModes.DependenceOnPeriod))
             {
-                ScattererPeriodic scatterer = (ScattererPeriodic)realizationSets[0].Scenes[0].Scatterers[0].Clone();
-                Parameter periodOfScattererOsc = new Parameter("Период колебаний стенки рассеивателей (для периодических колебаний) = ", 2 * Math.PI / scatterer.Frequency);
-                parameters.Add(periodOfScattererOsc);
+                if (realizationSets[0].Scenes[0].Scatterers[0] is ScattererPeriodic)
+                {
+                    ScattererPeriodic scatterer = (ScattererPeriodic)realizationSets[0].Scenes[0].Scatterers[0].Clone();
+                    Parameter periodOfScattererOsc = new Parameter("Период колебаний стенки рассеивателей (для периодических колебаний) = ", 2 * Math.PI / scatterer.Frequency);
+                    parameters.Add(periodOfScattererOsc);
+                }
             }
 
             if (!(statMode == SuperdiffusionStatisticsModes.DependenceOnRadius))
